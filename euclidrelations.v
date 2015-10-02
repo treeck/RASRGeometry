@@ -591,14 +591,14 @@ Hypothesis exact_sizes :
     list_rmem i s = exact_size x_0_i x_m_i /\
     d = exact_size y_0 y_m.
 
-(** The ist of cardnals corresponding to each list_x_i (the
+(** The list of cardnals corresponding to each list_x_i (the
     number of elements in the closed intervals [x_0_i,x_m_i},
     i in [1,n]). *)
 Variable p: list R.
 (** The ruler interval size. *)
 Variable c: R.
 (** The cardinal of the set {(y,y)}. *)
-Variable all_xy: R.
+Variable all_yy: R.
 
 (** Definitions of domain partitions. *)
 Hypothesis ruler_partitions :
@@ -614,10 +614,10 @@ Hypothesis ruler_partitions :
    Euclidean distance proof in the article,
    A Combinatorial Foundation for Geometry. *)
 
-(** Map the set-based cardinal relationship,
-   |{(x_i,y)}| = |list_y_i|^2, into the list of
+(** Step 3.4: Map the set-based cardinal relationship,
+   |{(x_i,y)}| = |{(y,y)| = |list_y_i|^2, into the list of
    partition counts, p. *)
-Lemma mem_sqr_list_p_eq_prod_list_xi_list_yi :
+Lemma mem_sqr_list_p_eq_prod_list_yi_list_yi :
     list_rmem i (sqr_list p) = Rsqr (partitions x_0_i x_m_i c).
 Proof.
   intros.
@@ -626,11 +626,11 @@ Proof.
   rewrite -> sqr_list_spec in H10. assumption.
 Qed.
 
-(** Step 3.5: The largest possible set of (x,y), all_xy,
-    where each (x,y) corresponds one-to-one each (x_i,y_i),
-    is the sum of all (x_i,y_i). *)
-Hypothesis all_xy_sum_disjoint :
-    all_xy = sum_list (sqr_list p).
+(** Step 3.5: The largest possible set of (y,y), all_yy,
+    where each combinatiion, (y,y), corresponds one-to-one to
+    each (x_i,y_i), is the sum of all (y_i,y_i). *)
+Hypothesis all_yy_sum_disjoint :
+    all_yy = sum_list (sqr_list p).
 
 (** Step 3.6: Multiply both sides of step 3.5 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
@@ -642,14 +642,14 @@ Lemma domain_interval_measure :
     L1 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
-    all_xy * Rsqr c = sum_list (sqr_list s).
+    all_yy * Rsqr c = sum_list (sqr_list s).
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_partitions.
-  assert (all_xy * Rsqr c = sum_list (mult_list (sqr_list p) c²)).
+  assert (all_yy * Rsqr c = sum_list (mult_list (sqr_list p) c²)).
       rewrite <- mult_distributes_over_sum_list.
       apply Rmult_eq_compat_r with (r := Rsqr (c))
-          (r1 := all_xy)
+          (r1 := all_yy)
           (r2 := sum_list (sqr_list p)).
       assumption.
   rewrite <- limit_c_0_M_eq_exact_size with
@@ -678,36 +678,11 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** There is one overall set of y, Ypd, and one overall set
-    of x, Xpd, and by the countable distance measure
-    |Xpd| = |Ypd|, which implies
-    the maximum number of correspondences is.
-    INR (length Xpd) * INR(length Ypd) = all_xy. *)
-Hypothesis all_xy_eq_rsqr_prod_Xpd_Ypd :
-    all_xy = INR (length Xpd) * INR(length Ypd).
-
-(** Next two lemmas are step 3.7:
-    |Ypd| = |Xpd| => |Xpd| * |Ypd| = |Ypd| * |Ypd| = |Ypd|^2. *)
-Lemma list_prod_Xpd_Ypd_eq_sqr_partitions :
-   Rsqr (partitions y_0 y_m c) = INR (length Xpd) * INR(length Ypd).
-Proof.
-  decompose [and] countable_distance_measure.
-  decompose [and] ruler_partitions.
-  rewrite -> H7.
-  rewrite -> H13.
-  unfold Rsqr.
-  reflexivity.
-Qed.
-
-(** Step 3.7 continued:
-    |Xpd| * |Ypd| = all_xy /\ |Xpd| = |Ypd| =>
-    |Xpd| * |Ypd| = |Ypd| * |Ypd| = |Ypd|^2 = all_xy. *)
-Lemma all_xy_eq_rsqr_image_partitions :
-    all_xy = Rsqr (partitions y_0 y_m c).
-Proof.
-  rewrite -> list_prod_Xpd_Ypd_eq_sqr_partitions.
-  apply all_xy_eq_rsqr_prod_Xpd_Ypd.
-Qed.
+(** Step: 3.7: There is one overall set of y, Ypd, with size,
+    partitions y_0 y_m c. Therefore, the number of all (y,y)
+    combinations is (partitions y_0 y_m c)^2 = all_yy. *)
+Hypothesis all_yy_eq_rsqr_image_partitions :
+    all_yy = Rsqr (partitions y_0 y_m c).
 
 (** Step 3.8: Multiply both sides of step 3.7 by Rsqr c and
     apply the ruler measure and convergence theorem to get
@@ -720,7 +695,7 @@ Lemma rsqr_d_measure :
     L1 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
-    Rsqr d = all_xy * Rsqr c.
+    Rsqr d = all_yy * Rsqr c.
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_partitions.
@@ -733,8 +708,8 @@ Proof.
   rewrite <- rsqr_distributes.
   apply Rmult_eq_compat_r with (r := Rsqr (c))
       (r1 := Rsqr (partitions y_0 y_m c))
-      (r2 := all_xy).
-  symmetry. apply all_xy_eq_rsqr_image_partitions.
+      (r2 := all_yy).
+  symmetry. apply all_yy_eq_rsqr_image_partitions.
   split. assumption. split. reflexivity. split. assumption.
   split. assumption. split. reflexivity.
   split. assumption. split. assumption. split. assumption.
@@ -754,10 +729,10 @@ Theorem Euclidean_distance :
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_partitions.
-  assert (all_xy * Rsqr c = sum_list (sqr_list s)).
+  assert (all_yy * Rsqr c = sum_list (sqr_list s)).
       revert H.
       apply domain_interval_measure. assumption.
-  assert (Rsqr d = all_xy * Rsqr c).
+  assert (Rsqr d = all_yy * Rsqr c).
       revert H.
       apply rsqr_d_measure. assumption.
   rewrite -> H14 in H16.
