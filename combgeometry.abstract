@@ -1,6 +1,6 @@
-A ruler-based measure of intervals is a tool enabling a new class of
-combinatorial proofs in real analysis providing new insights into both
-measure theory and analytic geometry.
+A ruler-based measure of real-valued intervals is a tool enabling a new class of
+combinatorial proofs providing new insights into both measure theory and
+analytic geometry.
 Applying the ruler to the definition of a countable distance range converges to
 the taxicab distance equation as the upper boundary of the range,
 the Euclidean distance equation as the lower boundary of the range, and
