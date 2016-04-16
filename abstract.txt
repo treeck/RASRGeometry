@@ -1,0 +1,14 @@
+A ruler measure of intervals allows a new class of combinatorial proofs
+providing new insights into both measure theory and analytic geometry.
+Applying the ruler to the definition of a countable distance range converges to
+the taxicab distance equation as the upper boundary of the range,
+the Euclidean distance equation as the lower boundary of the range, and
+the triangle inequality over the full range.
+A combinatorial definition of size (length/area/volume) converges to the
+product of interval sizes (Euclidean volume) used in the Lebesgue measure.
+Combinatorics limits a geometry having the properties of
+both symmetry and order to a cyclic set of at most 3 dimensions,
+which is the basis of the right-hand rule.
+Implications for non-Euclidean geometries and higher dimensional
+geometries are discussed.
+All the proofs are verified in Coq.
