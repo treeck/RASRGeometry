@@ -1,15 +1,19 @@
-Using a ruler-like measure of intervals with real analysis provides insights
-into the combinatorial principles generating geometry:
-A set-based definition of a countable distance range applied to sets of subintervals
-of intervals converges to the taxicab distance equation as the upper boundary,
+Using a ruler-like measure of intervals with real analysis
+allows new proofs that provide insights into the combinatorial
+principles generating geometry:
+A set-based definition of a countable distance range applied to
+sets of subintervals of intervals converges to the taxicab
+distance equation as the upper boundary,
 the Euclidean distance equation as the lower boundary, and
-the triangle inequality over the full range, which provides an analytic
-motivation for the definition of metric space independent of elementary geometry.
-The Cartesian product of the subintervals of intervals converges to
-the product of interval sizes used in the Lebesgue measure and Euclidean integrals.
-Also combinatorics limits a geometry having the properties of
-both symmetry and order to a cyclic set of at most 3 dimensions,
-which is the basis of the right-hand rule.
+the triangle inequality over the full range, which provides an
+analytic motivation for the definition of metric space
+independent of elementary geometry.
+The Cartesian product of the subintervals of intervals converges
+to the product of interval sizes used in the Lebesgue measure
+and Euclidean integrals.
+Also combinatorics limits a geometry that is both ordered and
+symmetric to a cyclic set of at most 3 dimensions, which is the
+basis of the right-hand rule.
 Implications for non-Euclidean geometries and higher dimensional
 geometries are discussed.
 All the proofs are verified in Coq.
