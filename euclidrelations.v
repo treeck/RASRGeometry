@@ -689,7 +689,7 @@ Proof.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.10: combine steps 3.7 and 3.9. *)
+(** Step 3.9: combine steps 3.8 and 3.6. *)
 Theorem taxicab_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
@@ -722,7 +722,7 @@ Variable all_yy: R.
    Euclidean distance proof in the article,
    A Combinatorial Foundation for Analytic Geometry. *)
 
-(** Step 3.12: Map the set-based cardinal relationship,
+(** Step 3.13: Map the set-based cardinal relationship,
    |{(x_i,y)}| = |{(y,y)| = |list_y_i|^2, into the list of
    partition counts, p. *)
 Lemma mem_sqr_list_p_eq_prod_list_yi_list_yi :
@@ -734,13 +734,13 @@ Proof.
   rewrite -> sqr_list_spec in H10. assumption.
 Qed.
 
-(** Step 3.14: The largest possible set of (y,y), all_yy,
+(** Step 3.12: The largest possible set of (y,y), all_yy,
     where each combinatiion, (y,y), corresponds one-to-one to
     each (x_i,y_i), is the sum of all (y_i,y_i). *)
 Hypothesis all_yy_sum_disjoint :
     all_yy = sum_list (sqr_list p).
 
-(** Step 3.16: Multiply both sides of step 3.15 by Rsqr c and
+(** Step 3.14: Multiply both sides of step 3.13 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_yy_measure :
     forall (L1 L2 delta epsilon:R)
@@ -786,13 +786,13 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** Step 3.17: There is one overall set of Y, Ypd number of
+(** Step 3.15: There is one overall set of Y, Ypd number of
     subintervals. Therefore, the number of all (y,y) combinations,
     y in Y, is (subintervals y_0 y_m c)^2 = all_yy. *)
 Hypothesis all_yy_eq_rsqr_image_subintervals :
     all_yy = Rsqr (subintervals y_0 y_m c).
 
-(** Step 3.18: Multiply both sides of step 3.7 by Rsqr c and
+(** Step 3.16: Multiply both sides of step 3.7 by Rsqr c and
     apply the ruler measure and convergence theorem to get
     the distance measure. *)
 Lemma rsqr_d_measure :
@@ -824,7 +824,7 @@ Proof.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.19: combine steps 3.16 and 3.18. *)
+(** Step 3.17: combine steps 3.15 and 3.16. *)
 Theorem Euclidean_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
