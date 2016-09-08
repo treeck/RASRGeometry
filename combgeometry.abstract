@@ -16,4 +16,4 @@ symmetric to a cyclic set of at most 3 dimensions, which is the
 basis of the right-hand rule.
 Implications for non-Euclidean geometries and higher dimensional
 geometries are discussed.
-All the proofs are verified in Coq.
+All the proofs are verified in Coq.\end{abstract}
