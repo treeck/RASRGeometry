@@ -1,5 +1,6 @@
 Using a ruler-like measure of intervals with real analysis
-allows proofs that provide new insights into real analysis, measure theory, and geometry:
+allows proofs that provide new insights into real analysis, measure
+theory, and geometry:
 A set-based definition of a countable distance range applied to
 sets of subintervals of intervals converges to the taxicab
 distance equation as the upper boundary,
@@ -10,9 +11,9 @@ and Euclidean distance independent of elementary geometry.
 The Cartesian product of the subintervals of intervals converges
 to the product of interval sizes used in the Lebesgue measure
 and Euclidean integrals.
-Also combinatorics limits a geometry that is both ordered and
-symmetric to a cyclic set of at most 3 dimensions, which is the
-basis of the right-hand rule.
+A cyclic set of at most 3 dimensions, which is the basis of the right-hand rule,
+emerges from the same countable set axioms from which distance
+and volume emerge.
 Implications for non-Euclidean geometries and higher dimensional
 geometries are discussed.
 All the proofs are verified in Coq.
