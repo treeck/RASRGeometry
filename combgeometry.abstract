@@ -1,6 +1,5 @@
-Using a ruler-like measure of intervals with real analysis
-allows proofs that provide new insights into real analysis, measure
-theory, and geometry:
+A ruler-like measure of intervals allows proofs that provide new insights into
+real analysis, measure theory, and geometry:
 A set-based definition of a countable distance range applied to
 sets of subintervals of intervals converges to the taxicab
 distance equation as the upper boundary,
