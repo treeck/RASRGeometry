@@ -5,9 +5,9 @@ the taxicab distance equation as the upper boundary,
 the Euclidean distance equation as the lower boundary, and
 the triangle inequality over the full range, which provides
 counting-based motivations for the definitions of metric space
-and Euclidean (smallest) distance.
-The Cartesian product of same-sized subintervals of intervals
-converges to the product of interval sizes used in the
+and smallest distance.
+A set-based definition of countable size converges to the product
+of interval sizes, the volume equation used in the
 Lebesgue measure and Euclidean integrals.
 A cyclic set of at most 3 dimensions, which is the basis of the
 right-hand rule, emerges from the same countable set axioms
