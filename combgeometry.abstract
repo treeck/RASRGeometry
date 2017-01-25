@@ -9,9 +9,8 @@ and metric space.
 A set-based definition of countable size converges to the product
 of interval sizes, the volume equation used in the
 Lebesgue measure and Euclidean integrals.
-A cyclic set of at most 3 dimensions, which is the basis of the
-right-hand rule, emerges from the same countable set axioms
-from which distance and volume emerge.
+A cyclic set of at most 3 dimensions emerges from the same
+countable set axioms from which distance and volume emerge.
 Implications for non-Euclidean geometries and higher dimensional
 geometries are discussed.
 All the proofs are verified in Coq.
