@@ -1,4 +1,4 @@
-# CombinatorialGeometry
+# The Real Analysis and Combinatorics of Geometry
 
 Real analysis proofs exposing the counting principles underlying geometry. Proofs verified in Coq.
 
