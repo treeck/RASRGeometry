@@ -751,7 +751,7 @@ Qed.
 Hypothesis all_yayb_sum_disjoint :
     all_yayb = sum_list (sqr_list p).
 
-(** Step 3.11: Multiply both sides of step 3.10 by Rsqr c and
+(** Step 3.12: Multiply both sides of step 3.11 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_yayb_measure :
     forall (L1 L2 delta epsilon:R)
@@ -797,13 +797,13 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** Step 3.12: There is one overall set of Y, Ypd number of
+(** Step 3.13: There is one overall set of Y, Ypd number of
     subintervals. Therefore, the number of all (y,y) combinations,
     y in Y, is (subintervals y_0 y_m c)^2 = all_yayb. *)
 Hypothesis all_yayb_eq_rsqr_image_subintervals :
     all_yayb = Rsqr (subintervals y_0 y_m c).
 
-(** Step 3.13: Multiply both sides of step 3.12 by Rsqr c and
+(** Step 3.14: Multiply both sides of step 3.13 by Rsqr c and
     apply the ruler measure and convergence theorem to get
     the distance measure. *)
 Lemma rsqr_d_measure :
@@ -835,7 +835,7 @@ Proof.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.14: combine steps 3.11 and 3.13. *)
+(** Step 3.15: combine steps 3.14 and 3.12. *)
 Theorem Euclidean_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
