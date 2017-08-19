@@ -8,6 +8,6 @@ the definitions of smallest distance and metric space.
 A set-based definition of countable size converges to the product of
 interval sizes used in the Lebesgue measure and Euclidean integrals.
 A cyclic set of at most 3 dimensions emerges from the same
-countable set axioms generating the distance and volume measures.
+countable set axioms generating the distance and volume equations.
 Implications for higher dimensional geometries are discussed.
 Proofs are verified in Coq.
