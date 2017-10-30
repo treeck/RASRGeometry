@@ -1,10 +1,10 @@
 Using a ruler-like measure of intervals with real analysis exposes
-some counting principles underlying geometry:
+some combinatorics underlying geometry:
 A set-based definition of a countable distance range converges to
 the triangle inequality with the taxicab distance equation at the upper
 boundary and the Euclidean distance equation at the lower boundary,
-which provides counting-based motivations for the definitions of
-metric space and smallest distance.
+which provides a set-based foundatiion for the defintions of metric
+space and smallest distance.
 A set-based definition of countable size converges to the product of
 interval sizes used in the Lebesgue measure and Euclidean integrals.
 A cyclic set of at most 3 dimensions emerges from the same
