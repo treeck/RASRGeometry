@@ -1,13 +1,16 @@
-Using a ruler-like measure of intervals with real analysis exposes
-some combinatorics underlying geometry:
-A set-based definition of a countable distance range converges to
-the triangle inequality with the taxicab distance equation at the upper
-boundary and the Euclidean distance equation at the lower boundary,
-which provides a set-based foundatiion for the defintions of metric
-space and smallest distance.
-A set-based definition of countable size converges to the product of
+A ruler measures and interval in terms of the number of same-sized
+subintervals (units), ignoring partial subintervals.
+The range of possible surjective (many-to-one/combinatorial)
+mappings constrained by every disjoint domain set (of subintervals)
+having a corresponding distance set containing the same number
+of elements (subintervals) converges to the triangle inequality with
+taxicab (Manhattan) distance at the upper boundary and Euclidean
+distance at the lower boundary, which provides a set-based
+foundation for the definitions of metric space, longest, and shortest
+distance measures.
+A surjective definition of countable size converges to the product of
 interval sizes used in the Lebesgue measure and Euclidean integrals.
 A cyclic set of at most 3 dimensions emerges from the same
-countable set axioms generating the distance and volume equations.
+surjective relations generating distance and volume.
 Implications for higher dimensional geometries are discussed.
 Proofs are verified in Coq.
