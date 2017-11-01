@@ -1,4 +1,4 @@
-A ruler measures and interval in terms of the number of same-sized
+A ruler measures an interval in terms of the number of same-sized
 subintervals (units), ignoring partial subintervals.
 The range of possible surjective (many-to-one/combinatorial)
 mappings constrained by every disjoint domain set (of subintervals)
