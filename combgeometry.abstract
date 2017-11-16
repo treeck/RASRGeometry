@@ -3,8 +3,8 @@ subintervals (units), ignoring partial subintervals.
 The range of possible surjective (many-to-one) mappings constrained by
 every disjoint domain set (of same-sized subintervals) having a
 corresponding distance set containing the same number of elements
-(same-sized subintervals) converges to the triangle inequality wit
- taxicab (Manhattan) distance at the upper boundary and Euclidean
+(same-sized subintervals) converges to the triangle inequality with
+taxicab (Manhattan) distance at the upper boundary and Euclidean
 distance at the lower boundary, which provides a set-based
 foundation for the definitions of metric space, longest, and shortest
 distance measures.
