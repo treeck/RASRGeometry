@@ -1,7 +1,5 @@
 A ruler measures an interval as the nearest number of same-sized
 subintervals (units), ignoring partial subintervals.
-A ruler measures an interval as the nearest number of same-sized
-subintervals (units), ignoring partial subintervals.
 The range of possible surjective (many-to-one) mappings from every
 disjoint domain set of same-sized subintervals of a domain interval
 to a corresponding image (distance) set containing the same
