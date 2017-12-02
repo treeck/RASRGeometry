@@ -287,7 +287,7 @@ Proof. intros. apply Rmult_lt_compat_l. assumption. assumption. Qed.
    Now the ruler measure convergence proof follows:
 *)
 
-(** The exact size of a closed interval. *)
+(** The exact size of a interval. *)
 Definition exact_size (a b: R) : R := Rabs (b - a).
 
 (** The number of subintervals with size, c. *)
@@ -347,7 +347,7 @@ Proof.
     apply Rabs_pos_lt.
 Qed.
 
-(** Delta-epsilon proof. limit c->0,
+(** Epsilon-delta proof. limit c->0,
     0 < |c - 0| < delta => |M - s| < epsilon. *)
 Lemma M_minus_exact_size_lt_epsilon :
     forall a b c delta epsilon: R,
@@ -368,8 +368,8 @@ Proof.
     (r3 := epsilon).
 Qed.
 
-(** Defintion of a delta-epsilon proof. *)
-Axiom limit_x_L1_f_x_eq_L2 :
+(** Defintion of a Epsilon-delta proof. *)
+Hypothesis limit_x_L1_f_x_eq_L2 :
     forall (a b x L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
     0 < delta /\ 0 < epsilon /\ g delta = epsilon /\
@@ -380,7 +380,7 @@ Axiom limit_x_L1_f_x_eq_L2 :
 (* The function relating delta to epsilon to prove convergence. *)
 Definition delta_eq_epsilon(d: R) : R := d.
 
-(** Delta-epsilon proof. limit c->0,
+(** Epsilon-delta proof. limit c->0,
     0 < |x - 0| < delta, |M - s| < epsilon -> M = s. *)
 Lemma limit_c_0_M_eq_exact_size :
     forall (a b c L1 L2 delta epsilon:R)
@@ -443,12 +443,12 @@ Fixpoint Rpow (r: R) (n: nat) : R :=
     end.
 
 (** r1^n * r2^n = (r1 * r2)^n *)
-Axiom pow_distributes : forall (r1 r2: R) (n: nat),
+Hypothesis pow_distributes : forall (r1 r2: R) (n: nat),
     (Rpow r1 n) * (Rpow r2 n) = Rpow (r1 * r2) n.
 
 (** Assume that if real number, r, exists then that number is
     the square some other real number, r'. *)
-Axiom sqrt_exists :
+Hypothesis sqrt_exists :
     forall r: R, exists (r': R), r = r' * r'.
 
 (** Two sets are equal if all the elements at the same
@@ -459,7 +459,7 @@ Inductive eq_list_R : list R -> list R -> Prop :=
       list_rmem i l1 = list_rmem i l2 -> eq_list_R l1 l2.
 
 (** Lists with same members at same positions are equal. *)
-Axiom eq_list_R_is_eq : forall (l1 l2: list R),
+Hypothesis eq_list_R_is_eq : forall (l1 l2: list R),
     eq_list_R l1 l2 -> l1 = l2.
 
 (** reflexivity on real-valued lists *)
@@ -488,7 +488,7 @@ Fixpoint sqr_list (l: list R) : list R :=
   end.
 
 (** Specification of sqr_list. *)
-Axiom sqr_list_spec : forall (i: nat) (a: R) (l: list R),
+Hypothesis sqr_list_spec : forall (i: nat) (a: R) (l: list R),
     (list_rmem i l) = a <-> list_rmem i (sqr_list l) = Rsqr a.
 
 (** Multiply a list of real numbers by a number. *)
@@ -499,16 +499,16 @@ Fixpoint mult_list (l: list R) (r: R) : list R :=
     end.
 
 (** Specification of mult_list. *)
-Axiom mult_list_spec : forall (i: nat) (a r: R) (l: list R),
+Hypothesis mult_list_spec : forall (i: nat) (a r: R) (l: list R),
     (list_rmem i l) = a <-> list_rmem i (mult_list l r) = a * r.
 
 (** r * (a1 + a2 + ... + an) = (a1*r) + (a2*r) + ... + (an*r). *)
-Axiom mult_distributes_over_sum_list :
+Hypothesis mult_distributes_over_sum_list :
     forall (l: list R) (r: R),
     (sum_list l) * r = sum_list(mult_list l r).
 
 (** r^n * (a1 * a2 * ... * an) = (a1*r) * (a2*r) * ... * (an*r). *)
-Axiom pow_distributes_over_cartesian_product :
+Hypothesis pow_distributes_over_cartesian_product :
     forall (l: list R) (r: R) (n: nat), n = length l ->
     (cartesian_product l) * Rpow r n = cartesian_product (mult_list l r).
 
@@ -519,20 +519,18 @@ Axiom pow_distributes_over_cartesian_product :
   Now the definitions and theorems about distance.
 *)
 
-(** Countable distance *)
-Variable d_c: R.
-(** Countable image set *)
-Variable Ypd: list A.
-(** List of countable domain sets *)
-Variable X: list (list A).
-(** All the subsets of X combined into a single domain set *)
-Variable Xpd: list A.
-(** Member of the countable domain sets (xi in X). *)
+(** List of the countable domain sets (x_i in X). *)
 Variable list_x_i: list A.
-(** List of countable image sets *)
-Variable Y: list (list A).
-(** Member of the countable image sets (y in Y). *)
+(** List of countable domain sets, X = list(i=1 to n) list_x_i *)
+Variable X: list (list A).
+(** Xpd = union(i=1 to n) list_x_i *)
+Variable Xpd: list A.
+(** List of the countable distance sets (y_i in Y). *)
 Variable list_y_i: list A.
+(** List of countable image sets, Y = union(i=1 to n) list_y_i *)
+Variable Y: list (list A).
+(** Countable distance is cardinal of Y = union(y_i). *)
+Variable d_c: R.
 (** Counters *)
 Variables i n: nat.
 
@@ -543,11 +541,10 @@ Variables i n: nat.
   distance set with the same p_i number of elements.
   Notionally:
   forall i in [1,n],
-  |union X| = sum |X| (the intersection of domain sets is
-  an empty set) and
+  |union X| = sum |X| (disjoint domain sets) and
   cardinal of ith set of X, length list_x_i =
       cardinal ith set of Y, length list_y_i = p_i  and
-  distance, d_c = Ypd = union(i=1 to n) list_y_i.
+  distance, d_c = cardinal(Y) = union(i=1 to n) list_y_i.
 *)
 Hypothesis countable_distance_measure :
     (i <= n)%nat /\ length X = n /\ length Y = n /\
@@ -555,76 +552,70 @@ Hypothesis countable_distance_measure :
     length (union X) = length (lists_appended X) /\
     list_y_i = list_list_mem i Y /\
     length list_x_i = length list_y_i /\
-    length Ypd = length (union Y)%nat /\
-    length Xpd = length Ypd /\
-    d_c = INR (length Ypd).
+    d_c = INR (length (union Y)%nat) /\
+    d_c = INR (length Xpd).
 
-(** Partition the domain closed intervals into sets (lists of
+(** Partition the domain intervals into sets (lists of
     elements). And save the cardinal (number of elements in
-    each domain closed interval) in the list of cardinals, p. *)
+    each domain interval) in the list of cardinals, p. *)
 
-(** The boundaries of a domain closed interval, [x_0_i,x_m_i},
+(** The boundaries of a domain interval, [a_i,b_i},
    i in [1,n]). *)
-Variables x_0_i x_m_i: R.
-(** The list of the exact size of each closed interval,
-    [x_0_i,x_m_i}, i in [1,n]). *)
+Variables a_i b_i: R.
+(** The list of the exact size of each interval,
+    [a_i,b_i}, i in [1,n]). *)
 Variable s: list R.
-(** The boundaries of the image (distance) closed interval,
+(** The boundaries of the image (distance) interval,
     [y_0,y_m]. *)
 Variables y_0 y_m: R.
 (* The real-valued distance. *)
 Variable d: R.
 
 (** From the ruler measure, these are exact
-    sizes of the domain and image closed intervals that the
+    sizes of the domain and image intervals that the
     subintervals must be shown to converge to. *)
 Hypothesis exact_sizes :
-    list_rmem i s = exact_size x_0_i x_m_i /\
+    list_rmem i s = exact_size a_i b_i /\
     d = exact_size y_0 y_m.
 
 (** The list of cardnals corresponding to each list_x_i (the
-    number of elements in the closed intervals [x_0_i,x_m_i},
+    number of elements in the intervals [a_i,b_i},
     i in [1,n]). *)
 Variable p: list R.
 (** The ruler interval size. *)
 Variable c: R.
 
-(** Definitions of domain and image subintervals that are
+(** Step 3.1, 3.2 of taxicab distance proof.
+    Definitions of domain and image subintervals that are
     used in both taxicab (Manhattan) and Euclidean distance
     proofs. *)
 Hypothesis ruler_subintervals :
     c > 0 /\
-    subintervals x_0_i x_m_i c = INR (length list_x_i) /\
-    list_rmem i p = subintervals x_0_i x_m_i c /\
-    subintervals y_0 y_m c = INR (length Ypd).
-
-(** The cardinal of the set {y}. *)
-Variable all_y: R.
+    subintervals a_i b_i c = INR (length list_x_i) /\
+    list_rmem i p = subintervals a_i b_i c /\
+    subintervals y_0 y_m c = d_c.
 
 (** The following lemmas are steps in the proof of
    taxicab distance. *)
 
-(** The largest possible distance set of y_i, all_y,
-    where each element, y, corresponds one-to-one to
-    each x_i, is the sum of all y_i. *)
-Hypothesis all_y_sum_disjoint :
-    all_y = sum_list (p).
-
-(** There is one overall set of Y, Ypd number of
-    subintervals. Therefore, the number of all y,
-    y in Y, is (subintervals y_0 y_m c) = all_y. *)
-Hypothesis all_y_eq_image_subintervals :
-    all_y = subintervals y_0 y_m c.
+(** Step 3.3 of taxicab distance proof.
+    d_c is the cardinal of Y = union(y_i), 
+    where each element of y_i corresponds one-to-one to
+    each element of x_i,where y_i are disjoint. That is,
+    d_c = sum(i=1,n) cardinal(y_i)
+        = union(i=1,n) cardinal(y_i).*)
+Hypothesis d_c_sum_disjoint :
+    d_c = sum_list (p).
 
 (** The next lemma is the first proof step of the
    taxicab and Euclidean distance proofs in the article,
    The Real Analysis and Combinatorics of Geometry. *)
 
 (** Map the set-based cardinal relationship,
-   |{x_i}| = |{y}| = |list_y_i|, into the list of
+   |x_i| = |y_i| = p_i, into the list of
    partition counts, p. *)
 Lemma mem_list_p_eq_list_yi :
-    list_rmem i p = subintervals x_0_i x_m_i c.
+    list_rmem i p = subintervals a_i b_i c.
 Proof.
   intros.
   decompose [and] countable_distance_measure.
@@ -632,7 +623,7 @@ Proof.
   assumption.
 Qed.
 
-(** Step 3.3 of taxicab distance proof:
+(** Step 3.4 of taxicab distance proof:
     Multiply both sides of step 3.2 by c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_y_measure :
@@ -643,21 +634,21 @@ Lemma domain_y_measure :
     L1 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
-    all_y * c = sum_list (s).
+    d_c * c = sum_list (s).
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
   apply mult_list_spec with (l := p)
-      (a := subintervals x_0_i x_m_i c) (r := c) in H12.
+      (a := subintervals a_i b_i c) (r := c) in H12.
   rewrite <- subintervals_times_c_eq_measure in H12.
   rewrite -> limit_c_0_M_eq_exact_size with
-          (a := x_0_i) (b := x_m_i) (c := c)  (L1 := L1)
+          (a := a_i) (b := b_i) (c := c)  (L1 := L1)
           (g := g) (delta := delta) (epsilon := epsilon)
-          (L2 := exact_size x_0_i x_m_i) (f := M) in H12.
+          (L2 := exact_size a_i b_i) (f := M) in H12.
   rewrite <- H12 in H8.
   apply eq_list_R_cons in H8.
   apply eq_list_R_is_eq in H8.
-  rewrite -> all_y_sum_disjoint.
+  rewrite -> d_c_sum_disjoint.
   rewrite -> mult_distributes_over_sum_list with
       (l := p) (r := c).
   rewrite <- H8.
@@ -669,6 +660,13 @@ Proof.
 Qed.
 
 (** Step 3.5 of taxicab distance proof:
+    There is one overall set of Y, containing d_c
+    number of subintervals. Therefore, the number of all
+    y in Y, is (subintervals y_0 y_m c) = d_c. *)
+Hypothesis d_c_eq_image_subintervals :
+    d_c = subintervals y_0 y_m c.
+
+(** Step 3.6 of taxicab distance proof:
     Multiply both sides of step 3.4 by c and apply the
     ruler measure and convergence theorem to get the
     distance measure. *)
@@ -680,7 +678,7 @@ Lemma d_measure :
     L1 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
-    d = all_y * c.
+    d = d_c * c.
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
@@ -690,7 +688,7 @@ Proof.
       (g := g) (delta := delta) (epsilon := epsilon)
       (L2 := exact_size y_0 y_m) (f := M).
   unfold M.
-  rewrite <- all_y_eq_image_subintervals.
+  rewrite <- d_c_eq_image_subintervals.
   reflexivity.
   split. assumption. split. reflexivity. split. assumption.
   split. assumption. split. reflexivity.
@@ -699,7 +697,7 @@ Proof.
 Qed.
 
 (** The final step in the taxicab distance proof.
-    Step 3.6: Combine steps 3.5 and 3.3. *)
+    Step 3.7: Combine steps 3.6 and 3.4. *)
 Theorem taxicab_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
@@ -712,10 +710,10 @@ Theorem taxicab_distance :
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
-  assert (all_y * c = sum_list (s)).
+  assert (d_c * c = sum_list (s)).
       revert H.
       apply domain_y_measure. assumption.
-  assert (d = all_y * c).
+  assert (d = d_c * c).
       revert H.
       apply d_measure. assumption.
   rewrite -> H14 in H16.
@@ -727,31 +725,33 @@ Qed.
 
 (** The cardinal of the set of combinations of the elements
     of Y is {(y_a,y_b): y_a y_b in Y}. *)
-Variable all_yayb: R.
+Variable sqr_d_c: R.
 
 (** The next lemma is the first proof step, 3.7, of the
    Euclidean distance proof in the article,
    The Real Analysis and Combinatorics of Geometry. *)
 
-(** Step 3.8: Map the set-based cardinal relationship,
+(** Step 3.9 (second step) of the Euclidean distanc proof:
+   Map the set-based cardinal relationship,
    |x_i|*|y_i| = p_i^2 = |y_i|^2, into the list of
    partition counts, p. *)
 Lemma mem_sqr_list_p_eq_prod_list_yi_list_yi :
-    list_rmem i (sqr_list p) = Rsqr (subintervals x_0_i x_m_i c).
+    list_rmem i (sqr_list p) = Rsqr (subintervals a_i b_i c).
 Proof.
   intros.
   decompose [and] countable_distance_measure.
   decompose [and] ruler_subintervals.
-  rewrite -> sqr_list_spec in H10. assumption.
+  rewrite -> sqr_list_spec in H9. assumption.
 Qed.
 
-(** Step 3.10: Choose the equality case of the relation
-    sum_list(sqr_list p) >=
-        |{(y_a,y_b): y_a y_b in Y}| = all_yayb *)
-Hypothesis all_yayb_sum_disjoint :
-    all_yayb = sum_list (sqr_list p).
+(** Step 3.10: From the countable distance theorem
+    sum(i=1,n) |y_i| >= |union(i=1,n) y_i| = d_c =>
+    sum(i=1,n) |y_i|^2 >= d_c^2.
+    Choose the equality case of sum(i=1,n) |y_i|^2 >= d_c^2. *)
+Hypothesis sqr_d_c_sum_disjoint :
+    sqr_d_c = sum_list (sqr_list p).
 
-(** Step 3.12: Multiply both sides of step 3.11 by Rsqr c and
+(** Step 3.11: Multiply both sides of step 3.10 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_yayb_measure :
     forall (L1 L2 delta epsilon:R)
@@ -761,31 +761,31 @@ Lemma domain_yayb_measure :
     L1 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
-    all_yayb * Rsqr c = sum_list (sqr_list s).
+    sqr_d_c * Rsqr c = sum_list (sqr_list s).
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
-  assert (all_yayb * Rsqr c = sum_list (mult_list (sqr_list p) c²)).
+  assert (sqr_d_c * Rsqr c = sum_list (mult_list (sqr_list p) c²)).
       rewrite <- mult_distributes_over_sum_list.
       apply Rmult_eq_compat_r with (r := Rsqr (c))
-          (r1 := all_yayb)
+          (r1 := sqr_d_c)
           (r2 := sum_list (sqr_list p)).
       assumption.
   rewrite <- limit_c_0_M_eq_exact_size with
-          (a := x_0_i) (b := x_m_i) (c := c)  (L1 := L1)
+          (a := a_i) (b := b_i) (c := c)  (L1 := L1)
           (g := g) (delta := delta) (epsilon := epsilon)
-          (L2 := exact_size x_0_i x_m_i) (f := M) in H8.
+          (L2 := exact_size a_i b_i) (f := M) in H8.
   unfold M in H8.
-  assert (list_rmem i (sqr_list s) = Rsqr (subintervals x_0_i x_m_i c * c)).
+  assert (list_rmem i (sqr_list s) = Rsqr (subintervals a_i b_i c * c)).
       apply sqr_list_spec with
-          (l := s) (a := subintervals x_0_i x_m_i c * c).
+          (l := s) (a := subintervals a_i b_i c * c).
       assumption.
-  assert (list_rmem i (sqr_list p) = Rsqr (subintervals x_0_i x_m_i c)).
+  assert (list_rmem i (sqr_list p) = Rsqr (subintervals a_i b_i c)).
       apply sqr_list_spec with
-          (l := p) (a := subintervals x_0_i x_m_i c).
+          (l := p) (a := subintervals a_i b_i c).
       assumption.
   apply mult_list_spec with (l := sqr_list p)
-      (a := Rsqr (subintervals x_0_i x_m_i c)) (r := Rsqr c) in H17.
+      (a := Rsqr (subintervals a_i b_i c)) (r := Rsqr c) in H17.
   rewrite -> rsqr_distributes in H17.
   rewrite <- H16 in H17.
   apply eq_list_R_cons in H17. apply eq_list_R_is_eq in H17.
@@ -797,13 +797,13 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** Step 3.13: There is one overall set of Y, Ypd number of
-    subintervals. Therefore, the number of all (y,y) combinations,
-    y in Y, is (subintervals y_0 y_m c)^2 = all_yayb. *)
-Hypothesis all_yayb_eq_rsqr_image_subintervals :
-    all_yayb = Rsqr (subintervals y_0 y_m c).
+(** Step 3.12:
+    d_c = subintervals y_0 y_m c =>
+          sqr_d_c = Rsqr (subintervals y_0 y_m c) *)
+Hypothesis sqr_d_c_eq_rsqr_image_subintervals :
+    sqr_d_c = Rsqr (subintervals y_0 y_m c).
 
-(** Step 3.14: Multiply both sides of step 3.13 by Rsqr c and
+(** Step 3.13: Multiply both sides of step 3.13 by Rsqr c and
     apply the ruler measure and convergence theorem to get
     the distance measure. *)
 Lemma rsqr_d_measure :
@@ -814,7 +814,7 @@ Lemma rsqr_d_measure :
     L1 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
-    Rsqr d = all_yayb * Rsqr c.
+    Rsqr d = sqr_d_c * Rsqr c.
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
@@ -827,15 +827,15 @@ Proof.
   rewrite <- rsqr_distributes.
   apply Rmult_eq_compat_r with (r := Rsqr (c))
       (r1 := Rsqr (subintervals y_0 y_m c))
-      (r2 := all_yayb).
-  symmetry. apply all_yayb_eq_rsqr_image_subintervals.
+      (r2 := sqr_d_c).
+  symmetry. apply sqr_d_c_eq_rsqr_image_subintervals.
   split. assumption. split. reflexivity. split. assumption.
   split. assumption. split. reflexivity.
   split. assumption. split. assumption. split. assumption.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.15: combine steps 3.14 and 3.12. *)
+(** Step 3.14: combine steps 3.13 and 3.11. *)
 Theorem Euclidean_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
@@ -848,10 +848,10 @@ Theorem Euclidean_distance :
 Proof.
   intros. decompose [and] H.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
-  assert (all_yayb * Rsqr c = sum_list (sqr_list s)).
+  assert (sqr_d_c * Rsqr c = sum_list (sqr_list s)).
       revert H.
       apply domain_yayb_measure. assumption.
-  assert (Rsqr d = all_yayb * Rsqr c).
+  assert (Rsqr d = sqr_d_c * Rsqr c).
       revert H.
       apply rsqr_d_measure. assumption.
   rewrite -> H14 in H16.
@@ -878,8 +878,8 @@ Hypothesis countable_size_measure :
     S_c = cartesian_product p.
 
 (** The Euclidean Size (length/area/volume) theorem:
-    Sz, is the size of a closed interval, [y_{0},y_{m}],
-    corresponding to a set of real-valued closed intervals:
+    Sz, is the size of a interval, [y_{0},y_{m}],
+    corresponding to a set of real-valued intervals:
     {[x_{0,1},x_{m,1}], [x_{0,2},x_{m,2}],...,[x_{0,n},x_{m,n}]},
     where:
     Sz = cartesian_product(i=1 to n) s_i /\
@@ -894,8 +894,8 @@ Theorem Euclidean_size :
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta ->
     n = length s /\ length p = n /\
-    list_rmem i s = exact_size x_0_i x_m_i /\
-    list_rmem i p = subintervals x_0_i x_m_i c /\
+    list_rmem i s = exact_size a_i b_i /\
+    list_rmem i p = subintervals a_i b_i c /\
     Sz = exact_size y_0 y_m /\
     Sz = Rpow r' n /\
     r = exact_size r_0 r_m /\
@@ -920,12 +920,12 @@ Proof.
   rewrite <- H21 in H23.
   rewrite <- H20 in H23.
   apply mult_list_spec with (l := p)
-      (a := subintervals x_0_i x_m_i c) (r := c) in H18.
+      (a := subintervals a_i b_i c) (r := c) in H18.
   rewrite <- subintervals_times_c_eq_measure in H18.
   rewrite -> limit_c_0_M_eq_exact_size with
-      (a := x_0_i) (b := x_m_i) (c := c) (L1 := L1)
+      (a := a_i) (b := b_i) (c := c) (L1 := L1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (L2 := exact_size x_0_i x_m_i) (f := M) in H18.
+      (L2 := exact_size a_i b_i) (f := M) in H18.
   rewrite <- H16 in H18.
   apply eq_list_R_cons with  (l1 := mult_list p c) (l2 := s) in H18.
   apply eq_list_R_is_eq in H18.
