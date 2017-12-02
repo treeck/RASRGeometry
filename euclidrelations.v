@@ -1,8 +1,8 @@
-(** Copyright (c) 2015 George M. Van Treeck.
+(** Copyright (c) 2017 George M. Van Treeck.
     Rights granted under the Creative Commons
     Attribution License.
     This software uses The Coq Proof Assistance,
-    Copyright (c) 1999-2015  The Coq Development Team
+    Copyright (c) 1999-2017  The Coq Development Team
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
@@ -565,10 +565,9 @@ Variables a_i b_i: R.
 (** The list of the exact size of each interval,
     [a_i,b_i}, i in [1,n]). *)
 Variable s: list R.
-(** The boundaries of the image (distance) interval,
-    [y_0,y_m]. *)
-Variables y_0 y_m: R.
-(* The real-valued distance. *)
+(** The boundaries of the image (distance) interval, [d_0,d_m]. *)
+Variables d_0 d_m: R.
+(* The real-valued size of the distance interval [d_0,d_m]. *)
 Variable d: R.
 
 (** From the ruler measure, these are exact
@@ -576,7 +575,7 @@ Variable d: R.
     subintervals must be shown to converge to. *)
 Hypothesis exact_sizes :
     list_rmem i s = exact_size a_i b_i /\
-    d = exact_size y_0 y_m.
+    d = exact_size d_0 d_m.
 
 (** The list of cardnals corresponding to each list_x_i (the
     number of elements in the intervals [a_i,b_i},
@@ -593,13 +592,13 @@ Hypothesis ruler_subintervals :
     c > 0 /\
     subintervals a_i b_i c = INR (length list_x_i) /\
     list_rmem i p = subintervals a_i b_i c /\
-    subintervals y_0 y_m c = d_c.
+    subintervals d_0 d_m c = d_c.
 
 (** The following lemmas are steps in the proof of
    taxicab distance. *)
 
 (** Step 3.3 of taxicab distance proof.
-    d_c is the cardinal of Y = union(y_i), 
+    d_c is the cardinal of Y = union(i=1,n) y_i, 
     where each element of y_i corresponds one-to-one to
     each element of x_i,where y_i are disjoint. That is,
     d_c = sum(i=1,n) cardinal(y_i)
@@ -626,7 +625,7 @@ Qed.
 (** Step 3.4 of taxicab distance proof:
     Multiply both sides of step 3.2 by c and
     apply the ruler measure and covergence theorem. *)
-Lemma domain_y_measure :
+Lemma domain_d_measure :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
     c > 0 /\
@@ -662,9 +661,9 @@ Qed.
 (** Step 3.5 of taxicab distance proof:
     There is one overall set of Y, containing d_c
     number of subintervals. Therefore, the number of all
-    y in Y, is (subintervals y_0 y_m c) = d_c. *)
+    y in Y, is (subintervals d_0 d_m c) = d_c. *)
 Hypothesis d_c_eq_image_subintervals :
-    d_c = subintervals y_0 y_m c.
+    d_c = subintervals d_0 d_m c.
 
 (** Step 3.6 of taxicab distance proof:
     Multiply both sides of step 3.4 by c and apply the
@@ -684,9 +683,9 @@ Proof.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
   rewrite -> H10.
   rewrite <- limit_c_0_M_eq_exact_size with
-      (a := y_0) (b := y_m) (c := c)  (L1 := L1)
+      (a := d_0) (b := d_m) (c := c)  (L1 := L1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (L2 := exact_size y_0 y_m) (f := M).
+      (L2 := exact_size d_0 d_m) (f := M).
   unfold M.
   rewrite <- d_c_eq_image_subintervals.
   reflexivity.
@@ -712,7 +711,7 @@ Proof.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
   assert (d_c * c = sum_list (s)).
       revert H.
-      apply domain_y_measure. assumption.
+      apply domain_d_measure. assumption.
   assert (d = d_c * c).
       revert H.
       apply d_measure. assumption.
@@ -748,12 +747,12 @@ Qed.
     sum(i=1,n) |y_i| >= |union(i=1,n) y_i| = d_c =>
     sum(i=1,n) |y_i|^2 >= d_c^2.
     Choose the equality case of sum(i=1,n) |y_i|^2 >= d_c^2. *)
-Hypothesis sqr_d_c_sum_disjoint :
+Hypothesis sqr_d_c_sum_squares :
     sqr_d_c = sum_list (sqr_list p).
 
 (** Step 3.11: Multiply both sides of step 3.10 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
-Lemma domain_yayb_measure :
+Lemma domain_d_c_measure :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
     c > 0 /\
@@ -798,10 +797,10 @@ Proof.
 Qed.
 
 (** Step 3.12:
-    d_c = subintervals y_0 y_m c =>
-          sqr_d_c = Rsqr (subintervals y_0 y_m c) *)
+    d_c = subintervals d_0 d_m c =>
+          sqr_d_c = Rsqr (subintervals d_0 d_m c) *)
 Hypothesis sqr_d_c_eq_rsqr_image_subintervals :
-    sqr_d_c = Rsqr (subintervals y_0 y_m c).
+    sqr_d_c = Rsqr (subintervals d_0 d_m c).
 
 (** Step 3.13: Multiply both sides of step 3.13 by Rsqr c and
     apply the ruler measure and convergence theorem to get
@@ -820,13 +819,13 @@ Proof.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
   rewrite -> H10.
   rewrite <- limit_c_0_M_eq_exact_size with
-      (a := y_0) (b := y_m) (c := c)  (L1 := L1)
+      (a := d_0) (b := d_m) (c := c)  (L1 := L1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (L2 := exact_size y_0 y_m) (f := M).
+      (L2 := exact_size d_0 d_m) (f := M).
   unfold M.
   rewrite <- rsqr_distributes.
   apply Rmult_eq_compat_r with (r := Rsqr (c))
-      (r1 := Rsqr (subintervals y_0 y_m c))
+      (r1 := Rsqr (subintervals d_0 d_m c))
       (r2 := sqr_d_c).
   symmetry. apply sqr_d_c_eq_rsqr_image_subintervals.
   split. assumption. split. reflexivity. split. assumption.
@@ -850,7 +849,7 @@ Proof.
   decompose [and] exact_sizes. decompose [and] ruler_subintervals.
   assert (sqr_d_c * Rsqr c = sum_list (sqr_list s)).
       revert H.
-      apply domain_yayb_measure. assumption.
+      apply domain_d_c_measure. assumption.
   assert (Rsqr d = sqr_d_c * Rsqr c).
       revert H.
       apply rsqr_d_measure. assumption.
@@ -863,6 +862,8 @@ Qed.
 (** The countable size (length/area/volume) of a set of
     image elements. *)
 Variable S_c: R.
+(** The boundaries of the image (size) interval, [v_0,v_m]. *)
+Variables v_0 v_m: R.
 
 (**
   A countable size measure of a list of domain sets:
@@ -883,7 +884,7 @@ Hypothesis countable_size_measure :
     {[x_{0,1},x_{m,1}], [x_{0,2},x_{m,2}],...,[x_{0,n},x_{m,n}]},
     where:
     Sz = cartesian_product(i=1 to n) s_i /\
-    Sz = y_{m} - y_{0} /\
+    Sz = v_{m} - v_{0} /\
     s_i = x_{m,i} - x_{0,i}. *)
 Theorem Euclidean_size :
     forall (L1 L2 delta epsilon p_S Sz r r_0 r_m: R)
@@ -896,7 +897,7 @@ Theorem Euclidean_size :
     n = length s /\ length p = n /\
     list_rmem i s = exact_size a_i b_i /\
     list_rmem i p = subintervals a_i b_i c /\
-    Sz = exact_size y_0 y_m /\
+    Sz = exact_size v_0 v_m /\
     Sz = Rpow r' n /\
     r = exact_size r_0 r_m /\
     p_S = subintervals r_0 r_m c /\
