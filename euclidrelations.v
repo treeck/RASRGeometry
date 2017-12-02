@@ -1,4 +1,4 @@
-(** Copyright (c) 2017 George M. Van Treeck.
+(** Copyright (c) 2015-2017 George M. Van Treeck.
     Rights granted under the Creative Commons
     Attribution License.
     This software uses The Coq Proof Assistance,
@@ -544,7 +544,8 @@ Variables i n: nat.
   |union X| = sum |X| (disjoint domain sets) and
   cardinal of ith set of X, length list_x_i =
       cardinal ith set of Y, length list_y_i = p_i  and
-  distance, d_c = cardinal(Y) = union(i=1 to n) list_y_i.
+  distance, d_c = cardinal(Y) = union(i=1 to n) list_y_i and
+  dc = |union Y| <= sum |Y| (sometimes intersecting distance sets).
 *)
 Hypothesis countable_distance_measure :
     (i <= n)%nat /\ length X = n /\ length Y = n /\
@@ -553,7 +554,9 @@ Hypothesis countable_distance_measure :
     list_y_i = list_list_mem i Y /\
     length list_x_i = length list_y_i /\
     d_c = INR (length (union Y)%nat) /\
-    d_c = INR (length Xpd).
+    d_c = INR (length Xpd) /\
+    ( d_c < INR (length (lists_appended Y)) /\
+      d_c = INR (length (lists_appended Y)) ).
 
 (** Partition the domain intervals into sets (lists of
     elements). And save the cardinal (number of elements in
@@ -584,7 +587,9 @@ Variable p: list R.
 (** The ruler interval size. *)
 Variable c: R.
 
-(** Step 3.1, 3.2 of taxicab distance proof.
+(** Step 3.1, 3.2 of taxicab distance proof are the first steps
+    of the taxic distance proof in the article, The Real Analysis
+    and Combinatorics of Geometry.
     Definitions of domain and image subintervals that are
     used in both taxicab (Manhattan) and Euclidean distance
     proofs. *)
@@ -726,9 +731,12 @@ Qed.
     of Y is {(y_a,y_b): y_a y_b in Y}. *)
 Variable sqr_d_c: R.
 
-(** The next lemma is the first proof step, 3.7, of the
-   Euclidean distance proof in the article,
-   The Real Analysis and Combinatorics of Geometry. *)
+(** Step 3.8 is the first step of the Euclidean distance
+    proof in the article, The Real Analysis and Combinatorics
+    of Geometryand and is also the first step of the previous
+    taxicab distance proof. This step is defined previously in
+    the taxicab distance proof as:
+    "Hypothesis ruler_subintervals" *)
 
 (** Step 3.9 (second step) of the Euclidean distanc proof:
    Map the set-based cardinal relationship,
@@ -740,7 +748,7 @@ Proof.
   intros.
   decompose [and] countable_distance_measure.
   decompose [and] ruler_subintervals.
-  rewrite -> sqr_list_spec in H9. assumption.
+  rewrite -> sqr_list_spec in H11. assumption.
 Qed.
 
 (** Step 3.10: From the countable distance theorem
