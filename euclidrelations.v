@@ -752,13 +752,20 @@ Proof.
 Qed.
 
 (** Step 3.10: From the countable distance theorem
+    squaring both sides of the inequality:
     sum(i=1,n) |y_i| >= |union(i=1,n) y_i| = d_c =>
-    sum(i=1,n) |y_i|^2 >= d_c^2.
+    (sum(i=1,n) |y_i|)^2 >= d_c^2.
     Choose the equality case of sum(i=1,n) |y_i|^2 >= d_c^2. *)
+Hypothesis square_of_sum_ge_d_c :
+    sqr_d_c = Rsqr (sum_list (p)).
+
+(** Step 3.11: Combine 3.10 and the Cauchy inequality:
+    (sum(i=1,n) y_i|^2 <= (sum(i=1,n) |y_i|)^2 >= d_c^2.
+    And choose the case of equality. *)
 Hypothesis sqr_d_c_sum_squares :
     sqr_d_c = sum_list (sqr_list p).
 
-(** Step 3.11: Multiply both sides of step 3.10 by Rsqr c and
+(** Step 3.12: Multiply both sides of step 3.10 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_d_c_measure :
     forall (L1 L2 delta epsilon:R)
@@ -804,13 +811,13 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** Step 3.12:
+(** Step 3.13:
     d_c = subintervals d_0 d_m c =>
           sqr_d_c = Rsqr (subintervals d_0 d_m c) *)
 Hypothesis sqr_d_c_eq_rsqr_image_subintervals :
     sqr_d_c = Rsqr (subintervals d_0 d_m c).
 
-(** Step 3.13: Multiply both sides of step 3.13 by Rsqr c and
+(** Step 3.14: Multiply both sides of step 3.13 by Rsqr c and
     apply the ruler measure and convergence theorem to get
     the distance measure. *)
 Lemma rsqr_d_measure :
@@ -842,7 +849,7 @@ Proof.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.14: combine steps 3.13 and 3.11. *)
+(** Step 3.15: combine steps 3.13 and 3.11. *)
 Theorem Euclidean_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
