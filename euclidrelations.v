@@ -435,7 +435,7 @@ Proof.
   intros. unfold Rsqr. field.
 Qed.
 
-(** Rais a real number, r, to the n-th power. *)
+(** Raise a real number, r, to the n-th power. *)
 Fixpoint Rpow (r: R) (n: nat) : R :=
     match n with
         | 0%nat => 1
@@ -535,28 +535,30 @@ Variable d_c: R.
 Variables i n: nat.
 
 (**
-  A countable distance measure of a list of domain sets
-  states that for each i_th disjoint domain set containing
-  p_i number of elements there exists a corresponding
-  distance set with the same p_i number of elements.
-  Notionally:
-  forall i in [1,n],
-  |union X| = sum |X| (disjoint domain sets) and
-  cardinal of ith set of X, length list_x_i =
-      cardinal ith set of Y, length list_y_i = p_i  and
-  distance, d_c = cardinal(Y) = union(i=1 to n) list_y_i and
-  dc = |union Y| <= sum |Y| (sometimes intersecting distance sets).
+  The countable distance range is based on the defintion in
+  the article, The Real Analysis and Combinatorics of Geometry.
 *)
-Hypothesis countable_distance_measure :
+Hypothesis countable_distance_range :
+    (* For each domain set, list_x_i in X, there exists a
+       corresponding distance set, list_y_i in Y. *)
     (i <= n)%nat /\ length X = n /\ length Y = n /\
+    (* list_x_i is the i_th domain set in X *)
     list_x_i = list_list_mem i X /\
+    (* Disjoint domain sets *)
     length (union X) = length (lists_appended X) /\
+    (* list_y_i is the i_th distance set in Y *)
     list_y_i = list_list_mem i Y /\
+    (* The i_th domain set has the same number of elements as
+       the i_th distance set. *)
     length list_x_i = length list_y_i /\
-    d_c = INR (length (union Y)%nat) /\
-    d_c = INR (length Xpd) /\
-    ( d_c < INR (length (lists_appended Y)) /\
-      d_c = INR (length (lists_appended Y)) ).
+    (* The distance sets sometimes intersect expressed here as
+       the sum of the union of distance set less than and
+       equal to the size of sum distance set sizes. *)
+    INR (length (union Y)) < INR (length (lists_appended Y)) /\
+    INR (length (union Y)) = INR (length (lists_appended Y)) /\
+    (* The countable distance, d_c, is the size of the
+       union of the distance sets. *)
+    d_c = INR (length (union Y)%nat).
 
 (** Partition the domain intervals into sets (lists of
     elements). And save the cardinal (number of elements in
@@ -603,9 +605,7 @@ Hypothesis ruler_subintervals :
    taxicab distance. *)
 
 (** Step 3.3 of taxicab distance proof.
-    d_c is the cardinal of Y = union(i=1,n) y_i, 
-    where each element of y_i corresponds one-to-one to
-    each element of x_i,where y_i are disjoint. That is,
+    From the countable_distance_range definition:
     d_c = sum(i=1,n) cardinal(y_i)
         = union(i=1,n) cardinal(y_i).*)
 Hypothesis d_c_sum_disjoint :
@@ -622,7 +622,6 @@ Lemma mem_list_p_eq_list_yi :
     list_rmem i p = subintervals a_i b_i c.
 Proof.
   intros.
-  decompose [and] countable_distance_measure.
   decompose [and] ruler_subintervals.
   assumption.
 Qed.
@@ -727,10 +726,6 @@ Qed.
 (** The following lemmas are steps in the proof of
    Euclidean distance. *)
 
-(** The cardinal of the set of combinations of the elements
-    of Y is {(y_a,y_b): y_a y_b in Y}. *)
-Variable sqr_d_c: R.
-
 (** Step 3.8 is the first step of the Euclidean distance
     proof in the article, The Real Analysis and Combinatorics
     of Geometryand and is also the first step of the previous
@@ -746,26 +741,53 @@ Lemma mem_sqr_list_p_eq_prod_list_yi_list_yi :
     list_rmem i (sqr_list p) = Rsqr (subintervals a_i b_i c).
 Proof.
   intros.
-  decompose [and] countable_distance_measure.
+  decompose [and] countable_distance_range.
   decompose [and] ruler_subintervals.
-  rewrite -> sqr_list_spec in H11. assumption.
+  rewrite -> sqr_list_spec in H10. assumption.
 Qed.
 
-(** Step 3.10: From the countable distance theorem
+(** Step 3.10 Cauchy-Schwartz inequality:
+    sum(i=1,n) |y_i|^2 <= (sum(i=1,n) |y_i|)^2. *)
+Hypothesis cauchy_schwartz_inequality :
+    sum_list (sqr_list p) < Rsqr (sum_list (p)) /\
+    sum_list (sqr_list p) = Rsqr (sum_list (p)).
+
+(** Step 3.11: From the countable distance theorem,
+    choose the equality case
     squaring both sides of the inequality:
     sum(i=1,n) |y_i| >= |union(i=1,n) y_i| = d_c =>
     (sum(i=1,n) |y_i|)^2 >= d_c^2.
-    Choose the equality case of sum(i=1,n) |y_i|^2 >= d_c^2. *)
-Hypothesis square_of_sum_ge_d_c :
-    sqr_d_c = Rsqr (sum_list (p)).
+    Choose the equality case and square each side:
+    sum(i=1,n) |y_i|^2 >= d_c^2. *)
+Lemma square_of_sum_eq_d_c :
+    Rsqr d_c = Rsqr (sum_list (p)).
+Proof.
+  intros. rewrite <- d_c_sum_disjoint. reflexivity.
+Qed.
 
-(** Step 3.11: Combine 3.10 and the Cauchy inequality:
-    (sum(i=1,n) y_i|^2 <= (sum(i=1,n) |y_i|)^2 >= d_c^2.
-    And choose the case of equality. *)
+(** Step 3.12: Combine 3.10 (equality case of the Cauchy-Schwartz
+    inequality) and 3.11 (square of sum case).
+    d_c^2 = sum(i=1,n) p_i^2. *)
+Lemma sqr_d_c_eq_sum_squares :
+    Rsqr d_c = sum_list (sqr_list p).
+Proof.
+  intros.
+  decompose [and] cauchy_schwartz_inequality.
+  symmetry.
+  rewrite -> H0.
+  symmetry.
+  apply square_of_sum_eq_d_c.
+Qed.
+
+(** For econvenience in the following proof steps, create the
+    variable sqr_d_c = Rsqr d_c. *)
+Variable sqr_d_c: R.
+(** From the lemma, sqr_d_c_eq_sum_squares, sqr_d_c = Rsqr d_c =>
+    sqr_d_c = sum_list (sqr_list p). *)
 Hypothesis sqr_d_c_sum_squares :
     sqr_d_c = sum_list (sqr_list p).
 
-(** Step 3.12: Multiply both sides of step 3.10 by Rsqr c and
+(** Step 3.13: Multiply both sides of step 3.12 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_d_c_measure :
     forall (L1 L2 delta epsilon:R)
@@ -811,13 +833,13 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** Step 3.13:
+(** Step 3.14:
     d_c = subintervals d_0 d_m c =>
           sqr_d_c = Rsqr (subintervals d_0 d_m c) *)
 Hypothesis sqr_d_c_eq_rsqr_image_subintervals :
     sqr_d_c = Rsqr (subintervals d_0 d_m c).
 
-(** Step 3.14: Multiply both sides of step 3.13 by Rsqr c and
+(** Step 3.15: Multiply both sides of step 3.13 by Rsqr c and
     apply the ruler measure and convergence theorem to get
     the distance measure. *)
 Lemma rsqr_d_measure :
@@ -849,7 +871,7 @@ Proof.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.15: combine steps 3.13 and 3.11. *)
+(** Step 3.16: combine steps 3.15 and 3.13. *)
 Theorem Euclidean_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
