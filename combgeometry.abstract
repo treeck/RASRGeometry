@@ -1,16 +1,17 @@
-A ruler measures an interval as the nearest number of same-sized
-subintervals (units), ignoring partial subintervals.
 The range of possible surjective (many-to-one) mappings from every
 disjoint domain set of same-sized subintervals of a domain interval
 to a corresponding image (distance) set containing the same
-number of same-sized subintervals converges to the triangle
-inequality with taxicab (Manhattan) distance at the upper boundary
+number of same-sized subintervals, where the distance sets
+sometimes intersect, converges to the triangle inequality and
+converges to taxicab (Manhattan) distance at the upper boundary
 and Euclidean distance at the lower boundary, which provides a
-set-based foundation for the definitions of metric space, longest, and
-shortest distance measures.
-A surjective definition of countable size converges to the product of
-interval sizes used in the Lebesgue measure and Euclidean integrals.
+set-based foundation for the definitions of metric space, longest,
+and shortest distance measures.
+A surjective definition of countable size converges to the product
+of interval sizes used in the Lebesgue measure and Euclidean
+integrals.
 A cyclic set of at most 3 dimensions emerges from the same
 surjective relations generating distance and volume.
-Implications for higher dimensional geometries are discussed.
+Four-vector lengths, like the spacetime four-vector length,
+are derived from two dimensional Euclidean distance equations.
 Proofs are verified in Coq.
