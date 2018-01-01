@@ -13,5 +13,5 @@ integrals.
 A cyclic set of at most 3 dimensions emerges from the same
 surjective relations generating distance and volume.
 Four-vector lengths, like the spacetime four-vector length,
-are derived from two dimensional Euclidean distance equations.
+are derived from two-dimensional Euclidean distance equations.
 Proofs are verified in Coq.
