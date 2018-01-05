@@ -1,6 +1,6 @@
-The range of possible surjective (many-to-one) mappings from every
-disjoint domain set of same-sized subintervals of a domain interval
-to a corresponding image (distance) set containing the same
+The range of possible surjective (many-to-one) mappings from the
+same-sized subintervals of each disjoint domain interval to a
+corresponding image (distance) interval containing the same
 number of same-sized subintervals, where the distance sets
 sometimes intersect, converges to the triangle inequality and
 converges to taxicab (Manhattan) distance at the upper boundary
