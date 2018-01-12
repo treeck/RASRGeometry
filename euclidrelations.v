@@ -735,7 +735,7 @@ Qed.
 
 (** Step 3.9 (second step) of the Euclidean distanc proof:
    Map the set-based cardinal relationship,
-   |x_i|*|y_i| = p_i^2 = |y_i|^2, into the list of
+   |x_i|*|y_i| = p_i^2, into the list of
    partition counts, p. *)
 Lemma mem_sqr_list_p_eq_prod_list_yi_list_yi :
     list_rmem i (sqr_list p) = Rsqr (subintervals a_i b_i c).
