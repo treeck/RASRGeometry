@@ -1,15 +1,15 @@
-The range of many-to-one combinations between members of each domain
+The range of many-to-one relations between members of each domain
 set and members of a corresponding distance set containing the same number
 of members, where the distance sets sometimes intersect and the set
 members are the same-sized subintervals of intervals, converges to the
 triangle inequality, taxicab (Manhattan) distance at the upper boundary,
 and Euclidean distance at the lower boundary, which provides a set-based
 definition of metric space, longest, and shortest distance measures.
-The many-to-one combinations between the same-sized subintervals of intervals
+A many-to-one relation between the same-sized subintervals of intervals
 converges to the product of interval sizes used in the Lebesgue measure
 and Euclidean integrals.
 A cyclic set of 3 dimensions emerges from the same many-to-one
-combinations generating distance and volume.
+relations generating distance and volume.
 Four-vector lengths, like the spacetime four-vector length, are derived
 from two-dimensional Euclidean distance equations.
 Proofs are verified in Coq.
