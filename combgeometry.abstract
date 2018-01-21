@@ -11,6 +11,6 @@ converges to the product of interval sizes used in the Lebesgue measure
 and Euclidean integrals.
 A cyclic set of 3 dimensions emerges from the same combinatorial
 relations generating distance and volume.
-Four-vector lengths, like the spacetime four-vector length, are derived
-from two-dimensional Euclidean distance equations.
+Valid higher dimensional geometries, like the spacetime four-vector,
+collapse into a hierarchical 2 or 3-dimensional geometry.
 Proofs are verified in Coq.
