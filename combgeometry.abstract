@@ -1,11 +1,11 @@
-The range of combinatorial relations between members of each disjoint
+he range of combinatorial relations between members of each disjoint
 domain set and members of a corresponding distance set containing the
 same number of members, where the distance sets sometimes intersect
 and the set members are the same-sized subintervals of intervals,
 converges to the triangle inequality, taxicab (Manhattan) distance at the
 upper boundary, and Euclidean distance at the lower boundary, which
-provides set-based definitions of metric space, longest, and shortest
-distance measures.
+provides set-based definitions of: metric space, longest, and shortest
+distances spanning disjoint sets.
 The Cartesian product of the same-sized subintervals of intervals
 converges to the product of interval sizes used in the Lebesgue measure
 and Euclidean integrals.
