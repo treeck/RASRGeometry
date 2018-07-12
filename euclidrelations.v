@@ -915,7 +915,7 @@ Hypothesis countable_size_measure :
     duplicates X = empty_list /\
     S_c = cartesian_product p.
 
-(** The Euclidean Size (length/area/volume) theorem:
+(** The Euclidean Space (length/area/volume) theorem:
     Sz, is the size of a interval, [y_{0},y_{m}],
     corresponding to a set of real-valued intervals:
     {[x_{0,1},x_{m,1}], [x_{0,2},x_{m,2}],...,[x_{0,n},x_{m,n}]},
@@ -923,7 +923,7 @@ Hypothesis countable_size_measure :
     Sz = cartesian_product(i=1 to n) s_i /\
     Sz = v_{m} - v_{0} /\
     s_i = x_{m,i} - x_{0,i}. *)
-Theorem Euclidean_size :
+Theorem Euclidean_space :
     forall (L1 L2 delta epsilon p_S Sz r r_0 r_m: R)
         (f: R->R->R->R) (g: R->R), exists (r': R),
     c > 0 /\
