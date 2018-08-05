@@ -903,19 +903,19 @@ Variable S_c: R.
 Variables v_0 v_m: R.
 
 (**
-  A countable size measure of a list of domain sets:
+  A countable volume measure of a list of domain sets:
   forall i in [1,n], y'_i in ith set of Y in 
   intersection X = empty_set /\ intersection Y = exmpty_set /\
   cardinal of ith set of X = cardinal ith set of Y /\
   p_i = cardinal of ith set of Y ->
   size, S_c = |{(y'_1,...,y'_n)}|=|list_y_1|*...*|list_y_n|.
 *)
-Hypothesis countable_size_measure :
+Hypothesis countable_volume_measure :
     (i <= n)%nat /\ length X = n /\ length Y = n /\
     duplicates X = empty_list /\
     S_c = cartesian_product p.
 
-(** The Euclidean Space (length/area/volume) theorem:
+(** The Euclidean volume (length/area/volume) theorem:
     Sz, is the size of a interval, [y_{0},y_{m}],
     corresponding to a set of real-valued intervals:
     {[x_{0,1},x_{m,1}], [x_{0,2},x_{m,2}],...,[x_{0,n},x_{m,n}]},
@@ -923,7 +923,7 @@ Hypothesis countable_size_measure :
     Sz = cartesian_product(i=1 to n) s_i /\
     Sz = v_{m} - v_{0} /\
     s_i = x_{m,i} - x_{0,i}. *)
-Theorem Euclidean_space :
+Theorem Euclidean_volume :
     forall (L1 L2 delta epsilon p_S Sz r r_0 r_m: R)
         (f: R->R->R->R) (g: R->R), exists (r': R),
     c > 0 /\
@@ -942,7 +942,7 @@ Theorem Euclidean_space :
     Sz = cartesian_product s.
 Proof.
   intros. exists (x := r). intros.
-  decompose [and] countable_size_measure. decompose [and] H.
+  decompose [and] countable_volume_measure. decompose [and] H.
   decompose [and] H0.
   rewrite -> H6 in H24.
   assert (Rpow p_S n * Rpow c n = cartesian_product p * Rpow c n).
