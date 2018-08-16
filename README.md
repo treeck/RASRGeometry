@@ -1,6 +1,6 @@
-# The Real Analysis and Combinatorics of Geometry
+# The Real Analysis and Set Relations of Geometry
 
-Real analysis proofs exposing the counting principles underlying geometry. Proofs verified in Coq.
+Real analysis proofs exposing the set relations generating geometry. Proofs verified in Coq.
 
 Copyright (c) 2015-2017 George M. Van Treeck.
 
