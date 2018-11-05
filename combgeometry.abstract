@@ -8,7 +8,7 @@ shortest distances spanning disjoint sets.
 A many-to-many relation between sets of same-sized subintervals of intervals
 converges to the product of interval sizes (Euclidean area/volume).
 The total ordering and symmetry properties of these set-based relations limit
-the number of dimensions of the same type to 3 dimensions.
+the number of dimensions to 3 dimensions.
 All ordered and symmetric, higher-dimensional geometries, like the spacetime
 four-vector, collapse into hierarchical 2 or 3-dimensional geometries.
 Proofs are verified in Coq.
