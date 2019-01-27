@@ -1,9 +1,8 @@
 Applying a ruler-like measure to the definition of a countable distance space
-where for each disjoint domain set there exists a corresponding range set
-containing the same number of members and the range sets in some cases
-intersect converges to: the triangle inequality and non-negativity properties
-of metric space, Manhattan distance at the upper boundary, and Euclidean
-distance at the lower boundary.
+where for each disjoint domain set there exists a corresponding same-sized
+range set and the range sets in some cases intersect converges to: the
+triangle inequality and non-negativity properties of metric space, Manhattan
+distance at the upper boundary, and Euclidean distance at the lower boundary.
 Applying the ruler-like measure to the set-based definition of countable
 volume converges to the product of interval interval sizes (Euclidean
 area/volume).
