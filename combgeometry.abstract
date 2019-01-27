@@ -1,14 +1,12 @@
-A range from 1-to-1 to many-to-many mappings between each disjoint domain
-set and a corresponding range set containing the same number of members,
-where the range sets in some cases intersect and the set members are the
-same-sized subintervals of intervals, converges to: the triangle inequality,
-Manhattan distance at the upper boundary, and Euclidean distance at the lower
-boundary, which provides countable set-based definitions of: metric space,
-longest, and shortest distances spanning disjoint sets.
-A many-to-many relation between sets of same-sized subintervals of intervals
-converges to the product of interval sizes (Euclidean area/volume).
+A definiton of a countable distance space where for each disjoint domain set
+there exists a corresponding range set containing the same number of members
+and the range sets in some cases intersect converges to: the triangle inequality
+and non-negativity properties of metric space, Manhattan distance at the upper
+boundary, and Euclidean distance at the lower boundary.
+A set-based definition of countable volume converges to the product of interval
+interval sizes (Euclidean area/volume).
 The total ordering and symmetry properties of these set-based relations limit
 the number of domain dimensions to 3.
-All ordered and symmetric, higher-dimensional geometries, like the spacetime
-four-vector, collapse into hierarchical 2 or 3-dimensional geometries.
+The spacetime and energy-momentum four-vectors collapse into hierarchical
+2-dimensional geometries.
 Proofs are verified in Coq.
