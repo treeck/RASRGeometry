@@ -1,4 +1,4 @@
-# The Real Analysis and Set Relations of Geometry
+# The Set Relations generateing Euclidean Geometry
 
 Real analysis proofs exposing the set relations generating Euclidean geometry. Proofs verified in Coq.
 
