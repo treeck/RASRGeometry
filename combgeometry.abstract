@@ -1,10 +1,10 @@
-Applying a ruler-like measure to the definition of a countable distance space,
-where for each disjoint domain set there exists a corresponding same-sized
-range set and the range sets in some cases intersect, converges to: the
-triangle inequality and non-negativity properties of metric space, Manhattan
-distance at the upper boundary, and Euclidean distance at the lower boundary.
-Applying the ruler-like measure to a set-based definition of countable volume
-converges to the product of interval interval sizes (Euclidean area/volume).
-The total order and symmetry properties of these two set-based countable
-distance and volume definitions limit an Euclidean geometry to 3 dimensions.
-Proofs are verified in Coq.
+Applying a ruler-like measure to domain-to-range set mappings, where for
+each disjoint domain set there exists a corresponding same-sized range set
+and the range sets in some cases intersect, converges to: the triangle
+inequality and non-negativity properties of metric space, with Manhattan
+distance at the upper boundary and Euclidean distance at the lower boundary.
+Applying the ruler-like measure to a domain-to-domain set mapping converges
+to the product of interval interval sizes (Euclidean area/volume).
+The total order and symmetry properties of these two set-based distance and
+volume relations limit an Euclidean geometry to 3 dimensions.
+Proofs verified in Coq.
