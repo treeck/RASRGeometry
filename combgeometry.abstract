@@ -6,6 +6,6 @@ Manhattan distance at the upper boundary and Euclidean distance at the lower
 boundary of the triangle inequality.
 Applying the ruler-like measure to a domain-to-domain set mapping converges
 to the product of interval interval sizes (Euclidean area/volume).
-The total order and symmetry properties of the set-based distance and
+The ordered and symmetric properties of the set-based distance and
 volume relations limit an Euclidean geometry to 3 dimensions.
 Proofs verified in Coq.
