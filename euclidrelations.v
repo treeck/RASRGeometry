@@ -1,8 +1,8 @@
-(** Copyright (c) 2015-2017 George M. Van Treeck.
+(** Copyright (c) 2015-2019 George M. Van Treeck.
     Rights granted under the Creative Commons
     Attribution License.
     This software uses The Coq Proof Assistance,
-    Copyright (c) 1999-2017  The Coq Development Team
+    Copyright (c) 1999-2019  The Coq Development Team
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
@@ -536,7 +536,7 @@ Variables i n: nat.
 
 (**
   The countable distance range is based on the defintion in
-  the article, The Real Analysis and Combinatorics of Geometry.
+  the article, The Set Relations Generating Geometry.
 *)
 Hypothesis countable_distance_range :
     (* For each domain set, list_x_i in X, there exists a
@@ -613,7 +613,7 @@ Hypothesis d_c_sum_disjoint :
 
 (** The next lemma is the first proof step of the
    taxicab and Euclidean distance proofs in the article,
-   The Real Analysis and Combinatorics of Geometry. *)
+   The Set Relations Generating Geometry. *)
 
 (** Map the set-based cardinal relationship,
    |x_i| = |y_i| = p_i, into the list of
