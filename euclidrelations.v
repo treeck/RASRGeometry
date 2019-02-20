@@ -536,7 +536,7 @@ Variables i n: nat.
 
 (**
   The countable distance range is based on the defintion in
-  the article, The Set Relations Generating Geometry.
+  the article, The Set Relations Generating Euclidean Geometry.
 *)
 Hypothesis countable_distance_range :
     (* For each domain set, list_x_i in X, there exists a
@@ -613,7 +613,7 @@ Hypothesis d_c_sum_disjoint :
 
 (** The next lemma is the first proof step of the
    taxicab and Euclidean distance proofs in the article,
-   The Set Relations Generating Geometry. *)
+   The Set Relations Generating Euclidean Geometry. *)
 
 (** Map the set-based cardinal relationship,
    |x_i| = |y_i| = p_i, into the list of
@@ -626,7 +626,7 @@ Proof.
   assumption.
 Qed.
 
-(** Step 3.4 of taxicab distance proof:
+(** Step 3.7 of taxicab distance proof:
     Multiply both sides of step 3.2 by c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_d_measure :
@@ -662,15 +662,15 @@ Proof.
   split. assumption. assumption. assumption. 
 Qed.
 
-(** Step 3.5 of taxicab distance proof:
+(** Step 3.8 of taxicab distance proof:
     There is one overall set of Y, containing d_c
     number of subintervals. Therefore, the number of all
     y in Y, is (subintervals d_0 d_m c) = d_c. *)
 Hypothesis d_c_eq_image_subintervals :
     d_c = subintervals d_0 d_m c.
 
-(** Step 3.6 of taxicab distance proof:
-    Multiply both sides of step 3.4 by c and apply the
+(** Step 3.9 of taxicab distance proof:
+    Multiply both sides of step 3.7 by c and apply the
     ruler measure and convergence theorem to get the
     distance measure. *)
 Lemma d_measure :
@@ -700,7 +700,7 @@ Proof.
 Qed.
 
 (** The final step in the taxicab distance proof.
-    Step 3.7: Combine steps 3.6 and 3.4. *)
+    Step 3.10: Combine steps 3.9 and 3.7. *)
 Theorem taxicab_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
@@ -726,14 +726,14 @@ Qed.
 (** The following lemmas are steps in the proof of
    Euclidean distance. *)
 
-(** Step 3.8 is the first step of the Euclidean distance
+(** Step 3.11 is the first step of the Euclidean distance
     proof in the article, The Real Analysis and Combinatorics
     of Geometryand and is also the first step of the previous
     taxicab distance proof. This step is defined previously in
     the taxicab distance proof as:
     "Hypothesis ruler_subintervals" *)
 
-(** Step 3.9 (second step) of the Euclidean distanc proof:
+(** Step 3.12 (second step) of the Euclidean distanc proof:
    Map the set-based cardinal relationship,
    |x_i|*|y_i| = p_i^2, into the list of
    partition counts, p. *)
@@ -746,13 +746,13 @@ Proof.
   rewrite -> sqr_list_spec in H10. assumption.
 Qed.
 
-(** Step 3.10 Cauchy-Schwartz inequality:
+(** Step 3.13 Cauchy-Schwartz inequality:
     sum(i=1,n) |y_i|^2 <= (sum(i=1,n) |y_i|)^2. *)
 Hypothesis cauchy_schwartz_inequality :
     sum_list (sqr_list p) < Rsqr (sum_list (p)) /\
     sum_list (sqr_list p) = Rsqr (sum_list (p)).
 
-(** Step 3.11: From the countable distance theorem,
+(** Step 3.14: From the countable distance theorem,
     choose the equality case
     squaring both sides of the inequality:
     sum(i=1,n) |y_i| >= |union(i=1,n) y_i| = d_c =>
@@ -765,8 +765,8 @@ Proof.
   intros. rewrite <- d_c_sum_disjoint. reflexivity.
 Qed.
 
-(** Step 3.12: Combine 3.10 (equality case of the Cauchy-Schwartz
-    inequality) and 3.11 (square of sum case).
+(** Step 3.15: Combine 3.13 (equality case of the Cauchy-Schwartz
+    inequality) and 3.14 (square of sum case).
     d_c^2 = sum(i=1,n) p_i^2. *)
 Lemma sqr_d_c_eq_sum_squares :
     Rsqr d_c = sum_list (sqr_list p).
@@ -787,7 +787,7 @@ Variable sqr_d_c: R.
 Hypothesis sqr_d_c_sum_squares :
     sqr_d_c = sum_list (sqr_list p).
 
-(** Step 3.13: Multiply both sides of step 3.12 by Rsqr c and
+(** Step 3.16: Multiply both sides of step 3.15 by Rsqr c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_d_c_measure :
     forall (L1 L2 delta epsilon:R)
@@ -833,13 +833,13 @@ Proof.
   split. assumption. assumption. 
 Qed.
 
-(** Step 3.14:
+(** Step 3.17:
     d_c = subintervals d_0 d_m c =>
           sqr_d_c = Rsqr (subintervals d_0 d_m c) *)
 Hypothesis sqr_d_c_eq_rsqr_image_subintervals :
     sqr_d_c = Rsqr (subintervals d_0 d_m c).
 
-(** Step 3.15: Multiply both sides of step 3.13 by Rsqr c and
+(** Step 3.18: Multiply both sides of step 3.16 by Rsqr c and
     apply the ruler measure and convergence theorem to get
     the distance measure. *)
 Lemma rsqr_d_measure :
@@ -871,7 +871,7 @@ Proof.
   split. assumption. assumption.
 Qed.
 
-(** Step 3.16: combine steps 3.15 and 3.13. *)
+(** Step 3.19: combine steps 3.18 and 3.16. *)
 Theorem Euclidean_distance :
     forall (L1 L2 delta epsilon:R)
         (f: R->R->R->R) (g: R->R),
