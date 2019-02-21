@@ -341,8 +341,12 @@ Proof.
   rewrite -> (Rmult_assoc (exact_size a b) (c) (/ c)) in H0.
   rewrite -> (Rinv_r c) in H0.
   rewrite -> (Rmult_1_r (exact_size a b)) in H0.
-  assumption. auto with *.
-  assert (c <> 0). auto with *.
+  assumption.
+  apply Rgt_not_eq.
+  apply H.
+  assert (c <> 0).
+  apply Rgt_not_eq.
+  apply H.
   revert H1.
     apply Rabs_pos_lt.
 Qed.
@@ -357,7 +361,8 @@ Lemma M_minus_exact_size_lt_epsilon :
 Proof.
   intros. decompose [and] H.
   assert (Rabs (c - 0) = Rabs c).
-    auto with *.
+  simple apply f_equal_R.
+  simple apply Rminus_0_r.
   rewrite -> H5 in H6.
   assert (Rabs(M a b c - exact_size a b) < Rabs c).
     apply abs_M_minus_s_lt_abs_c. assumption.
@@ -417,7 +422,7 @@ Qed.
     as real numbers *)
 Lemma eq_INR : forall (m n: nat), (m = n)%nat -> INR m = INR n.
 Proof.
-  simple induction 1; intros; auto with real.
+  induction 1; intros; apply @eq_refl.
 Qed.
 
 (** Returns the element at position i in the list. *)
@@ -464,7 +469,7 @@ Hypothesis eq_list_R_is_eq : forall (l1 l2: list R),
 
 (** reflexivity on real-valued lists *)
 Lemma list_refl : forall (l1 l2: list R), l1 = l2 -> l2 = l1.
-Proof. auto. Qed.
+Proof. intros. apply eq_sym ; assumption. Qed.
 
 (** Sum a list of real numbers. *)
 Fixpoint sum_list (l: list R) : R :=
@@ -525,7 +530,7 @@ Variable list_x_i: list A.
 Variable X: list (list A).
 (** Xpd = union(i=1 to n) list_x_i *)
 Variable Xpd: list A.
-(** List of the countable distance sets (y_i in Y). *)
+(** List of the countable range sets (y_i in Y). *)
 Variable list_y_i: list A.
 (** List of countable image sets, Y = union(i=1 to n) list_y_i *)
 Variable Y: list (list A).
@@ -540,24 +545,24 @@ Variables i n: nat.
 *)
 Hypothesis countable_distance_range :
     (* For each domain set, list_x_i in X, there exists a
-       corresponding distance set, list_y_i in Y. *)
+       corresponding range set, list_y_i in Y. *)
     (i <= n)%nat /\ length X = n /\ length Y = n /\
     (* list_x_i is the i_th domain set in X *)
     list_x_i = list_list_mem i X /\
     (* Disjoint domain sets *)
     length (union X) = length (lists_appended X) /\
-    (* list_y_i is the i_th distance set in Y *)
+    (* list_y_i is the i_th range set in Y *)
     list_y_i = list_list_mem i Y /\
     (* The i_th domain set has the same number of elements as
-       the i_th distance set. *)
+       the i_th range set. *)
     length list_x_i = length list_y_i /\
-    (* The distance sets sometimes intersect expressed here as
-       the sum of the union of distance set less than and
-       equal to the size of sum distance set sizes. *)
+    (* The range sets sometimes intersect expressed here as
+       the sum of the union of range set less than and
+       equal to the size of sum range set sizes. *)
     INR (length (union Y)) < INR (length (lists_appended Y)) /\
     INR (length (union Y)) = INR (length (lists_appended Y)) /\
     (* The countable distance, d_c, is the size of the
-       union of the distance sets. *)
+       union of the range sets. *)
     d_c = INR (length (union Y)%nat).
 
 (** Partition the domain intervals into sets (lists of
@@ -727,10 +732,10 @@ Qed.
    Euclidean distance. *)
 
 (** Step 3.11 is the first step of the Euclidean distance
-    proof in the article, The Real Analysis and Combinatorics
-    of Geometryand and is also the first step of the previous
-    taxicab distance proof. This step is defined previously in
-    the taxicab distance proof as:
+    proof in the article, The Set Relations Generating
+    Euclidean Geometry and is also the first step of the
+    previous taxicab distance proof. This step is defined
+    previously in the taxicab distance proof as:
     "Hypothesis ruler_subintervals" *)
 
 (** Step 3.12 (second step) of the Euclidean distanc proof:
