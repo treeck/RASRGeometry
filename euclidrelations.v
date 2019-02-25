@@ -382,7 +382,8 @@ Hypothesis limit_x_L1_f_x_eq_L2 :
     Rabs(f a b x - L2) < epsilon ->
     f a b x = L2.
 
-(* The function relating delta to epsilon to prove convergence. *)
+(* The function relating delta to epsilon to prove
+   convergence. *)
 Definition delta_eq_epsilon(d: R) : R := d.
 
 (** Epsilon-delta proof. limit c->0,
@@ -632,7 +633,7 @@ Proof.
 Qed.
 
 (** Step 3.7 of taxicab distance proof:
-    Multiply both sides of step 3.2 by c and
+    Multiply both sides of step 3.6 by c and
     apply the ruler measure and covergence theorem. *)
 Lemma domain_d_measure :
     forall (L1 L2 delta epsilon:R)
@@ -984,6 +985,245 @@ Proof.
   split. assumption. assumption. 
   assumption.
   symmetry. assumption.
+Qed.
+
+(* Points in the domain set of a metric space. *)
+Variable u v w: R.
+(* Range set distances d(u,w), d(u,v), d(v,w) and
+   d(w,w). *)
+Variable d_u_w d_u_v d_v_w d_w_w d_w_v: R.
+(* d_u_w_c = floor(d(u,w)/c),
+   d_u_v_c = floor(d(u,v)/c), and
+   d_w_w_c = floor(d(v,w)/c) *)
+Variable d_u_w_c d_u_v_c d_v_w_c: R.
+(* For all d(u,w) in R, there exists [a_u,a_w] such that
+   d(u,w) = |a_u - a_w|, a_u = f(u) and a_w = f(w).
+   And so on with d(u,v) and d(v,w). *)
+Variable a_u a_v a_w: R.
+
+(* Metric space triangle inequality,
+   d(u,w) <= d(u,v) + d(v,w),
+   derived from the relation 
+   d_c = |union(i=1,n) y_i| <= sum(i=1,n)|y_i|. *)
+Theorem riangle_inequality :
+    forall (L1 L2 delta epsilon:R)
+        (f: R->R->R->R) (g: R->R),
+    c > 0 /\
+    f = M /\ g = delta_eq_epsilon /\
+    L1 = 0 /\
+    0 < delta /\ 0 < epsilon /\ delta = epsilon /\
+    0 < Rabs (c - L1) < delta /\
+    d_u_w = exact_size a_u a_w /\
+    d_u_v = exact_size a_u a_v /\
+    d_v_w = exact_size a_v a_w /\
+    d_u_w_c = subintervals a_u a_w c /\
+    d_u_v_c = subintervals a_u a_v c /\
+    d_v_w_c = subintervals a_v a_w c /\
+    (* The countable distance, d_u_w_c, is the size of the
+       union of the range sets. *)
+    d_u_w_c = INR (length (union Y)%nat) /\
+    d_u_v_c + d_v_w_c = INR (length (lists_appended Y)%nat)
+    ->
+    d_u_w < d_u_v + d_v_w /\ d_u_w = d_u_v + d_v_w.
+Proof.
+  intros. decompose [and] H.
+  decompose [and] countable_distance_range.
+  rewrite <- H15 in H24.
+  rewrite <- H15 in H25.
+  rewrite <- H17 in H24.
+  rewrite <- H17 in H25.
+  apply Rmult_lt_compat_r with (r := c)
+    (r1 := d_u_w_c) (r2 := (d_u_v_c + d_v_w_c)) in H24.
+  apply Rmult_eq_compat_r with (r := c)
+    (r1 := d_u_w_c) (r2 := (d_u_v_c + d_v_w_c)) in H25.
+  rewrite -> Rmult_plus_distr_r with (r3 := c)
+    (r1 := d_u_v_c) (r2 := d_v_w_c) in H24.
+  rewrite -> Rmult_plus_distr_r with (r3 := c)
+    (r1 := d_u_v_c) (r2 := d_v_w_c) in H25.
+  rewrite -> H12 in H24.
+  rewrite -> H13 in H24.
+  rewrite -> H14 in H24.
+  rewrite -> H12 in H25.
+  rewrite -> H13 in H25.
+  rewrite -> H14 in H25.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_u) (b := a_w) (c := c) in H24.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_u) (b := a_v) (c := c) in H24.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_v) (b := a_w) (c := c) in H24.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_u) (b := a_w) (c := c) in H25.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_u) (b := a_v) (c := c) in H25.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_v) (b := a_w) (c := c) in H25.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_u) (b := a_w) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_u a_w) (f := M) in H24.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_u) (b := a_v) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_u a_v) (f := M) in H24.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_v) (b := a_w) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_v a_w) (f := M) in H24.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_u) (b := a_w) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_u a_w) (f := M) in H25.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_u) (b := a_v) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_u a_v) (f := M) in H25.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_v) (b := a_w) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_v a_w) (f := M) in H25.
+  rewrite <- H7 in H24.
+  rewrite <- H9 in H24.
+  rewrite <- H11 in H24.
+  rewrite <- H7 in H25.
+  rewrite <- H9 in H25.
+  rewrite <- H11 in H25.
+  split. assumption. assumption.
+  split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. reflexivity. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption.
+
+  split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. reflexivity. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption.
+
+  split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. reflexivity. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption.
+
+  split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. reflexivity. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption.
+
+  split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. reflexivity. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption.
+
+  split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. reflexivity. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption.
+
+  assumption. assumption. assumption. assumption.
+  assumption. assumption. assumption.
+Qed.
+
+(* Non-negativity: d(u,w) >= 0, where for all d(u,w) in R,
+   there exists [a_u,a_w] such that d(u,w) = |a_u - a_w|,
+   a_u = f(u) and a_w = f(w). *)
+Theorem non_negativity :
+  forall (L1 L2 delta epsilon:R)
+        (f: R->R->R->R) (g: R->R),
+  c > 0 /\
+  f = M /\ g = delta_eq_epsilon /\
+  L1 = 0 /\
+  0 < delta /\ 0 < epsilon /\ delta = epsilon /\
+  0 < Rabs (c - L1) < delta /\
+  d_u_w = exact_size a_u a_w /\
+  d_c = subintervals a_u a_w c /\
+  subintervals a_u a_w c >= 0
+  -> d_u_w >= 0.
+Proof.
+  intros. decompose [and] H.
+  decompose [and] countable_distance_range.
+
+  apply Rmult_ge_compat_r with (r := c)
+    (r1 := subintervals a_u a_w c) (r2 := 0) in H12.
+  rewrite -> Rmult_0_l with (r := c) in H12.
+  rewrite <- subintervals_times_c_eq_measure with
+    (a := a_u) (b := a_w) (c := c) in H12.
+  rewrite -> limit_c_0_M_eq_exact_size with
+    (a := a_u) (b := a_w) (c := c)  (L1 := L1)
+    (g := g) (delta := delta) (epsilon := epsilon)
+    (L2 := exact_size a_u a_w) (f := M) in H12.
+  rewrite <- H7 in H12.
+  assumption.
+  split. assumption. split. reflexivity.
+  split. assumption. split. assumption.
+  split. reflexivity. split. assumption.
+  split. assumption. split. assumption.
+  auto with *.
+  assumption.
+  auto with *.
+Qed.
+
+(* f(x) = f(y) <=> x = y *)
+Hypothesis exact_size_eq_exact_size :
+exact_size a_u a_w = exact_size a_u a_v
+-> a_w = a_v.
+
+(* Identity of Indiscernibles: d(w,w) = 0, where for
+   all d(u,w) in R, there exists [a_u,a_w] such that
+   d(u,w) = |a_u - a_w|, a_u = f(u) and a_w = f(w).
+   And so on for d(u,v) and d(v,w). *)
+Theorem identity_of_indisceunibles :
+  (* from the triange inequality proof: *)
+    d_u_w = exact_size a_u a_w /\
+    d_u_v = exact_size a_u a_v /\
+    d_v_w = exact_size a_v a_w /\
+    d_w_w = exact_size a_w a_w /\
+    d_u_w < d_u_v + d_v_w /\
+    d_u_w = d_u_v + d_v_w /\
+    (* from the non-negativity proof, there exists: *)
+    d_u_v = 0 /\ d_v_w = 0
+    -> d_w_w = 0.
+Proof.
+  intros. decompose [and] H.
+  assert (d_u_w = 0).
+  rewrite -> H6 in H5.
+  rewrite -> H8 in H5.
+  rewrite Rplus_0_r with (r := 0) in H5.
+  assumption.
+  rewrite <- H6 in H7.
+  rewrite -> H0 in H7.
+  rewrite -> H2 in H7.
+  apply exact_size_eq_exact_size in H7.
+  rewrite <- H7 in H1.
+  rewrite <- H1 in H3.
+  rewrite -> H8 in H3.
+  assumption.
+Qed.
+
+(* Symmetry: d(v,w) = d(w,v), where for
+   all d(v,w) in R, there exists [a_v,a_w] such that
+   d(v,w) = |a_v - a_w|, a_v = f(v) and a_w = f(w).
+   And for all d(w,v) in R, there exists [a_w,a_v] such that
+   d(w,v) = |a_v - a_w|, a_v = f(v) and a_w = f(w). *)
+Theorem symmetry :
+    a_v = a_w /\
+    d_w_w = exact_size a_w a_w /\
+    d_v_w = exact_size a_v a_w /\
+    d_w_v = exact_size a_w a_v
+    (* from the identity_of_indisceunibles proof: *)
+    (* d_w_w = 0 *)
+    -> d_v_w = d_w_v.
+Proof.
+  intros. decompose [and] H.
+  rewrite -> H0 in H1.
+  rewrite -> H0 in H4.
+  rewrite <- H4 in H1.
+  assumption.
 Qed.
 
 End EuclideanRelations.

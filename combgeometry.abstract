@@ -1,9 +1,8 @@
 Applying a ruler-like measure to domain-to-range set mappings, where for
 each disjoint domain set there exists a corresponding same-sized range set
-and the range sets in some cases intersect, converges to: the triangle
-inequality and non-negativity properties of a distance metric, and converges to
-Manhattan distance at the upper boundary and Euclidean distance at the lower
-boundary of the triangle inequality.
+and the range sets in some cases intersect, generates all the properties of
+metric space, and converges to Manhattan distance at the upper boundary
+and Euclidean distance at the lower boundary of the triangle inequality.
 Applying the ruler-like measure to a domain-to-domain set mapping converges
 to the product of interval interval sizes (Euclidean area/volume).
 The ordered and symmetric properties of the set-based distance and
