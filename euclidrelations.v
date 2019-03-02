@@ -995,11 +995,14 @@ Variable d_u_w d_u_v d_v_w d_w_w d_w_v: R.
 (* d_u_w_c = floor(d(u,w)/c),
    d_u_v_c = floor(d(u,v)/c), and
    d_w_w_c = floor(d(v,w)/c) *)
-Variable d_u_w_c d_u_v_c d_v_w_c: R.
+Variable d_u_w_c d_u_v1_c d_v2_w_c: R.
 (* For all d(u,w) in R, there exists [a_u,a_w] such that
    d(u,w) = |a_u - a_w|, a_u = f(u) and a_w = f(w).
-   And so on with d(u,v) and d(v,w). *)
-Variable a_u a_v a_w: R.
+   For all d(u,v) in R, there exists [a_u,a_v1] such that
+   d(u,w) = |a_u - a_v1|, a_v1 = f(w).
+   For all d(u,w) in R, there exists [a_v2,a_w] such that
+   d(u,w) = |a_v2 - a_w|, a_v2 = g(u). *)
+Variable a_u a_v1 a_v2 a_w: R.
 
 (* Metric space triangle inequality,
    d(u,w) <= d(u,v) + d(v,w),
@@ -1014,15 +1017,15 @@ Theorem riangle_inequality :
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - L1) < delta /\
     d_u_w = exact_size a_u a_w /\
-    d_u_v = exact_size a_u a_v /\
-    d_v_w = exact_size a_v a_w /\
+    d_u_v = exact_size a_u a_v1 /\
+    d_v_w = exact_size a_v2 a_w /\
     d_u_w_c = subintervals a_u a_w c /\
-    d_u_v_c = subintervals a_u a_v c /\
-    d_v_w_c = subintervals a_v a_w c /\
+    d_u_v1_c = subintervals a_u a_v1 c /\
+    d_v2_w_c = subintervals a_v2 a_w c /\
     (* The countable distance, d_u_w_c, is the size of the
        union of the range sets. *)
     d_u_w_c = INR (length (union Y)%nat) /\
-    d_u_v_c + d_v_w_c = INR (length (lists_appended Y)%nat)
+    d_u_v1_c + d_v2_w_c = INR (length (lists_appended Y)%nat)
     ->
     d_u_w < d_u_v + d_v_w /\ d_u_w = d_u_v + d_v_w.
 Proof.
@@ -1033,13 +1036,13 @@ Proof.
   rewrite <- H17 in H24.
   rewrite <- H17 in H25.
   apply Rmult_lt_compat_r with (r := c)
-    (r1 := d_u_w_c) (r2 := (d_u_v_c + d_v_w_c)) in H24.
+    (r1 := d_u_w_c) (r2 := (d_u_v1_c + d_v2_w_c)) in H24.
   apply Rmult_eq_compat_r with (r := c)
-    (r1 := d_u_w_c) (r2 := (d_u_v_c + d_v_w_c)) in H25.
+    (r1 := d_u_w_c) (r2 := (d_u_v1_c + d_v2_w_c)) in H25.
   rewrite -> Rmult_plus_distr_r with (r3 := c)
-    (r1 := d_u_v_c) (r2 := d_v_w_c) in H24.
+    (r1 := d_u_v1_c) (r2 := d_v2_w_c) in H24.
   rewrite -> Rmult_plus_distr_r with (r3 := c)
-    (r1 := d_u_v_c) (r2 := d_v_w_c) in H25.
+    (r1 := d_u_v1_c) (r2 := d_v2_w_c) in H25.
   rewrite -> H12 in H24.
   rewrite -> H13 in H24.
   rewrite -> H14 in H24.
@@ -1049,39 +1052,39 @@ Proof.
   rewrite <- subintervals_times_c_eq_measure with
     (a := a_u) (b := a_w) (c := c) in H24.
   rewrite <- subintervals_times_c_eq_measure with
-    (a := a_u) (b := a_v) (c := c) in H24.
+    (a := a_u) (b := a_v1) (c := c) in H24.
   rewrite <- subintervals_times_c_eq_measure with
-    (a := a_v) (b := a_w) (c := c) in H24.
+    (a := a_v2) (b := a_w) (c := c) in H24.
   rewrite <- subintervals_times_c_eq_measure with
     (a := a_u) (b := a_w) (c := c) in H25.
   rewrite <- subintervals_times_c_eq_measure with
-    (a := a_u) (b := a_v) (c := c) in H25.
+    (a := a_u) (b := a_v1) (c := c) in H25.
   rewrite <- subintervals_times_c_eq_measure with
-    (a := a_v) (b := a_w) (c := c) in H25.
+    (a := a_v2) (b := a_w) (c := c) in H25.
   rewrite -> limit_c_0_M_eq_exact_size with
     (a := a_u) (b := a_w) (c := c)  (L1 := L1)
     (g := g) (delta := delta) (epsilon := epsilon)
     (L2 := exact_size a_u a_w) (f := M) in H24.
   rewrite -> limit_c_0_M_eq_exact_size with
-    (a := a_u) (b := a_v) (c := c)  (L1 := L1)
+    (a := a_u) (b := a_v1) (c := c)  (L1 := L1)
     (g := g) (delta := delta) (epsilon := epsilon)
-    (L2 := exact_size a_u a_v) (f := M) in H24.
+    (L2 := exact_size a_u a_v1) (f := M) in H24.
   rewrite -> limit_c_0_M_eq_exact_size with
-    (a := a_v) (b := a_w) (c := c)  (L1 := L1)
+    (a := a_v2) (b := a_w) (c := c)  (L1 := L1)
     (g := g) (delta := delta) (epsilon := epsilon)
-    (L2 := exact_size a_v a_w) (f := M) in H24.
+    (L2 := exact_size a_v2 a_w) (f := M) in H24.
   rewrite -> limit_c_0_M_eq_exact_size with
     (a := a_u) (b := a_w) (c := c)  (L1 := L1)
     (g := g) (delta := delta) (epsilon := epsilon)
     (L2 := exact_size a_u a_w) (f := M) in H25.
   rewrite -> limit_c_0_M_eq_exact_size with
-    (a := a_u) (b := a_v) (c := c)  (L1 := L1)
+    (a := a_u) (b := a_v1) (c := c)  (L1 := L1)
     (g := g) (delta := delta) (epsilon := epsilon)
-    (L2 := exact_size a_u a_v) (f := M) in H25.
+    (L2 := exact_size a_u a_v1) (f := M) in H25.
   rewrite -> limit_c_0_M_eq_exact_size with
-    (a := a_v) (b := a_w) (c := c)  (L1 := L1)
+    (a := a_v2) (b := a_w) (c := c)  (L1 := L1)
     (g := g) (delta := delta) (epsilon := epsilon)
-    (L2 := exact_size a_v a_w) (f := M) in H25.
+    (L2 := exact_size a_v2 a_w) (f := M) in H25.
   rewrite <- H7 in H24.
   rewrite <- H9 in H24.
   rewrite <- H11 in H24.
@@ -1167,6 +1170,9 @@ Proof.
   assumption.
   auto with *.
 Qed.
+
+(* a_v = f(v) *)
+Variable a_v: R.
 
 (* f(x) = f(y) <=> x = y *)
 Hypothesis exact_size_eq_exact_size :
