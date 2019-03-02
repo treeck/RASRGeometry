@@ -1,0 +1,12 @@
+A ruler-like measure divides sets of real-valued domain and range intervals
+into same-sized subintervals.
+The case, where each disjoint domain set of subintervals there exists a
+corresponding same-sized range set and the range sets in some cases
+intersect, converges to: the triangle inequality, Manhattan distance at the
+upper boundary and Euclidean distance at the lower boudary of the triangle
+inequality.
+The Cartesian product of domain set subintervals converges to the product of
+nterval interval sizes (Euclidean area/volume).
+The ordered and symmetric properties of the set-based distance and volume
+relations limit an Euclidean geometry to 3 dimensions.
+Proofs verified in Coq.
