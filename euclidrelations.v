@@ -169,6 +169,17 @@ Proof.
   omega. assumption.
 Qed.
 
+(** The size (cardinal) of the union set is less than and
+    equal to the sum of set sizes. *)
+Theorem inclusion_exclusion_inequality :
+    forall (a: A) (l: list (list A)),
+    length (union l) <= list_lengths_summed l.
+Proof.
+  intros.
+  rewrite -> inclusion_exclusion_principle_alt.
+  apply le_plus_r. assumption.
+Qed.
+
 (** End of generic set operations and proofs. *)
 
 (** ==================================================== *)
