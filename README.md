@@ -1,6 +1,6 @@
 # The Two Set Relations Generating Euclidean Geometry
 
-Real analysis proofs exposing the set relations generating Euclidean geometry. Proofs verified in Coq.
+Real analysis proofs exposing the two set relations generating Euclidean geometry. Proofs verified in Coq.
 
 Copyright (c) 2015-2019 George M. Van Treeck.
 
