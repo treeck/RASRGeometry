@@ -8,5 +8,6 @@ inequality.
 The Cartesian product of domain set subintervals converges to the product of
 nterval interval sizes (Euclidean area/volume).
 The ordered and symmetric properties of the set-based distance and volume
-relations limit an Euclidean geometry to 3 dimensions.
+relations plus the constraint of time limit physical Euclidean geometry to 3
+dimensions.
 Proofs verified in Coq.
