@@ -7,7 +7,6 @@ upper boundary and Euclidean distance at the lower boudary of the triangle
 inequality.
 The Cartesian product of domain set subintervals converges to the product of
 nterval interval sizes (Euclidean area/volume).
-The ordered and symmetric properties of the set-based distance and volume
-relations plus the constraint of time limit physical Euclidean geometry to 3
-dimensions.
+Time places a constraint on physical sets, which limits the set-based distance
+and volume relations to at most 3 physical dimensions.
 Proofs verified in Coq.
