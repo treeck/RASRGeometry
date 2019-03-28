@@ -1,10 +1,10 @@
-A ruler-like measure divides sets of domain and range intervals approximately
-into countable sets of same-sized subintervals.
+A ruler-like measure divides both domain and range intervals approximately
+into countable sets of same-sized subintervals, ignoring partial subintervals.
 As the subinterval size converges to zero:
 1) Distance as the union size of range sets, where for each domain set there
-exists a corresponding same-sized range set, converges to: the triangle
+exists a corresponding same-sized range set, converges to: the triangle 
 inequality, Manhattan distance at the upper boundary and Euclidean distance at
 the lower boundary of the triangle inequality.
-2) The Cartesian product of the number of subintervals in each domain set
-converges to the product of interval interval sizes (Euclidean area/volume).
+2) The Cartesian product of the number of members in each domain set converges
+to the product of interval interval sizes (Euclidean area/volume).
 All proofs are verified in Coq.
