@@ -147,7 +147,7 @@ Qed.
 
 (** The sum of the cardinal of sets equals the
     cardinal of the union plus the cardinal of the duplicates. *)
-Theorem inclusion_exclusion_principle_alt :
+Theorem sum_eq_uniques_plus_duplicates :
     forall (a: A) (l: list (list A)),
     list_lengths_summed l = length (duplicates l) + length (union l).
 Proof.
@@ -156,18 +156,6 @@ Proof.
   apply card_app_eq_card_union_plus_dups. assumption.
 Qed.
 
-(** Rearrangement of the inclusion_exclusion_principle_alt into
-    a form similar to the Da Silva formula, where the set of
-    duplicates can be defined to be those of the Da Silva
-    formula intersections. *)
-Theorem inclusion_exclusion_principle :
-    forall (a: A) (l: list (list A)),
-    length (union l) = list_lengths_summed l - length (duplicates l).
-Proof.
-  intros.
-  rewrite -> inclusion_exclusion_principle_alt.
-  omega. assumption.
-Qed.
 
 (** The size (cardinal) of the union set is less than and
     equal to the sum of set sizes. *)
@@ -176,7 +164,7 @@ Theorem inclusion_exclusion_inequality :
     length (union l) <= list_lengths_summed l.
 Proof.
   intros.
-  rewrite -> inclusion_exclusion_principle_alt.
+  rewrite -> sum_eq_uniques_plus_duplicates.
   apply le_plus_r. assumption.
 Qed.
 
