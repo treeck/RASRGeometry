@@ -1,5 +1,5 @@
-A ruler-like measure divides both domain and range intervals into countable
-sets of same-sized subintervals, ignoring partial subintervals.
+A ruler-like measure divides both domain and range intervals into sets of
+same-sized subintervals, ignoring partial subintervals.
 As the subinterval size converges to zero:
 1) Distance as the union size of range sets, where for each domain set there
 exists a corresponding same-sized range set, converges to: the triangle 
