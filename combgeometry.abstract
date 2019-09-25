@@ -10,5 +10,5 @@ inequality with Manhattan distance at the upper boundary and Euclidean distance
 at the lower boundary.
 2) The Cartesian product of the number of members in each domain set
 converges to the product of interval interval sizes (Euclidean area/volume).
-Time limits physical geometry to 3 dimensions.
+Physical geometry is limited to 3 dimensions.
 All proofs are verified in Coq.
