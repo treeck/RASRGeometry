@@ -1,6 +1,6 @@
 A ruler-like measure is used to prove that the properties of metric space,
-the Euclidean distance and volume equations are motivated and derived
-from two countable set relations.
+Euclidean distance, and volume are motivated and derived  from two countable
+set relations.
 The ruler measure divides both domain and range intervals approximately
 into the nearest integer number of same-sized subintervals.
 As the subinterval size converges to zero:
