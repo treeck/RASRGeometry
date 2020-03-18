@@ -6,6 +6,8 @@
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
+Require Import Arith NPeano Omega Bool Sumbool List.
+
 Section EuclideanRelations.
 
 (**
@@ -21,8 +23,6 @@ Section EuclideanRelations.
    to use by just loading this one file and everything works
    without any special setup of load and import paths.
 *)
-
-Require Import Arith NPeano Omega Bool Sumbool List.
 
 (** ==================================================== *)
 (** This section has generic set definitions and proofs. *)
