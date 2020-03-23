@@ -7,7 +7,7 @@ Euclidean distance at the lower boundary.
 2) The Cartesian product of the number of members in each domain set
 converges to the product of interval interval sizes (Euclidean area/volume).
 The ruler measure-based proofs of Euclidean distance and area/volume are
-used to derive the spacetime interval, charge force, and Newtonian gravity
-force equations.
+used to derive the spacetime, charge force, and Newtonian gravity force
+equations.
 Time limits physical geometry to 3 dimensions.
 All proofs are verified in Coq.
