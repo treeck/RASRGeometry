@@ -3,7 +3,7 @@ into the nearest integer number of same-sized subintervals.
 As the subinterval size converges to zero:
 1) Where each range interval has a size greater than or equal to the
 corresponding domain interval generates the properties of metric space
-and all Lp norms, in particular Manhattan and Euclidean distances.
+and all Lp norms, in particular, Manhattan and Euclidean distances.
 2) The Cartesian product of the number of members in each domain set
 converges to the product of interval interval sizes (Euclidean area/volume).
 The ruler measure-based proofs of Euclidean distance and area/volume are
