@@ -6,7 +6,8 @@ properties of metric space and all Lp norms, in particular, Manhattan and
 Euclidean distances.
 2) Countable volume as the cardinal of the Cartesian product of domain sets
 converges to the product of interval interval sizes (Euclidean area/volume).
-The ruler measure-based proofs of Euclidean distance and area/volume are used
-to derive the charge force, Newtonian gravity force, and spacetime equations.
+The Euclidean distance and area/volume proofs are used to derive Coulomb's
+law, Newtonian gravity force, and spacetime equations without relying on
+other physical laws.
 Time limits physical geometry to 3 dimensions.
 All proofs are verified in Coq.
