@@ -7,7 +7,7 @@ Euclidean distances.
 2) Countable volume as the cardinal of the Cartesian product of domain sets
 converges to the product of interval interval sizes (Euclidean area/volume).
 The Euclidean distance and area/volume proofs are used to derive Coulomb's
-law, Newtonian gravity force, and spacetime equations without relying on
+charge force, Newton's gravity force, and spacetime equations without relying on
 other physical laws.
 Time limits physical geometry to 3 dimensions.
 All proofs are verified in Coq.
