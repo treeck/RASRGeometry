@@ -1,13 +1,13 @@
 A ruler (measuring stick) partitions both domain and range intervals
 approximately into countable sets of same-sized subintervals.
 As the subinterval size converges to zero:
-1) Countable distance as the cardinal of the union of range sets generates the
-properties of metric space and all Lp norms, in particular, Manhattan and
-Euclidean distances.
-2) Countable volume as the cardinal of the Cartesian product of domain sets
-converges to the product of interval interval sizes (Euclidean area/volume).
+1) The union of range sets of subintervals converges to the properties of
+metric space and all Lp norms, in particular, Manhattan and Euclidean
+distances.
+2) The Cartesian product of domain sets of subintervals converges to the
+product of interval interval sizes (Euclidean area/volume).
 The Euclidean distance and area/volume proofs are used to derive Coulomb's
-charge force, Newton's gravity force, and spacetime equations without relying on
-other physical laws.
-Time limits physical geometry to 3 dimensions.
+charge force, Newton's gravity force, and spacetime equations without relying
+on other physical laws.
+Time limits physical distance and volume to 3 dimensions.
 All proofs are verified in Coq.
