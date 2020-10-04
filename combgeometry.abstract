@@ -7,7 +7,7 @@ and all Lp norms, in particular, Manhattan and Euclidean distances.
 2) The Cartesian product of domain sets of subintervals converges to the
 product of interval interval sizes (Euclidean area/volume).
 The Euclidean distance and area/volume proofs are used to derive Coulomb's
-charge force, Newton's gravity force, and spacetime equations without relying
-on Gauss's divergence theorem and other physical laws.
+charge force, Newton's gravity force, and spacetime equations without using
+other physical laws or Gauss's divergence theorem.
 Time limits physical distance and volume to 3 dimensions.
 All proofs are verified in Coq.
