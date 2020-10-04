@@ -2,7 +2,7 @@ A ruler (measuring stick) partitions both domain and range intervals
 approximately into countable sets of same-sized subintervals.
 As the subinterval size converges to zero:
 1) The union of range sets of subintervals, where each range set maps to a
-greater or equal-sized domain set, converges to the properties of metric space
+greater or equal-sized domain set, generates the properties of metric space
 and all Lp norms, in particular, Manhattan and Euclidean distances.
 2) The Cartesian product of domain sets of subintervals converges to the
 product of interval interval sizes (Euclidean area/volume).
