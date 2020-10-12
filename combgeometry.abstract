@@ -3,11 +3,12 @@ approximately into sets of same-sized subintervals.
 As the subinterval size converges to zero:
 1) The union of range sets of subintervals, where each domain set maps to a
 less or equal-sized range set, generates the properties of metric space and
-all Lp norms, in particular, Manhattan and Euclidean distances.
+all Lp norms, the boundaries of equal-sized range sets converging to Manhattan
+and Euclidean distance.
 2) The Cartesian product of domain sets of subintervals converges to the
 product of interval interval sizes (Euclidean area/volume).
-The Euclidean distance and area/volume proofs are used to derive Coulomb's
-charge force, Newton's gravity force, and spacetime equations without using
-other physical laws or Gauss's divergence theorem.
+The proofs allow much simpler derivations of Coulomb's charge force, Newton's
+gravity force, and spacetime equations without using other physical laws or
+Gauss's divergence theorem.
 Time limits physical distance and volume to 3 dimensions.
 All proofs are verified in Coq.
