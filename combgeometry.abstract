@@ -4,7 +4,7 @@ As the subinterval size converges to zero:
 1) The union of range sets of subintervals, where each domain set maps to a
 less or equal-sized range set, generates the properties of metric space and
 all Lp norms, in particular, the Manhattan and Euclidean distance equations.
-2) The 1-1 domain-to-range set mapping that generates Manhattan distance
+2) The domain and range set constraints that generates Manhattan distance
 also generates Euclidean volume.
 The proofs allow much simpler derivations of Coulomb's charge force, Newton's
 gravity force, and spacetime equations without using other laws of physics or
