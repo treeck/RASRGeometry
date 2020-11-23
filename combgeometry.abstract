@@ -6,7 +6,7 @@ c subintervals and sums the sizes.
 The distance and volume set operations on the sets of subintervals converge
 to the properties of metric space, the Lp norms (like Manhattan and Euclidean
 distance), and Euclidean volume as c goes to 0.
-The volume proof allow simpler derivations of Coulomb's charge force and
+The volume proof allows simpler derivations of Coulomb's charge force and
 Newton's gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
 Time limits physical distance and volume to 3 dimensions.
