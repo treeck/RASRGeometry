@@ -6,7 +6,9 @@
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
-Require Import Arith NPeano Omega Bool Sumbool List.
+Require Import Arith NPeano Lia Bool Sumbool List.
+
+Require Import Rdefinitions Raxioms RIneq Rfunctions R_Ifp.
 
 Section EuclideanRelations.
 
@@ -114,7 +116,7 @@ Proof.
       intros. induction y. reflexivity. reflexivity.
   rewrite summed_lists.
   rewrite app_length.
-  omega.
+  lia.
 Qed.
 
 (** The length of a list is equal to length of the duplicate elements
@@ -129,7 +131,7 @@ Proof.
           length (a::nil) + length (dups l ++ uniques l)).
       simpl. rewrite -> app_length. simpl.
       assert (forall n: nat, S n = n + 1).
-          intros. omega.
+          intros. lia.
       rewrite -> H. rewrite -> plus_assoc. rewrite <- app_length.
       rewrite <- H. reflexivity.
   rewrite -> H. simpl. inversion IHl. reflexivity.
@@ -195,8 +197,6 @@ Fixpoint list_mem (i:nat) (l:list A) {struct l} : A :=
 (** list_mem returns the ith list in list l. *)
 Definition list_list_mem (i: nat) (l: list (list A)) :
     list A := nth i l nil.
-
-Require Import Rdefinitions Raxioms RIneq Rfunctions R_Ifp.
 
 Local Open Scope nat_scope.
 Local Open Scope R_scope.
@@ -450,6 +450,10 @@ Fixpoint Rpow (r: R) (n: nat) : R :=
 (** r1^n * r2^n = (r1 * r2)^n *)
 Hypothesis pow_distributes : forall (r1 r2: R) (n: nat),
     (Rpow r1 n) * (Rpow r2 n) = Rpow (r1 * r2) n.
+
+(** f(x) = f(y) -> x = y applied to power functions *)
+Hypothesis pow_eq_args : forall (r1 r2: R) (n: nat),
+    Rpow r1 n = Rpow r2 n -> r1 = r2.
 
 (** Assume that if real number, r, exists then that number is
     the square some other real number, r'. *)
@@ -990,7 +994,7 @@ Qed.
 Variable u v w: R.
 (* Range set distances d(u,w), d(u,v), d(v,w) and
    d(w,w). *)
-Variable d_u_w d_u_v d_v_w d_w_w d_w_v: R.
+Variable d_u_w d_u_v d_v_w d_w_w d_w_v d_v_u: R.
 (* d_u_w_c = floor(d(u,w)/c),
    d_u_v_c = floor(d(u,v)/c), and
    d_w_w_c = floor(d(v,w)/c) *)
@@ -1210,24 +1214,23 @@ Proof.
   assumption.
 Qed.
 
-(* Symmetry: d(v,w) = d(w,v), where for
-   all d(v,w) in R, there exists [a_v,a_w] such that
-   d(v,w) = |a_v - a_w|, a_v = f(v) and a_w = f(w).
-   And for all d(w,v) in R, there exists [a_w,a_v] such that
-   d(w,v) = |a_v - a_w|, a_v = f(v) and a_w = f(w). *)
+(* Symmetry: d(v,w) = d(w,v).
+   From the Euclidean (smallest) and Manhattan (largest)
+   distance proofs, all d(x,y): d(x,y) = (x^n + y^n)^{1/n),
+   where 1 <= n <= 2.
+   Therefore, d(u,v)^n = u^n + y^n /\ d(v,u)^n = v^n + u^n,
+   which implies that d(v,u) = d(u,v). *)
 Theorem symmetry :
-    a_v = a_w /\
-    d_w_w = exact_size a_w a_w /\
-    d_v_w = exact_size a_v a_w /\
-    d_w_v = exact_size a_w a_v
-    (* from the identity_of_indisceunibles proof: *)
-    (* d_w_w = 0 *)
-    -> d_v_w = d_w_v.
+    Rpow d_u_v n = Rpow u n + Rpow v n /\
+    Rpow d_v_u n = Rpow v n + Rpow u n
+    -> d_u_v = d_v_u.
 Proof.
   intros. decompose [and] H.
-  rewrite -> H0 in H1.
-  rewrite -> H0 in H4.
-  rewrite <- H4 in H1.
+  assert (Rpow u n + Rpow v n = Rpow v n + Rpow u n).
+    intuition.
+  rewrite -> H2 in H0.
+  rewrite <- H1 in H0.
+  apply pow_eq_args in H0.
   assumption.
 Qed.
 
