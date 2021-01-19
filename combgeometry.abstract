@@ -9,5 +9,6 @@ and volume equations as c goes to 0.
 The volume proof allows simpler derivations of Coulomb's charge force and
 Newton's gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
-A type of symmetry limits physical space to 3 dimensions.
+A symmetry constraint on the set operations can limit a set to 3 members, e.g.,
+3 dimensions of physical space.
 All proofs are verified in Coq.
