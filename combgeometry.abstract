@@ -1,6 +1,6 @@
 Where each domain set has a corresponding range set, distance is the cardinal
 of the union of the range sets and volume is the cardinal of the set of ordered
-n-tuples of subintervals from disjoint range intervals.
+n-tuples of members from the disjoint range sets.
 A ruler partitions intervals approximately into sets of size c subintervals and
 sums the sizes.
 The distance and volume set operations on sets of size c subintervals converge
