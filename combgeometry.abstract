@@ -1,11 +1,11 @@
 Where each domain set has a corresponding range set, distance is the cardinal
-of the union of the range sets and volume is the cardinal of the set of ordered
-n-tuples of members from the disjoint range sets.
-A ruler partitions intervals approximately into sets of size c subintervals and
-sums the sizes.
-The distance and volume set operations on sets of size c subintervals converge
-to the properties of metric space, the Manhattan distance, Euclidean distance,
-and volume equations as c goes to 0.
+of the union of the range sets and volume is the cardinal of the set of n-tuples
+of members from disjoint range sets.
+Both domain and range intervals are divided approximately into sets of size
+c subintervals.
+The distance and volume set operations on the sets of size c subintervals
+converge to the properties of metric space, the Manhattan distance, Euclidean
+distance, and volume equations as c goes to 0.
 The volume proof is used to derive of Coulomb's charge force and Newton's
 gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
