@@ -4,9 +4,10 @@ of members from disjoint range sets.
 Both domain and range intervals are divided approximately into sets of size
 c subintervals.
 The distance and volume set operations applied to the sets of size c subintervals
-converge to the properties of metric space, the Manhattan distance, Euclidean
-distance, and volume equations as c goes to 0.
-The volume proof is used to derive of Coulomb's charge force and Newton's
+generate the properties of metric space, all Lp norms (Minkowski distances),
+including Manhattan and Euclidean distance, and volume equation as c goes
+to 0.
+The volume proof is used to derive Coulomb's charge force and Newton's
 gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
 A symmetry constraint limits physical space to 3 dimensions.
