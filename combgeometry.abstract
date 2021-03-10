@@ -3,7 +3,7 @@ of the union of the range sets and volume is the cardinal of the set of n-tuples
 of members from disjoint range sets.
 Both domain and range intervals are divided approximately into sets of size
 c subintervals.
-The distance and volume set operations on the sets of size c subintervals
+The distance and volume set operations applied to the sets of size c subintervals
 converge to the properties of metric space, the Manhattan distance, Euclidean
 distance, and volume equations as c goes to 0.
 The volume proof is used to derive of Coulomb's charge force and Newton's
