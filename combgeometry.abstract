@@ -10,5 +10,5 @@ as c goes to 0.
 The volume proof is used to derive Coulomb's charge force and Newton's
 gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
-A symmetry constraint limits physical space to 3 dimensions.
+A symmetry constraint can limit an ordered set of dimensions to 3 members.
 All proofs are verified in Coq.
