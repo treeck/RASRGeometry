@@ -4,8 +4,8 @@ and countable volume as the cardinal of the set of n-tuples of members from
 the disjoint range sets.
 The countable distance and volume set operations applied to sets of size c
 subintervals of domain and range intervals generate the properties of metric
-space, all Lp norms (Minkowski distances), for example, Manhattan and
-Euclidean distance, and the volume equation as c goes to 0.
+space, all Lp norms (for example, Manhattan and Euclidean distance), and the
+volume equation as c goes to 0.
 The volume proof is used to derive Coulomb's charge force and Newton's
 gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
