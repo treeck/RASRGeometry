@@ -161,7 +161,7 @@ Qed.
 
 (** The size (cardinal) of the union set is less than and
     equal to the sum of set sizes. *)
-Theorem inclusion_exclusion_inequality :
+Theorem union_sum_inequality :
     forall (a: A) (l: list (list A)),
     length (union l) <= list_lengths_summed l.
 Proof.
