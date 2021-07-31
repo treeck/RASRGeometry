@@ -1,7 +1,7 @@
 Where each countable domain set has a corresponding range set,
 countable distance is defined as the cardinal of the union of the range sets
 and countable volume as the cardinal of the set of n-tuples of members from
-the disjoint range sets.
+disjoint range sets.
 The countable distance and volume set operations applied to sets of size c
 subintervals of domain and range intervals generate the properties of metric
 space, the Lp norms (for example, Manhattan and Euclidean distance), and the
