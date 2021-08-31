@@ -1,14 +1,14 @@
-Where each countable domain set has a corresponding range set,
-countable distance is defined as the cardinal of the union of the range sets
-and countable volume as the cardinal of the set of n-tuples of members from
-disjoint range sets.
-The countable distance and volume set operations applied to sets of size c
-subintervals of domain and range intervals generate the properties of metric
-space, the Lp norms (for example, Manhattan and Euclidean distance), and the
-volume equation as c goes to 0.
+Countable distance is a function of the number of domain-to-range set
+mappings.
+Countable volume is a function of the number of range-to-range (distance) set
+mappings.
+The countable distance and volume mappings between sets of size c subintervals
+of domain and range intervals generate the properties of metric space, the Lp
+norms (for example, Manhattan and Euclidean distance), and the volume
+equation as c goes to 0.
 The volume proof is used to derive Coulomb's charge force and Newton's
 gravity force equations without using other laws of physics or Gauss's
 divergence theorem.
 A symmetry constraint on a strict totally ordered set limits the set to at most
-3 members, for example, 3 dimensions.
+3 members, for example, 3 dimensions of space.
 All proofs are verified in Coq.
