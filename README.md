@@ -1,4 +1,4 @@
-# The Two Set Relations Generating Geometry
+# The Countable Set Mappings Generating Geometry
 
 Real analysis proofs exposing the two set relations generating geometry. Proofs verified in Coq.
 
