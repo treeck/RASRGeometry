@@ -1,6 +1,5 @@
-Both the countable distance and countable area/volume spanning domain sets are
-functions of the number of surjective (combinatorial) mappings between
-countable sets.
+Both the countable distance and countable area/volume are functions of the
+number of mappings between countable sets.
 The countable distance and volume mappings between sets of size c subintervals
 of domain and range intervals generate the properties of metric space, the Lp
 norms (for example, Manhattan and Euclidean distance), and the volume equation
