@@ -1,8 +1,8 @@
-Where each countable domain set has a corresponding range set:
+Where each countable domain set has a corresponding range (distance) set:
 the countable distance spanning the domain sets is a function of the number of
-domain-to-range set mappings;
-and the countable volume encompassing the domain sets is a function of the
-number of range-to-range set mappings.
+domain-to-distance set mappings;
+and countable volume is a function of the number of distance-to-distance set
+mappings.
 The countable distance and volume mappings between sets of size c subintervals
 of domain and range intervals generate the properties of metric space, the Lp
 norms (for example, Manhattan and Euclidean distance), and the volume equation
