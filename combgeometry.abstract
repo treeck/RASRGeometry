@@ -9,7 +9,7 @@ of domain and range intervals generate the properties of metric space, the Lp
 norms (for example, Manhattan and Euclidean distance), and the volume equation
 as c goes to 0.
 The volume proof is used to derive Coulomb's charge force and Newton's gravity
-force equations without using other laws of physics, inverse square law, or
+force equations without using other laws of physics, the inverse square law, or
 Gauss's divergence theorem.
 A symmetry constraint on a strict totally ordered set limits the set to at most
 3 members, for example, 3 dimensions of distance and volume.
