@@ -8,8 +8,8 @@ The countable distance and volume mappings between sets of size c subintervals
 of domain and range intervals generate the properties of metric space, the Lp
 norms (for example, Manhattan and Euclidean distance), and the volume equation
 as c goes to 0.
-The proportionate interval principle and volume proof are used to derive
-Coulomb's charge force, Newton's gravity force (without using the inverse
+The proportionate interval principle and volume proof are used to derive:
+Coulomb's charge force and Newton's gravity force (without using the inverse
 square law or Gauss's divergence theorem), some spacetime, and general
 relativity equations.
 A symmetry constraint on a totally ordered set limits distance and volume to 3
