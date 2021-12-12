@@ -8,9 +8,9 @@ The countable distance and volume mappings between sets of size c subintervals
 of domain and range intervals generate the properties of metric space, the Lp
 norms (for example, Manhattan and Euclidean distance), and the volume equation
 as c goes to 0.
-Proportionate intervals and a convergence proof are used to derive: Coulomb's
-charge force and Newton's gravity force equations without using the inverse
-square law or Gauss's divergence theorem, spacetime, and general relativity equations.
+The volume mapping is also used to derive: Coulomb's charge force and Newton's
+gravity force equations without using the inverse square law or Gauss's
+divergence theorem.
 A symmetry constraint on a totally ordered set limits distance and volume to
 3 dimensions.
 All proofs are verified in Coq.
