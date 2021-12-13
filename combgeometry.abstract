@@ -10,8 +10,8 @@ norms (for example, Manhattan and Euclidean distance), the volume equation,
 Coulomb's charge force, and Newton's gravity force equations (without using the
 inverse square law or Gauss's divergence theorem) as c goes to 0.
 The charge and gravity force derivations expose a proportionate interval
-principle that allows deriving the inverse square law, spacetime, and some
-general relativity equations.
+principle that allows simple derivations of the inverse square law, spacetime,
+and some general relativity equations.
 A symmetry constraint on a totally ordered set limits distance and volume to
 3 dimensions.
 All proofs are verified in Coq.
