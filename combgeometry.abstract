@@ -1,17 +1,13 @@
-Where each countable, disjoint domain set has a corresponding range
-(distance) set:
-the countable distance spanning the domain sets is a function of the number of
-domain-to-distance set mappings;
-and countable volume is a function of the number of distance-to-distance set
-mappings.
-The countable distance and volume mappings between sets of size c subintervals
-of domain and range intervals generate the properties of metric space, the Lp
-norms (for example, Manhattan and Euclidean distance), the volume equation,
-Coulomb's charge force, and Newton's gravity force equations (without using the
-inverse square law or Gauss's divergence theorem) as c goes to 0.
+Countable distance and volume set mappings between sets of size c
+subintervals of domain and range intervals generate the properties of metric
+space, the Lp norms (for example, Manhattan and Euclidean distance), and the
+volume equation as c goes to zero.
+Countable volume is used to derive Coulomb's charge force, and Newton's gravity
+force equations without using the inverse square law or Gauss's divergence
+theorem.
 The charge and gravity force derivations expose a proportionate interval
 principle that allows simple derivations of the inverse square law, spacetime,
 and some general relativity equations.
-A symmetry constraint on a totally ordered set limits distance and volume to
+A symmetry constraint on totally ordered sets can limit distance and volume to
 3 dimensions.
 All proofs are verified in Coq.
