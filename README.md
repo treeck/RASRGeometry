@@ -1,6 +1,6 @@
-# The Countable Set Mappings Generating Geometry
+# The Set Mappings Generating Geometry and Physics
 
-Real analysis proofs exposing the countable set mappings generating geometry. Proofs verified in Coq.
+Real analysis proofs exposing the countable set mappings generating geometry and physics. Proofs verified in Coq.
 
 Copyright (c) 2015-2021 George M. Van Treeck.
 
