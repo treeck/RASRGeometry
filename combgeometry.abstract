@@ -2,7 +2,7 @@ Countable distance and volume set mappings between sets of size c
 subintervals of domain and range intervals generate the properties of metric
 space, the Lp norms (for example, Manhattan and Euclidean distance), and the
 volume equation as c goes to zero.
-Countable volume is used to derive Newton's gravity force and Coulomb's charge
+The volume proof is used to derive Newton's gravity force and Coulomb's charge
 force equations without using the inverse square law or Gauss's divergence
 theorem.
 The gravity and charge force derivations expose a proportionate interval
