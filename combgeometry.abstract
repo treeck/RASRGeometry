@@ -7,7 +7,7 @@ force equations without using the inverse square law or Gauss's divergence
 theorem.
 The gravity and charge force derivations expose a proportionate interval
 principle that allows simple derivations of the inverse square law, spacetime,
-and general relativity equations.
+and some general relativity equations.
 A symmetry constraint on totally ordered sets can limit distance and volume to
 3 dimensions.
 All proofs are verified in Coq.
