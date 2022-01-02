@@ -7,6 +7,6 @@ simpler and more rigorous derivations of: Newton's gravity force and Coulomb's
 charge force equations (without using the inverse square law or Gauss's
 divergence theorem), the spacetime equations, and some general relativity
 equations.
-A symmetry property of ``geometric'' distance and volume can limit geometric
-distance and volume to 3 or 9 dimensions.
+A symmetry property can limit geometric distance and volume to 3 dimensions per
+ball and 3 3-dimensional balls.
 All proofs are verified in Coq.
