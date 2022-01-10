@@ -2,11 +2,12 @@ Countable distance and volume set mappings between sets of size c
 infinitesimals of domain and range intervals generate the properties of metric
 space, the Lp norms (for example, Manhattan and Euclidean distance), and the
 volume equation as c goes to zero.
-The real analysis proofs of Euclidean distance and volume are used to provide
-simpler and more rigorous derivations of: Newton's gravity force and Coulomb's
-charge force equations (without using the inverse square law or Gauss's
-divergence theorem), the spacetime equations, and some general relativity
-equations.
+The Euclidean volume proof provides simpler and more rigorous derivations of
+Newton's gravity force and Coulomb's charge force equations (without using the
+inverse square law or Gauss's divergence theorem).
+The derivations of the gravity and charge force equations exposes a ratio
+(constant first derivative) principle that allows simpler derivations of the
+spacetime equations and some general relativity equations.
 A symmetry property can limit geometric distance and volume to 3 dimensions per
 ball and a limit of 3 3-dimensional balls.
 All proofs are verified in Coq.
