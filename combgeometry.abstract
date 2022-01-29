@@ -1,8 +1,7 @@
-All countable set mappings between sets of size c infinitesimals of domain
-intervals (n-tuples) generate the Euclidean volume equation as c goes to 0.
-All distances that are a function of volume are Minkowski distances (for
-example, Manhattan and Euclidean distance), which generate the properties
-metric space.
+The Euclidean volume equation is derived from a set and limit-based foundation.
+It is proved that that all distances that are a function of volume are
+Minkowski distances (for example, Manhattan and Euclidean distance), which
+generate the properties metric space.
 A simpler proof of the Minkowski inequality is also presented.
 The Euclidean volume proof provides simpler and more rigorous derivations of
 Newton's gravity force and Coulomb's charge force equations (without using the
