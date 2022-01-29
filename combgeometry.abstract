@@ -3,6 +3,7 @@ intervals (n-tuples) generate the Euclidean volume equation as c goes to 0.
 All distances that are a function of volume are Minkowski distances (for
 example, Manhattan and Euclidean distance), which generate the properties
 metric space.
+A simpler proof of the Minkowski inequality is also presented.
 The Euclidean volume proof provides simpler and more rigorous derivations of
 Newton's gravity force and Coulomb's charge force equations (without using the
 inverse square law or Gauss's divergence theorem).
