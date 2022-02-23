@@ -5,9 +5,9 @@ properties of properties metric space.
 The Euclidean volume proof provides simpler and more rigorous derivations of
 Newton's gravity force and Coulomb's charge force equations (without using the
 inverse square law or Gauss's divergence theorem).
-The derivations of the gravity and charge force equations exposes a ratio
-(constant first derivative) principle that allows simpler derivations of the
-spacetime equations and some general relativity equations.
+The derivations of the gravity and charge forces exposes a ratio (constant
+first derivative) principle that allows simpler derivations of the spacetime
+equations and some general relativity equations.
 A symmetry property can limit geometric distance and volume to 3 dimensions per
 ball and a limit of 3 3-dimensional balls.
 All proofs are verified in Coq.
