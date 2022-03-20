@@ -637,7 +637,7 @@ Hypothesis limit_c_Lim1_f_c_n_eq_Lim2 :
     Rabs(f c n - Lim2) < epsilon ->
     f c n = 0.
 
-(** This lemma is used in the volume proof. *)
+(** This lemma is used in the proof of the next lemma. *)
 Lemma lim_c_to_n_eq_0 :
     forall ( c Lim1 Lim2 delta epsilon:R)
         (f: R->nat->R) (g: R->R),
@@ -659,6 +659,7 @@ Proof.
   rewrite -> H2. assumption. 
 Qed.
 
+(** This lemma is used in the volume proof. *)
 Lemma lim_c_to_n_eq_lim_c :
     forall ( c Lim1 Lim2 delta epsilon:R)
         (f: R->nat->R) (g: R->R),
