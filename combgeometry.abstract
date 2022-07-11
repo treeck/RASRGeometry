@@ -1,13 +1,13 @@
-The Euclidean volume equation is derived from a set and limit-based foundation.
-Distance as a function of volume is used for simple derivations of the
-Minkowski distances (for example, Manhattan and Euclidean distance) and the
-properties of properties metric space.
-The Euclidean volume proof provides simpler and more rigorous derivations of
+Euclidean volume is proved to be an instance of a countable, set-based volume.
+The Lp norms/Minkowski distances (for example, Manhattan and Euclidean
+distance) are proved to be instances of a set-based, countable distance.
+The Euclidean volume proof provides an alternative perspective on what makes a
+space flat versus curved and provides simpler and more rigorous derivations of
 Newton's gravity force and Coulomb's charge force equations (without using the
 inverse square law or Gauss's divergence theorem).
 The derivations of the gravity and charge forces exposes a ratio (constant
 first derivative) principle that allows simpler derivations of the spacetime
-equations and some general relativity equations.
-A symmetry property can limit geometric distance and volume to 3 dimensions per
-ball and a limit of 3 3-dimensional balls.
+and some general relativity equations.
+A symmetry property on a totally ordered set can limit distance and volume to 3
+dimensions.
 All proofs are verified in Coq.
