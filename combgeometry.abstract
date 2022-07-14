@@ -1,13 +1,14 @@
-Euclidean volume is proved to be an instance of a countable, set-based volume.
-The Lp norms/Minkowski distances (for example, Manhattan and Euclidean
-distance) are proved to be instances of a set-based, countable distance.
-The Euclidean volume proof provides an alternative perspective on what makes a
-space flat versus curved and provides simpler and more rigorous derivations of
-Newton's gravity force and Coulomb's charge force equations (without using the
-inverse square law or Gauss's divergence theorem).
+Volume and distance equations (for example, Euclidean distance) are derived
+from a set and limit-based foundation, without referencing the primitives and
+relations of geometry.
+The Euclidean volume proof provides an alternative to second derivative-based
+methods of measuring the curvature of a space and provides simpler and more
+rigorous derivations of Newton's gravity force and Coulomb's charge force
+equations (proofs that do not use the inverse square law or Gauss's divergence
+theorem).
 The derivations of the gravity and charge forces exposes a ratio (constant
 first derivative) principle that allows simpler derivations of the spacetime
 and some general relativity equations.
-A symmetry property on a totally ordered set can limit distance and volume to 3
-dimensions.
+A symmetry property on a totally ordered set can limit the set to 3 members
+(for example, 3 dimensions).
 All proofs are verified in Coq.
