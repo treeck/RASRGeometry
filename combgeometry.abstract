@@ -1,11 +1,11 @@
 Volume and distance equations (for example, Euclidean distance) are derived
 from a set and limit-based foundation, without referencing the primitives and
 relations of geometry.
-The Euclidean volume proof provides an alternative to second derivative-based
-methods of measuring the curvature of a space and provides simpler and more
-rigorous derivations of Newton's gravity force and Coulomb's charge force
-equations (proofs that do not use the inverse square law or Gauss's divergence
-theorem).
+An Euclidean volume proof provides an alternative to second derivative-based
+methods for measuring the curvature of a space and provides simpler and more
+rigorous derivations (derivations that do not use the inverse square law or
+Gauss's divergence theorem) of Newton's gravity force and Coulomb's charge
+force equations.
 The derivations of the gravity and charge forces exposes a ratio (constant
 first derivative) principle that allows simpler derivations of the spacetime
 and some general relativity equations.
