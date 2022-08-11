@@ -8,6 +8,6 @@ the inverse square law or Gauss's divergence theorem.
 The derivations of the gravity and charge forces exposes a ratio (constant
 first derivative) principle that allows simpler derivations of the spacetime
 and some general relativity equations.
-A symmetry property on a totally ordered set can limit the set to 3 members
-(for example, 3 dimensions).
+A symmetry property can limit an ordered set to 3 members (for example, 3
+dimensions).
 All proofs are verified in Coq.
