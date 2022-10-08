@@ -1,13 +1,14 @@
-Volume and distance equations (for example, Euclidean distance) are derived
-from a set and limit-based foundation, without referencing the primitives and
-relations of geometry.
-An Euclidean volume proof provides an alternative to second derivative-based
-methods for measuring the curvature of a space and provides simpler derivations
-of Newton's gravity force and Coulomb's charge force equations that do not use
-the inverse square law or Gauss's divergence theorem.
-The derivations of the gravity and charge forces exposes a ratio (constant
-first derivative) principle that allows simpler derivations of the spacetime
-and some general relativity equations.
-A symmetry property can limit an ordered set to 3 members (for example, 3
-dimensions).
+Volume and the Minkowski distances/Lp norms (e.g., Euclidean distance) are
+derived from a set and limit-based foundation without referencing the
+primitives and relations of geometry.
+Adding the restrictions of a strict linear order on a set of n number of
+independent domain intervals that can be sequenced in all n-at-a-time orders
+limits the set to 3 intervals.
+Therefore, all other interval lengths have different types that are related to a
+distance interval length via unit-factoring, conversion ratios.
+The ratios and volume proof allow simpler derivations of Newton's gravity force
+and Coulomb's charge force equations without using the inverse square law or
+Gauss's divergence theorem.
+And the ratios allow simpler derivations of the Einstein-Planck and spacetime
+equations.
 All proofs are verified in Coq.
