@@ -6,9 +6,7 @@ independent domain intervals that can be sequenced in all n-at-a-time orders
 limits the set to 3 intervals.
 Therefore, all other interval lengths have different types that are related to a
 distance interval length via unit-factoring, conversion ratios.
-The ratios and volume proof allow simpler derivations of Newton's gravity force
-and Coulomb's charge force equations without using the inverse square law or
-Gauss's divergence theorem.
-And the ratios allow simpler derivations of the Einstein-Planck and spacetime
-equations.
+The ratios and geometry proofs provide simpler derivations and new insights
+into the gravity, charge force, and Einstein-Planck equations and their
+corresponding constants.
 All proofs are verified in Coq.
