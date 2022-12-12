@@ -1,12 +1,11 @@
 Volume and the Minkowski distances/Lp norms (e.g., Euclidean distance) are
 derived from a set and limit-based foundation without referencing the
 primitives and relations of geometry.
-Sequencing a set of n number of intervals/dimensions in all n-at-a-time
-permutations via a strict linear order of successor/predecessor relations
-is a cyclic set limiting n to at most 3.
+Sequencing a set of n number of distance intervals/dimensions in all
+n-at-a-time permutations via a strict linear order of successor/predecessor
+relations is a cyclic set limiting n to at most 3.
 Therefore, all other interval lengths have different types that can only be
-related to a distance interval length via unit-factoring, conversion ratio
-constants.
+related to a distance interval length via unit-factoring, conversion ratios.
 The ratios and geometry proofs provide simpler derivations and new insights
 into the spacetime, gravity, charge force, and Einstein-Planck equations and
 their corresponding constants.
