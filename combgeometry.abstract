@@ -6,7 +6,7 @@ Levi-Civita permutations via a strict linear order of successor/predecessor
 relations is a cyclic set limiting n to at most 3.
 Therefore, all other interval lengths have different types that can only be
 related to a distance interval length via conversion ratios.
-The ratios and geometry proofs provide simpler derivations and new insights
-into the spacetime, gravity, charge force, and Einstein-Planck equations and
-their corresponding constants.
+The ratios and geometry proofs provide simpler derivations of the spacetime,
+Newton's gravity, Coulomb's charge force, and Einstein-Planck equations and
+new insights into their corresponding constants.
 All proofs are verified in Coq.
