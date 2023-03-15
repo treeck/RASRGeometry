@@ -8,5 +8,5 @@ Therefore, all other interval lengths have different types that can only be
 related to a distance interval length via conversion ratios.
 The ratios and geometry proofs provide simpler derivations of the spacetime,
 Newton's gravity, Coulomb's charge force, and Einstein-Planck equations and
-new insights into their corresponding constants.
+exposes the ratios composing their corresponding constants.
 All proofs are verified in Coq.
