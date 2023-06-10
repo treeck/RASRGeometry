@@ -1,12 +1,12 @@
 Volume and the Minkowski distances/Lp norms (e.g., Euclidean distance) are
 derived from a set and limit-based foundation without referencing the
 primitives of geometry.
-Sequencing a linearly ordered set in all n-at-time permutations via
-successor/predecessor relations is a cyclic set limiting n to at most 3,
-for example, 3 dimensions of physical space.
+Sequencing a linearly ordered set in all n-at-a-time permutations via
+successor/predecessor relations limits n to at most 3, for example, 3
+dimensions of physical space.
 Therefore, all other interval lengths have different types that can only be
 related to a 3-dimensional distance interval length via conversion ratios.
 The ratios and geometry proofs provide simpler derivations of the spacetime,
-Newton's gravity, Coulomb's charge force, and Einstein-Planck equations and
-exposes the ratios composing their corresponding constants.
+Lorentz, Newton's gravity, Coulomb's charge force, and Einstein-Planck
+equations and exposes the ratios composing their corresponding constants.
 All proofs are verified in Coq.
