@@ -1,4 +1,4 @@
-(** Copyright (c) 2015-2022 George M. Van Treeck.
+(** Copyright (c) 2015-2023 George M. Van Treeck.
     Rights granted under the Creative Commons
     Attribution License.
     This software uses The Coq Proof Assistance,
