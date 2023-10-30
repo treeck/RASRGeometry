@@ -5,8 +5,8 @@ Sequencing a strict linearly ordered set in all n-at-a-time permutations via
 successor/predecessor relations is a cyclic set of at most 3 members.
 Therefore, all other interval lengths have different types from a cyclic set
 of 3 distance interval lengths.
-The linear transformations between different types of interval lengths and the
-set proofs provide simpler derivations of the spacetime, Lorentz, Newton's
-gravity, Coulomb's charge force, and Planck-Einstein equations and
-corresponding constants.
+Constant ratios between different types of interval lengths and the set proofs
+provide simpler derivations of the spacetime, Lorentz, Newton's gravity,
+Coulomb's charge force, Planck-Einstein, quantum-relativity gravity equations
+and corresponding constants.
 All proofs are verified in Coq.
