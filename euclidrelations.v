@@ -1,8 +1,8 @@
-(** Copyright (c) 2015-2023 George M. Van Treeck.
+(** Copyright (c) 2015-2024 George M. Van Treeck.
     Rights granted under the Creative Commons
     Attribution License.
     This software uses The Coq Proof Assistance,
-    Copyright (c) 1999-2022  The Coq Development Team
+    Copyright (c) 1999-2024  The Coq Development Team
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
@@ -316,7 +316,7 @@ Fixpoint cartesian_product (l: list R) : R :=
     end.
 
 (** a^n = a_1 * ... * a_n, where a_1 = ... = a_n = a *)
-Hypothesis Rpow_eq_carteian_paroduct :
+Hypothesis Rpow_eq_cartesian_product :
   forall (a: R) (i n: nat) (l: list R),
   n = length l /\ list_rmem i l = a <->
     Rpow a n = cartesian_product l.
@@ -995,13 +995,13 @@ Proof.
       (v_c_j_list := v_c_j_list).
     tauto.
   assert(Rpow d n = cartesian_product s).
-    apply Rpow_eq_carteian_paroduct with
+    apply Rpow_eq_cartesian_product with
       (a := d) (i := i) (n := n) (l := s).
     split. assumption.
     rewrite -> H21. symmetry. assumption.
     rewrite <- H40 in H38.
   assert(Rpow d_i n = cartesian_product s_i).
-    apply Rpow_eq_carteian_paroduct with
+    apply Rpow_eq_cartesian_product with
       (a := d_i) (i := j) (n := n) (l := s_i).
     split. assumption. 
     rewrite -> H26. assumption.
