@@ -9,5 +9,5 @@ Constant ratios between different types of interval lengths and the set
 proofs provide simpler derivations of the: spacetime, Newton's gravity,
 Coulomb's charge force, Planck-Einstein, Compton wavelength, de Broglie
 wavelength, quantum-relativity gravity equations, and provide simple
-derivation of the gravity (G), charge (k\_e), and Planck (h) constants.
+derivation of the gravity (G), charge (k_e), and Planck (h) constants.
 All proofs are verified in Coq.
