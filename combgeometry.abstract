@@ -1,13 +1,14 @@
-Volume and the Minkowski distances/p-norms (e.g., Manhattan and Euclidean
-distance) are derived from a set and limit-based foundation without referencing
-the primitives and relations of geometry.
+Euclidean volume and the Minkowski distances (Manhattan, Euclidean, etc.
+distances) are derived from a set and limit-based foundation without
+referencing the primitives and relations of geometry.
 Sequencing a strict linearly ordered set in all n-at-a-time orders via
-successor/predecessor relations is a cyclic set of at most 3 members.
-Therefore, all other domain interval lengths have different types from a
-cyclic set of 3 distance domain interval lengths.
-Constant ratios between different types of interval lengths and the set
-proofs provide simpler derivations of the: spacetime, Newton's gravity,
-Coulomb's charge force, Planck-Einstein, Compton wavelength, de Broglie
-wavelength, quantum-relativity gravity equations, and provide simple
-derivation of the gravity (G), charge (k_e), and Planck (h) constants.
-All proofs are verified in Coq.
+successor/predecessor relations is proved to be a cyclic set of at most 3
+members.
+A cyclic set of 3 distance domain interval lengths are related to other types
+of domain interval lengths by unit-factoring ratios.
+The ratios, Minkowski distance proof, and 3D proof provide simpler derivations
+of the: spacetime, Newton's gravity, Coulomb's charge force, Planck-Einstein,
+Compton wavelength, de Broglie wavelength, and quantum-relativity gravity equations.
+The gravity (G), charge (k_e), and Planck (h) constants are also derived
+from the same ratios.
+All the proofs are verified in Coq.
