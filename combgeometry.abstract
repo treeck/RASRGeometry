@@ -6,9 +6,9 @@ successor/predecessor relations is proved to be a cyclic set of at most 3
 members.
 A cyclic set of 3 distance domain interval lengths are related to other types
 of domain interval lengths by unit-factoring ratios.
-The ratios, Minkowski distance proof, and 3D proof provide simpler derivations
-of the: spacetime, Newton's gravity, Coulomb's charge force, Planck-Einstein,
-Compton wavelength, de Broglie wavelength, and quantum-relativity gravity equations.
-The gravity (G), charge (k_e), and Planck (h) constants are also derived
-from the same ratios.
+The ratios provide simple and short derivations of the: spacetime,
+Planck-Einstein, Compton wavelength, de Broglie wavelength equations,
+Newton's gravity and Coulomb's charge force with quantum-relativity extensions
+and derivations of the gravity (G), charge ($k_{e}$), and Planck (h)
+constants.
 All the proofs are verified in Coq.
