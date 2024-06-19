@@ -7,6 +7,6 @@ members.
 A cyclic set of 3 distance domain interval lengths are related to other types
 of domain interval lengths by unit-factoring ratios.
 The ratios provide simple and short derivations of: the gravity (G), charge
-(k_e), and Planck (h) constants, the spacetime, Planck-Einstein, Compton
+(k_e), and Planck (h) constants, the spacetime, Planck relation, Compton
 wavelength, de Broglie wavelength, and quantum-gravity equations.
 All the proofs are verified in Coq.
