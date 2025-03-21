@@ -6,8 +6,10 @@ successor/predecessor relations is proved to be a cyclic set of at most 3
 members.
 A cyclic set of 3 distance domain interval lengths are related to other types
 of domain interval lengths by unit-factoring ratios.
-The ratios are used to provide simple and short derivations of: the gravity
-(G), charge (k_e), and Planck (h) constants, the spacetime, Schwarzchild
-time dilation, Einstein lens, Planck relation, Compton wavelength, de Broglie
-wavelength, and quantum-relativity equations.
+A cyclic set of 3 distance domain interval lengths are related to other types
+of domain interval lengths by constant unit-factoring ratios.
+The geometry proofs and ratios are used to derive the gravity, charge, and
+Planck constants, and used to provide simpler, shorter, and more rigorous
+derivations of some well-known classical gravity and charge equations, special
+and general relativity equations, and quantum physics equations.
 All the proofs are verified in Coq.
