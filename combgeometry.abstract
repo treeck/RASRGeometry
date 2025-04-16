@@ -4,12 +4,10 @@ referencing the primitives and relations of geometry.
 Sequencing a strict linearly ordered set in all n-at-a-time orders via
 successor/predecessor relations is proved to be a cyclic set of at most 3
 members.
-A cyclic set of 3 distance domain interval lengths are related to other types
-of domain interval lengths by unit-factoring ratios.
-A cyclic set of 3 distance domain interval lengths are related to other types
-of domain interval lengths by constant unit-factoring ratios.
-The geometry proofs and ratios are used to derive the gravity, charge, and
-Planck constants, and used to provide simpler, shorter, and more rigorous
-derivations of some well-known classical gravity and charge equations, special
-and general relativity equations, and quantum physics equations.
+Therefore, other dimensions beyond an ordered and cyclic set of 3 dimensions
+of distance must have other types related by geometric, unit-factoring ratios.
+The geometry proofs and geometric ratios are used to derive the gravity,
+charge, and Planck constants, and used to provide simpler, shorter, and more
+rigorous derivations of some well-known classical gravity and charge equations,
+special and general relativity equations, and quantum physics equations.
 All the proofs are verified in Coq.
