@@ -1,14 +1,12 @@
 Euclidean volume and the Minkowski distances (Manhattan, Euclidean, etc.
-distances) are derived from a set and limit-based foundation without
-referencing the primitives and relations of geometry.
-Sequencing a strict linearly ordered set in all n-at-a-time orders via
-successor/predecessor relations is proved to be a cyclic set of at most 3
-members.
-Therefore, the Cartesian grid near every point, in Riemann and pseudo-Riemann
-spaces, has constant ratios between a unit of an ordered, cyclic set of 3
-distance dimensions and other types of dimensions.
-The geometry proofs and ratios are used to derive the gravity, charge, and
-Planck constants, and used to provide simpler, shorter, and more rigorous
+distances) are derived from a unifying set and limit-based foundation.
+A symmetry property on a set of distances limits the set to at most 3 members.
+Therefore, for each unit of a set of 3 distance dimensions there are units
+other types of dimensions, which implies constant geometric ratios between a
+unit of distance and units of other types (time, mass, and charge).
+The geometry proofs and ratios are used to derive the gravity, charge,
+permitivity, Planck, and fine structure constants.
+And the proofs and ratios are used to provide simpler, more rigorous
 derivations of some well-known classical gravity and charge equations, special
 and general relativity equations, and quantum physics equations.
 All the proofs are verified in Coq.
