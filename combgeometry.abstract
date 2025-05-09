@@ -1,12 +1,11 @@
-Volume and  distance are derived from the same set and limit-based foundation.
-A symmetry constraint on a cyclic set is proved to limit the set to at
-most 3 members.
-For an symmetric cyclic set of a 3 distances, other elements have different
-types (members of other sets), with unit-factoring ratios between a distance
-unit and units of other compact and continuous types (time, mass, and charge).
+Euclidean volume and the Minkowski distances are derived from sets of n-tuples.
+A commutative property of the n-tuples limits volume and distance to a set of 3
+dimensions.
+Therefore, other compact and continuous dimensions have different types (are
+members of different sets), with unit-factoring ratios of a distance unit to
+units of other types (time, mass, and charge).
 The geometry proofs and ratios are used to derive the gravity, charge,
-permitivity, Planck, and fine structure constants, and used to provide simpler,
-more rigorous derivations of some well-known classical gravity and charge
-equations, special and general relativity equations, and quantum physics
-equations.
+permitivity, Planck, and fine structure constants, and used to provide simple
+derivations of some well-known classical gravity and charge equations, special
+and general relativity equations, and quantum physics equations.
 All the proofs are verified in Coq.
