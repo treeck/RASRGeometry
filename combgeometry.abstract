@@ -1,8 +1,8 @@
-Euclidean volume and the Minkowski distances are derived from sets of n-tuples.
-A commutative property limits distance to a set of 3 dimensions.
-Therefore, other compact and continuous dimensions have different types (are
-members of different sets), with unit-factoring ratios of a distance unit to
-units of other types (time, mass, and charge).
+Euclidean volume and the Minkowski distances are proved to be sets of n-tuples.
+A commutative property is proved to limit distance to a set of 3 dimensions.
+Other compact and continuous dimensions have different types (are members of
+different sets), with unit-factoring ratios of a distance unit to units of
+other types (time, mass, and charge).
 The geometry proofs and ratios are used to derive the gravity, charge,
 permitivity, Planck, and fine structure constants, and used to provide simple
 derivations of some well-known classical gravity and charge equations, special
