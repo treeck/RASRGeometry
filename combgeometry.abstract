@@ -4,8 +4,9 @@ A commutative property is proved to limit distance to a set of 3 dimensions.
 Other compact and continuous dimensions have different types (are members of
 different sets), with unit-factoring ratios of a distance unit to units of
 other types (time, mass, and charge).
-The proofs and ratios are used to derive the gravity, charge, permitivity,
-Planck, and fine structure constants, and used to provide simple derivations of
-some well-known classical gravity and charge equations, special and general
-relativity equations, and quantum physics equations.
+The proofs and ratios are used to derive the gravity, charge, vacuum
+permittivity, vacuum permeability, Planck, and fine structure constants, and
+used to provide simple derivations of some well-known classical gravity and
+charge equations, special and general relativity equations, and quantum physics
+equations.
 All the proofs are verified in Coq.
