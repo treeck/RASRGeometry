@@ -1,8 +1,8 @@
-(** Copyright (c) 2015-2024 George M. Van Treeck.
+(** Copyright (c) 2015-2025 George M. Van Treeck.
     Rights granted under the Creative Commons
     Attribution License.
-    This software uses The Coq Proof Assistance,
-    Copyright (c) 1999-2024  The Coq Development Team
+    This software uses The Rocq Proof Assistance,
+    Copyright (c) 1999-2025  The Rocq Development Team
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
@@ -674,7 +674,8 @@ Qed.
 (** The Euclidean volume (length/area/volume) theorem:
     v, is the length of a real-valued interval in:
     {}a_1, b_1],...,[a_n, b_n]}, where:
-    v_c = cartesian_product p => v = cartesian_product(i=1 to n) s_i /\
+    v_c = cartesian_product p =>
+        v = cartesian_product(i=1 to n) s_i /\
     v = v_{m} - v_{0} /\
     s_i = b_i - a_i. *)
 Theorem Euclidean_volume :
@@ -774,7 +775,7 @@ Proof.
   simple apply f_equal_R.
   simple apply Rminus_0_r.
   assert (Rabs c = c).
-  apply Rabs_right. intuition.
+  apply Rabs_right. auto with *.
   rewrite -> H22.
   rewrite -> H23.
   assumption.
@@ -922,6 +923,90 @@ Qed.
 
 (** ================================================================ *)
 
+Theorem bijective_sum_of_volumes_distance :
+    forall (i j m n: nat)
+        (c Lim1 Lim2 delta epsilon v v_c v_a v_b a_i b_i a_i_j b_i_j
+          v_j v_c_j v_a_i v_b_i d_c d_c_i d d_i: R)
+        (f: R->R->R->R) (g: R->R)
+        (p s p_i s_i v_j_list v_c_j_list: list R),
+    (* ruler based definitions *)
+    c > 0 /\
+    f = M /\ g = delta_eq_epsilon /\
+    Lim1 = 0 /\ Lim2 = 0 /\
+    0 < delta /\ 0 < epsilon /\ delta = epsilon /\
+    Rabs (c - Lim1) < delta /\
+    Rabs ((Rpow c n) - Lim2) < epsilon /\
+    Rabs ((Rpow c m) - Lim2) < epsilon /\
+    Rabs (M a_i b_i c - exact_size a_i b_i) < epsilon /\
+    Rabs (M a_i_j b_i_j c - exact_size a_i_j b_i_j) < epsilon /\
+    Rabs (M v_a v_b c - exact_size v_a v_b) < epsilon /\
+    Rabs (M v_a_i v_b_i c - exact_size v_a_i v_b_i) < epsilon /\
+    n = length s /\ length p = n /\
+    n = length s_i /\ length p_i = n /\
+    m = length v_c_j_list /\ m = length v_j_list /\
+    (* The length of each domain interval, exact_size a_i b_i,
+       is assinged to a member of s. *)
+    list_rmem i s = exact_size a_i b_i /\
+    d = exact_size a_i b_i /\
+    (* The number of subintervals in each domain interval,
+       subintervals a_i b_i c, is assinged to a member of p. *)
+    list_rmem i p = subintervals a_i b_i c /\
+    d_c = subintervals a_i b_i c /\
+    (* The length of each domain interval, exact_size a_i_j b_i_j,
+       is assinged to a member of s_i. An always true case is
+       m = 1 => exact_size a_i_j b_i_j = exact_size a_i b_i. *)
+    list_rmem j s_i = exact_size a_i_j b_i_j /\
+    d_i = exact_size a_i_j b_i_j /\
+    (* The number of subintervals in each domain interval,
+        subintervals a_i_j b_i_j c, is assinged to a member of p_i.
+        An always true case is
+        m = 1 => subintervals a_i b_i = subintervals a_i b_i. *)
+    list_rmem j p_i = subintervals a_i_j b_i_j c /\
+    d_c_i = subintervals a_i_j b_i_j c /\
+    (* Volume, v, is the length of the range interval, [v_a,v_b]. *)
+    v = exact_size v_a v_b /\
+    (* Subvolume, v_j, is the length of the range interval,
+        [v_a_i,v_b_i]. *)
+    v_j = exact_size v_a_i v_b_i /\
+    list_rmem i v_j_list = v_j /\
+    (* Countable n-volume, v_c, is the number of subintervals
+       (infinitesimals) in the range interval, [v_a,v_b]. *)
+    v_c = subintervals v_a v_b c /\
+    v_c = cartesian_product p /\
+    (* Countable sub-n-volume, v_c_j, is the number of subintervals
+       (infinitesimals) in the range interval, [v_a_i,v_b_i]. *)
+    v_c_j = subintervals v_a_i v_b_i c /\
+    v_c_j = cartesian_product p_i /\
+    list_rmem i v_c_j_list = v_c_j /\
+    v_c = sum_list(v_c_j_list) /\
+    v_c = sum_list(v_c_j_list) ->
+    Rpow d n = sum_list(v_j_list) /\
+      list_rmem i v_j_list = cartesian_product s_i.
+Proof.
+  intros. intros. decompose [and] H.
+  assert (cartesian_product s = sum_list(v_j_list) /\
+      list_rmem i v_j_list = cartesian_product s_i).
+    apply sum_of_volumes with (c := c) (Lim1 := Lim1) (Lim2 := Lim2)
+      (delta := delta) (epsilon := epsilon) (f := f) (g := g)
+      (i := i) (j := j) (n := n) (m := m)
+      (a_i := a_i) (b_i := b_i) (p := p) (s := s)
+      (v_c := v_c) (v := v) (v_a := v_a) (v_b := v_b)
+      (a_i_j := a_i_j) (b_i_j := b_i_j) (p_i := p_i) (s_i := s_i)
+      (v_c_j := v_c_j) (v_j := v_j) (v_a_i := v_a_i) (v_b_i := v_b_i)
+      (v_c_j_list := v_c_j_list).
+    tauto.
+  assert(Rpow d n = cartesian_product s).
+    apply Rpow_eq_cartesian_product with
+      (a := d) (i := i) (n := n) (l := s).
+    split. assumption.
+    rewrite -> H21. symmetry. assumption.
+    rewrite <- H40 in H38.
+    assumption.
+Qed.
+
+
+(** ================================================================ *)
+
 Theorem Minkowski_distance :
     forall (i j m n: nat)
         (c Lim1 Lim2 delta epsilon v v_c v_a v_b a_i b_i a_i_j b_i_j
@@ -1052,8 +1137,8 @@ Proof.
   split.
   apply Rsum_ge_0 with (a := Rpow d_a n) (b := Rpow d_b n).
   split.
-  apply Rpow_ge_0 with (x := d_a) (n := n). intuition.
-  apply Rpow_ge_0 with (x := d_b) (n := n). intuition.
+  apply Rpow_ge_0 with (x := d_a) (n := n). auto with *.
+  apply Rpow_ge_0 with (x := d_b) (n := n). auto with *.
   apply lower_order_binomial_terms.
   split. assumption. split. assumption. split. assumption.
   assumption.
@@ -1094,7 +1179,7 @@ Theorem symmetry :
 Proof.
   intros. decompose [and] H.
   assert (Rpow u n + Rpow v n = Rpow v n + Rpow u n).
-    intuition.
+    auto with *.
   rewrite -> H2 in H0.
   rewrite <- H1 in H0.
   apply pow_eq_args in H0.
