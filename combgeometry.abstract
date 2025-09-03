@@ -1,6 +1,6 @@
-Some volume and distance equations are derived from ordered sets of
-combinations (n-tuples).
-A combinatorial property can limit a set to 3 members.
+Euclidean volume, inner product, and the Minkowski distances, are derived from
+sets of ordered combinations (n-tuples).
+A combinatorial property can limit distance to a set to 3 dimensions.
 Such a set of 3 distance dimension, in Euclidean space at each coordinate point,
 implies constant ratios of a distance unit interval to unit intervals of time,
 mass, and charge.
