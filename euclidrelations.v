@@ -115,7 +115,7 @@ Proof.
       list_lengths_summed (x::y) = length x + list_lengths_summed y).
       intros. induction y. reflexivity. reflexivity.
   rewrite summed_lists.
-  rewrite app_length.
+  rewrite length_app.
   lia.
 Qed.
 
@@ -129,10 +129,10 @@ Proof.
   induction set_member. simpl. inversion IHl. reflexivity.
   assert (length (dups l ++ a :: uniques l) =
           length (a::nil) + length (dups l ++ uniques l)).
-      simpl. rewrite -> app_length. simpl.
+      simpl. rewrite -> length_app. simpl.
       assert (forall n: nat, S n = n + 1).
           intros. lia.
-      rewrite -> H. rewrite -> Nat.add_assoc. rewrite <- app_length.
+      rewrite -> H. rewrite -> Nat.add_assoc. rewrite <- length_app.
       rewrite <- H. reflexivity.
   rewrite -> H. simpl. inversion IHl. reflexivity.
 Qed.
@@ -154,7 +154,7 @@ Theorem sum_eq_uniques_plus_duplicates :
     list_lengths_summed l = length (duplicates l) + length (union l).
 Proof.
   intros. rewrite <- cardinal_lists_appended_eq_list_lengths_summed.
-  rewrite <- app_length.
+  rewrite <- length_app.
   apply card_app_eq_card_union_plus_dups. assumption.
 Qed.
 
@@ -292,7 +292,7 @@ Fixpoint pow_list (l: list R) (n: nat) : list R :=
 Hypothesis pow_list_spec : forall (i n: nat) (a: R) (l: list R),
     (list_rmem i l) = a <-> list_rmem i (pow_list l n) = Rpow a n.
 
-(** Multiply each member of a list of real numbers by the number, r. *)
+(** Multiply each member of a list of real numbers by r. *)
 Fixpoint mult_list (l: list R) (r: R) : list R :=
     match l with
       | Datatypes.nil => Datatypes.nil
@@ -469,60 +469,56 @@ Proof. intros. apply Rmult_lt_compat_l. assumption. assumption. Qed.
    Now the ruler measure convergence proof follows:
 *)
 
-(** The exact size of a interval. *)
-Definition exact_size (a b: R) : R := Rabs (b - a).
+(** The integer number of size, c, sizes. *)
+Definition sizes (s c: R) : R :=
+  R_floor (s / c).
 
-(** The number of subintervals with size, c. *)
-Definition subintervals (a b c: R) : R :=
-  R_floor (exact_size a b / c).
+(** M is the ruler measure, p number of sizes, c. *)
+Definition M (s c: R) : R := (sizes s c) * c.
 
-(** M is the ruler measure, subintervals * c. *)
-Definition M (a b c: R) : R := (subintervals a b c) * c.
-
-(** Used for rewriting between M and subintervals. *)
-Lemma subintervals_times_c_eq_measure :
-    forall a b c: R, c > 0 ->
-    M a b c = (subintervals a b c) * c.
+(** Used for rewriting between M and sizes. *)
+Lemma sizes_times_c_eq_measure :
+    forall s c: R, c > 0 ->
+    M s c = (sizes s c) * c.
 Proof. intros. unfold M. reflexivity. Qed.
 
-(** Let r := subintervals in 0 <= |floor r - r| < 1. *)
-Lemma subintervals_div_c_le_size : forall a b c: R,
+(** Let r := sizes in 0 <= |floor r - r| < 1. *)
+Lemma sizes_div_c_le_size : forall s c: R,
     c > 0 ->
-    Rabs(subintervals a b c - (exact_size a b) / c) < 1.
+    Rabs(sizes s c - s / c) < 1.
 Proof.
-  intros. unfold subintervals.
+  intros. unfold sizes.
   apply abs_floor_minus_r_ge_0_lt_1.
 Qed.
 
 (** |M - s| < |c|}. *)
-Lemma abs_M_minus_s_lt_abs_c : forall a b c: R,
+Lemma abs_M_minus_s_lt_abs_c : forall s c: R,
     c > 0 ->
-    Rabs((M a b c) - exact_size a b) < Rabs c.
+    Rabs((M s c) - s) < Rabs c.
 Proof.
-  intros. unfold M. unfold subintervals.
-  assert (Rabs(R_floor(exact_size a b / c) -
-      (exact_size a b) / c) < 1).
-    apply subintervals_div_c_le_size.
+  intros. unfold M. unfold sizes.
+  assert (Rabs(R_floor(s / c) - (s / c)) < 1).
+    apply sizes_div_c_le_size.
     assumption.
   apply R_lt_mult_lt with (r := Rabs c)
-    (r1 := Rabs (R_floor (exact_size a b / c) - exact_size a b / c))
+    (r1 := Rabs (R_floor (s / c) - (s / c)))
     (r2 := 1) in H0.
   rewrite -> (Rmult_1_r (Rabs c)) in H0.
   rewrite <- (Rabs_mult (c)
-    (R_floor (exact_size a b / c) - (exact_size a b / c))) in H0.
+    (R_floor (s / c) - (s / c))) in H0.
   unfold Rminus in H0.
   rewrite -> (Rmult_plus_distr_l (c)
-    (R_floor (exact_size a b / c))
-    (- (exact_size a b / c))) in H0.
+    (R_floor (s / c))
+    (- (s / c))) in H0.
   unfold Rdiv at 2 in H0.
-  rewrite -> (Rmult_comm c (R_floor (exact_size a b / c))) in H0.
+  rewrite -> (Rmult_comm c (R_floor (s / c))) in H0.
   rewrite -> (Ropp_mult_distr_r_reverse (c)
-    (exact_size a b * / c)) in H0.
-  rewrite <- (Rmult_assoc (c) (exact_size a b) (/ c)) in H0.
-  rewrite -> (Rmult_comm c (exact_size a b)) in H0.
-  rewrite -> (Rmult_assoc (exact_size a b) (c) (/ c)) in H0.
+    (s * / c)) in H0.
+  rewrite <- (Rmult_assoc (c) (s) (/ c)) in H0.
+  rewrite -> (Rmult_comm c (s)) in H0.
+  rewrite -> (Rmult_assoc (s) (c) (/ c)) in H0.
   rewrite -> (Rinv_r c) in H0.
-  rewrite -> (Rmult_1_r (exact_size a b)) in H0.
+  rewrite -> (Rmult_1_r (s)) in H0.
   assumption.
   apply Rgt_not_eq.
   apply H.
@@ -535,34 +531,34 @@ Qed.
 
 (** Epsilon-delta proof. limit c->0,
     0 < |c - 0| < delta => |M - s| < epsilon. *)
-Lemma M_minus_exact_size_lt_epsilon :
-    forall a b c delta epsilon: R,
+Lemma M_minus_s_lt_epsilon :
+    forall s c delta epsilon: R,
     c > 0 /\ 0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     0 < Rabs (c - 0) < delta ->
-    Rabs(M a b c - exact_size a b) < epsilon.
+    Rabs(M s c - s) < epsilon.
 Proof.
   intros. decompose [and] H.
   assert (Rabs (c - 0) = Rabs c).
   simple apply f_equal_R.
   simple apply Rminus_0_r.
   rewrite -> H5 in H6.
-  assert (Rabs(M a b c - exact_size a b) < Rabs c).
+  assert (Rabs(M s c - s) < Rabs c).
     apply abs_M_minus_s_lt_abs_c. assumption.
   rewrite H3 in H6. revert H6. revert H7.
   apply Rlt_trans with
-    (r1 := Rabs (M a b c - exact_size a b))
+    (r1 := Rabs (M s c - s))
     (r2 := Rabs c)
     (r3 := epsilon).
 Qed.
 
 (** Defintion of a Epsilon-delta proof for ruler measure, M. *)
 Hypothesis limit_x_Lim1_f_x_eq_Lim2 :
-    forall (a b x Lim1 Lim2 delta epsilon:R)
-        (f: R->R->R->R) (g: R->R),
+    forall (s x Lim1 Lim2 delta epsilon:R)
+        (f: R->R->R) (g: R->R),
     0 < delta /\ 0 < epsilon /\ g delta = epsilon /\
     Rabs (x - Lim1) < delta /\
-    Rabs(f a b x - Lim2) < epsilon ->
-    f a b x = Lim2.
+    Rabs(f s x - Lim2) < epsilon ->
+    f s x = Lim2.
 
 (* The function relating delta to epsilon to prove
    convergence. *)
@@ -570,16 +566,16 @@ Definition delta_eq_epsilon(d: R) : R := d.
 
 (** Epsilon-delta proof. limit c->0,
     0 < |x - 0| < delta, |M - s| < epsilon -> M = s. *)
-Lemma limit_c_0_M_eq_exact_size :
-    forall (a b c Lim1 Lim2 delta epsilon:R)
-        (f: R->R->R->R) (g: R->R),
+Lemma limit_c_0_M_eq_s :
+    forall (s c Lim1 Lim2 delta epsilon:R)
+        (f: R->R->R) (g: R->R),
     c > 0 /\
     f = M /\ g = delta_eq_epsilon /\
-    Lim1 = 0 /\ Lim2 = exact_size a b /\
+    Lim1 = 0 /\ Lim2 = s /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     Rabs (c - Lim1) < delta /\
-    Rabs(M a b c - Lim2) < epsilon ->
-    M a b c = exact_size a b.
+    Rabs(M s c - Lim2) < epsilon ->
+    M s c = s.
 Proof.
   intros. decompose [and] H.
   rewrite <- H2. rewrite <- H4.
@@ -589,7 +585,8 @@ Proof.
   split.
   rewrite -> H1. unfold delta_eq_epsilon. assumption.
   split. assumption.
-  rewrite -> H2. assumption.
+  rewrite -> H4 in H10. rewrite -> H2.
+  rewrite -> H4. assumption.
 Qed.
 
 (** End RulerMeasure. *)
@@ -672,16 +669,12 @@ Proof.
 Qed.
 
 (** The Euclidean volume (length/area/volume) theorem:
-    v, is the length of a real-valued interval in:
-    {}a_1, b_1],...,[a_n, b_n]}, where:
     v_c = cartesian_product p =>
-        v = cartesian_product(i=1 to n) s_i /\
-    v = v_{m} - v_{0} /\
-    s_i = b_i - a_i. *)
+        v = cartesian_product(i=1 to n) s_i *)
 Theorem Euclidean_volume :
     forall (i n: nat)
-        (c Lim1 Lim2 delta epsilon v v_c v_a v_b a_i b_i: R)
-        (f: R->R->R->R) (g: R->R) (p s: list R),
+        (c Lim1 Lim2 delta epsilon v v_c s_i p_i: R)
+        (f: R->R->R) (g: R->R) (p s: list R),
     (* ruler based definitions *)
     c > 0 /\
     f = M /\ g = delta_eq_epsilon /\
@@ -689,59 +682,30 @@ Theorem Euclidean_volume :
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     Rabs (c - Lim1) < delta /\
     Rabs ((Rpow c n) - Lim2) < epsilon /\
-    Rabs (M a_i b_i c - exact_size a_i b_i) < epsilon /\
+    Rabs (M s_i c - s_i) < epsilon /\
+    Rabs (M v c - v) < epsilon /\
     n = length s /\ length p = n /\
-    (* The length of each domain interval, exact_size a_i b_i,
-       is assinged to a member of s. *)
-    list_rmem i s = exact_size a_i b_i /\
-    (* The number of subintervals in each domain interval,
-       subintervals a_i b_i c, is assinged to a member of p. *)
-    list_rmem i p = subintervals a_i b_i c /\
-    (* Volume, v, is the length of the range interval, [v_a,v_b]. *)
-    v = exact_size v_a v_b /\
-    (* Countable n-volume, v_c, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a,v_b]. *)
-    v_c = subintervals v_a v_b c /\
-    (* The definition of countable n-volume as the Cartesian product
-       of the number of members in each countable domain set. *)
+    list_rmem i s = s_i /\
+    list_rmem i p = sizes s_i c /\
+    v_c = sizes v c /\
+    (* Volume, v, is the range value *)
+    (* The definition of countable n-volume is the number of
+       n-tuples, which is the Cartesian product of the
+       number of members in each countable domain set. *)
     v_c = cartesian_product p ->
     v = cartesian_product s.
 Proof.
   intros. intros. decompose [and] H.
-  (* Show that each domain interval length, s_i = |b_i - a_i|,
-     corresponds to a set of p_i number of size c subintervals. *)
-  apply mult_list_spec with (l := p)
-      (a := subintervals a_i b_i c) (r := c) in H14.
-  rewrite <- subintervals_times_c_eq_measure in H14.
-  rewrite -> limit_c_0_M_eq_exact_size with
-      (a := a_i) (b := b_i) (c := c) (Lim1 := Lim1)
+  (* Multiply both sides of v_c = cartesian_product p by c. *)
+  apply Rmult_eq_compat_r with (r1 := v_c)
+      (r2 := cartesian_product p) (r := c) in H18.
+  (* Apply the ruler and ruler convergence to M v c *)
+  rewrite -> H16 in H18.
+  rewrite <- sizes_times_c_eq_measure in H18.
+  rewrite -> limit_c_0_M_eq_s with
+      (s := v) (c := c) (Lim1 := Lim1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := exact_size a_i b_i) (f := M) in H14.
-  rewrite <- H13 in H14.
-  (* Show that the list, s, of domain interval lengths corresponds
-     to the list, p, of the number of size c subintervals. *)
-  apply eq_list_R_cons with  (l1 := mult_list p c) (l2 := s) in H14.
-  apply eq_list_R_is_eq in H14.
-  (* Show that the Cartesian product of the number of size c
-     subintervals equals the product of interval lengths. *)
-  assert (cartesian_product (mult_list p c) = cartesian_product s).
-    rewrite -> H14.
-    reflexivity.
-  (* Show that multiplying both sides of countable volume
-     by c^{n}, maintains the equivalence relation. *)
-  assert (v_c * (Rpow c n) = (cartesian_product p) * (Rpow c n)).
-    rewrite <- H18.
-    reflexivity.
-  (* Show that (cartesian_product p) * Rpow c n =
-     cartesian_product s *)
-  assert ((cartesian_product p) * Rpow c n =
-          cartesian_product (mult_list p c)).
-    apply pow_distributes_over_cartesian_product.
-    symmetry. assumption.
-    rewrite -> H17 in H20.
-  (* Show that v_c * Rpow c n = cartesian_product s *)
-  rewrite <- H19 in H20.
-  (* Show that lim c->0 (v_c * Rpow c n) = lim c->0 (v_c * c) *)
+      (Lim2 := v) (f := M) in H18.
   assert (Rpow c n = c).
     apply lim_c_to_n_eq_lim_c with (c := c) (Lim1 := Lim1)
       (Lim2 := Lim2) (g := g) (delta := delta)
@@ -751,257 +715,142 @@ Proof.
     split. assumption. split. assumption.
     split. assumption. split. assumption.
     split. assumption. assumption.
-    rewrite -> H21 in H20.
-  (* Show that lim c->0 v_c * c = v *)
-  rewrite -> H16 in H20.
-  rewrite <- subintervals_times_c_eq_measure in H20.
-  rewrite -> limit_c_0_M_eq_exact_size with
-      (a := v_a) (b := v_b) (c := c) (Lim1 := Lim1)
+  rewrite <- H17 in H18.
+  (* Show that (cartesian_product p) * Rpow c n =
+     cartesian_product s *)
+  assert ((cartesian_product p) * Rpow c n =
+          cartesian_product (mult_list p c)).
+    apply pow_distributes_over_cartesian_product.
+    symmetry. assumption.
+    rewrite -> H19 in H18.
+  apply mult_list_spec with (l := p)
+      (a := sizes s_i c) (r := c) in H15.
+  (* Apply the ruler and ruler convergence to M v c *)
+  rewrite <- sizes_times_c_eq_measure in H15.
+  rewrite -> limit_c_0_M_eq_s with
+      (s := s_i) (c := c) (Lim1 := Lim1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := exact_size v_a v_b) (f := M) in H20.
-  rewrite <- H15 in H20.
+      (Lim2 := s_i) (f := M) in H15.
+  (* Show that the list, s, of domain values corresponds
+     to the list, p, of the number of size c sizes. *)
+  rewrite <- H14 in H15.
+  apply eq_list_R_cons with  (l1 := mult_list p c)
+        (l2 := s) in H15.
+  apply eq_list_R_is_eq in H15.
+  rewrite -> H15 in H18.
   assumption.
-  (* Clean up hypothoses *)
-  split. assumption. split. reflexivity.
-  split. assumption. split. assumption.
-  split. reflexivity. split. assumption. split. assumption.
-  split. assumption. split. assumption.
-  apply M_minus_exact_size_lt_epsilon with
-    (a := v_a) (b := v_b) (c := c) 
-    (delta := delta) (epsilon := epsilon).
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split.
-  assert (Rabs (c - 0) = Rabs c).
-  simple apply f_equal_R.
-  simple apply Rminus_0_r.
-  assert (Rabs c = c).
-  apply Rabs_right. auto with *.
-  rewrite -> H22.
-  rewrite -> H23.
-  assumption.
-  rewrite <- H3.
-  assumption.
-  assumption.
-  split. assumption. split. reflexivity. split. assumption.
-  split. assumption. split. reflexivity. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  assumption.
-  assumption.
+    split. assumption. split. reflexivity.
+    split. assumption. split. assumption.
+    split. reflexivity. split. assumption.
+    split. assumption. split. assumption.
+    split. assumption. assumption. assumption.
+    split. assumption. split. reflexivity.
+    split. assumption. split. assumption.
+    split. reflexivity. split. assumption.
+    split. assumption. split. assumption.
+    split. assumption. assumption. assumption.
 Qed.
 
 (** The sum of (Euclidean) volumes (length/area/volume) theorem:
-    v_c = sum_list(v_c_j_list) ->
-    cartesian_product s = sum_list(v_j_list) /\
-      list_rmem i v_j_list = cartesian_product s_i.
+    v_c = sum_list(v_c_i) -> v = sum_list(v_i).
 *)
 Theorem sum_of_volumes :
     forall (i j m n: nat)
-        (c Lim1 Lim2 delta epsilon v v_c v_a v_b a_i b_i a_i_j b_i_j
-          v_j v_c_j v_a_i v_b_i: R)
-        (f: R->R->R->R) (g: R->R)
-        (p s p_i s_i v_j_list v_c_j_list: list R),
+        (c Lim1 Lim2 delta epsilon v_c v_c_i_j v v_i_j: R)
+        (f: R->R->R) (g: R->R)
+        (v_c_i v_i: list R),
     (* ruler based definitions *)
     c > 0 /\
     f = M /\ g = delta_eq_epsilon /\
     Lim1 = 0 /\ Lim2 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     Rabs (c - Lim1) < delta /\
-    Rabs ((Rpow c n) - Lim2) < epsilon /\
-    Rabs ((Rpow c m) - Lim2) < epsilon /\
-    Rabs (M a_i b_i c - exact_size a_i b_i) < epsilon /\
-    Rabs (M a_i_j b_i_j c - exact_size a_i_j b_i_j) < epsilon /\
-    Rabs (M v_a v_b c - exact_size v_a v_b) < epsilon /\
-    Rabs (M v_a_i v_b_i c - exact_size v_a_i v_b_i) < epsilon /\
-    n = length s /\ length p = n /\
-    n = length s_i /\ length p_i = n /\
-    m = length v_c_j_list /\ m = length v_j_list /\
-    (* The length of each domain interval, exact_size a_i b_i,
-       is assinged to a member of s. *)
-    list_rmem i s = exact_size a_i b_i /\
-    (* The number of subintervals in each domain interval,
-       subintervals a_i b_i c, is assinged to a member of p. *)
-    list_rmem i p = subintervals a_i b_i c /\
-    (* The length of each domain interval, exact_size a_i_j b_i_j,
-       is assinged to a member of s_i. An always true case is
-       m = 1 => exact_size a_i_j b_i_j = exact_size a_i b_i. *)
-    list_rmem j s_i = exact_size a_i_j b_i_j /\
-    (* The number of subintervals in each domain interval,
-        subintervals a_i_j b_i_j c, is assinged to a member of p_i.
-        An always true case is
-        m = 1 => subintervals a_i b_i = subintervals a_i b_i. *)
-    list_rmem j p_i = subintervals a_i_j b_i_j c /\
-    (* Volume, v, is the length of the range interval, [v_a,v_b]. *)
-    v = exact_size v_a v_b /\
-    (* Subvolume, v_j, is the length of the range interval,
-        [v_a_i,v_b_i]. *)
-    v_j = exact_size v_a_i v_b_i /\
-    list_rmem i v_j_list = v_j /\
-    (* Countable n-volume, v_c, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a,v_b]. *)
-    v_c = subintervals v_a v_b c /\
-    v_c = cartesian_product p /\
-    (* Countable sub-n-volume, v_c_j, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a_i,v_b_i]. *)
-    v_c_j = subintervals v_a_i v_b_i c /\
-    v_c_j = cartesian_product p_i /\
-    list_rmem i v_c_j_list = v_c_j /\
-    v_c = sum_list(v_c_j_list) ->
-    cartesian_product s = sum_list(v_j_list) /\
-      list_rmem i v_j_list = cartesian_product s_i.
+    Rabs (M v c - v) < epsilon /\
+    Rabs (M v_i_j c - v_i_j) < epsilon /\
+    m = length v_c_i /\ m = length v_i /\
+    list_rmem i v_c_i = sizes v_i_j c /\
+    list_rmem i v_i = v_i_j /\
+    v_c = sizes v c /\
+    v_c = sum_list v_c_i -> v = sum_list v_i.
 Proof.
   intros. intros. decompose [and] H.
-  assert(v = cartesian_product s).
-    apply Euclidean_volume with (c := c) (Lim1 := Lim1) (Lim2 := Lim2)
-          (delta := delta) (epsilon := epsilon) (f := f) (g := g)
-          (i := i) (n := n)
-          (a_i := a_i) (b_i := b_i) (p := p) (s := s)
-          (v_c := v_c) (v := v) (v_a := v_a) (v_b := v_b).
-    tauto.
-  assert(v_j = cartesian_product s_i).
-  (* Show that each domain interval length, s_i = |b_i - a_i|,
-     corresponds to a set of p_i number of size c subintervals. *)
-    apply Euclidean_volume with (c := c) (Lim1 := Lim1) (Lim2 := Lim2)
-          (delta := delta) (epsilon := epsilon) (f := f) (g := g)
-          (i := j) (n := n)
-          (a_i := a_i_j) (b_i := b_i_j) (p := p_i) (s := s_i)
-          (v_c := v_c_j) (v := v_j) (v_a := v_a_i) (v_b := v_b_i).
-    tauto.
-  (* Show that the lim c -> 0 v_c * c =
-      exact_size v_b_i - v_a_i. *)
-  assert (v_c * c = subintervals v_a v_b c * c).
-      apply Rmult_eq_compat_r with (r := c)
-          (r1 := v_c)
-          (r2 := subintervals v_a v_b c).
-      assumption.
-  rewrite <- subintervals_times_c_eq_measure in H36.
-  rewrite -> limit_c_0_M_eq_exact_size with
-      (a := v_a) (b := v_b) (c := c) (Lim1 := Lim1)
+  apply Rmult_eq_compat_r with (r := c)
+      (r1 := v_c) (r2 := sum_list v_c_i) in H17.
+  assert ((sum_list v_c_i) * c =
+          sum_list (mult_list v_c_i c)).
+  apply mult_distributes_over_sum_list.
+  rewrite -> H16 in H17.
+  rewrite -> H15 in H17.
+  rewrite <- sizes_times_c_eq_measure in H17.
+  rewrite -> limit_c_0_M_eq_s with
+      (s := v) (c := c) (Lim1 := Lim1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := exact_size v_a v_b) (f := M) in H36.
-  rewrite <- H25 in H36.
-  (* Show that the lim c -> 0 v_c_j * c =
-      exact_size v_b_i - v_a_i. *)
-  assert (v_c_j * c = subintervals v_a_i v_b_i c * c).
-      apply Rmult_eq_compat_r with (r := c)
-          (r1 := v_c_j)
-          (r2 := subintervals v_a_i v_b_i c).
-      assumption.
-  rewrite <- subintervals_times_c_eq_measure in H37.
-  rewrite -> limit_c_0_M_eq_exact_size with
-      (a := v_a_i) (b := v_b_i) (c := c) (Lim1 := Lim1)
+      (Lim2 := v) (f := M) in H17.
+  apply mult_list_spec with (l := v_c_i)
+      (a := sizes v_i_j c) (r := c) in H13.
+  (* Apply the ruler and ruler convergence to M v c *)
+  rewrite <- sizes_times_c_eq_measure in H13.
+  rewrite -> limit_c_0_M_eq_s with
+      (s := v_i_j) (c := c) (Lim1 := Lim1)
       (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := exact_size v_a_i v_b_i) (f := M) in H37.
-  rewrite <- H26 in H37.
-  (* Show that v_c * c = sumlist v_c_j_list * c. *)
-  assert (v_c * c = sum_list v_c_j_list * c).
-      apply Rmult_eq_compat_r with (r := c)
-          (r1 := v_c)
-          (r2 := sum_list v_c_j_list).
-      assumption.
-  rewrite -> H36 in H38.
-  rewrite -> mult_distributes_over_sum_list in H38.
-  (* Show that lim c -> 0 list_rmem i v_c_j_list * c =
-            v_c_j * c. *)
-  apply mult_list_spec with (l := v_c_j_list)
-      (a := v_c_j) (r := c) in H32.
-  rewrite -> H37 in H32.
-  assert (list_rmem i v_j_list = v_j). assumption.
-  rewrite <- H32 in H27.
-  apply eq_list_R_cons with  (l1 := v_j_list)
-            (l2 := mult_list v_c_j_list c) in H27.
-  apply eq_list_R_is_eq in H27.
-  rewrite <- H27 in H38.
-  rewrite -> H33 in H38.
-  split. assumption.
-  rewrite -> H35 in H39.
+      (Lim2 := v_i_j) (f := M) in H13.
+  rewrite <- H14 in H13.
+  (* Show that the list, v_i, of domain values corresponds
+     to the list, v_c_i, of the number of size c sizes. *)
+  apply eq_list_R_cons with  (l1 := mult_list v_c_i c)
+        (l2 := v_i) in H13.
+  apply eq_list_R_is_eq in H13.
+  rewrite -> H13 in H17.
   assumption.
-  tauto. assumption.
   split. assumption. split. reflexivity. split. assumption.
   split. assumption. split. reflexivity. split. assumption.
-  tauto. assumption.
+  split. assumption. split. assumption. split. assumption.
+  assumption. assumption. split. assumption.
+  split. reflexivity. split. assumption. split. assumption.
+  split. reflexivity. split. assumption. split. assumption.
+  split. assumption. split. assumption. assumption.
+  assumption.
 Qed.
 
 (** ================================================================ *)
 
-Theorem bijective_sum_of_volumes_distance :
+Theorem sum_of_volumes_distance :
     forall (i j m n: nat)
-        (c Lim1 Lim2 delta epsilon v v_c v_a v_b a_i b_i a_i_j b_i_j
-          v_j v_c_j v_a_i v_b_i d_c d_c_i d d_i: R)
-        (f: R->R->R->R) (g: R->R)
-        (p s p_i s_i v_j_list v_c_j_list: list R),
+        (c Lim1 Lim2 delta epsilon d_c d v_c v_c_i_j v v_i_j: R)
+        (f: R->R->R) (g: R->R)
+        (v_c_i v_i: list R),
     (* ruler based definitions *)
     c > 0 /\
     f = M /\ g = delta_eq_epsilon /\
     Lim1 = 0 /\ Lim2 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     Rabs (c - Lim1) < delta /\
-    Rabs ((Rpow c n) - Lim2) < epsilon /\
-    Rabs ((Rpow c m) - Lim2) < epsilon /\
-    Rabs (M a_i b_i c - exact_size a_i b_i) < epsilon /\
-    Rabs (M a_i_j b_i_j c - exact_size a_i_j b_i_j) < epsilon /\
-    Rabs (M v_a v_b c - exact_size v_a v_b) < epsilon /\
-    Rabs (M v_a_i v_b_i c - exact_size v_a_i v_b_i) < epsilon /\
-    n = length s /\ length p = n /\
-    n = length s_i /\ length p_i = n /\
-    m = length v_c_j_list /\ m = length v_j_list /\
-    (* The length of each domain interval, exact_size a_i b_i,
-       is assinged to a member of s. *)
-    list_rmem i s = exact_size a_i b_i /\
-    d = exact_size a_i b_i /\
-    (* The number of subintervals in each domain interval,
-       subintervals a_i b_i c, is assinged to a member of p. *)
-    list_rmem i p = subintervals a_i b_i c /\
-    d_c = subintervals a_i b_i c /\
-    (* The length of each domain interval, exact_size a_i_j b_i_j,
-       is assinged to a member of s_i. An always true case is
-       m = 1 => exact_size a_i_j b_i_j = exact_size a_i b_i. *)
-    list_rmem j s_i = exact_size a_i_j b_i_j /\
-    d_i = exact_size a_i_j b_i_j /\
-    (* The number of subintervals in each domain interval,
-        subintervals a_i_j b_i_j c, is assinged to a member of p_i.
-        An always true case is
-        m = 1 => subintervals a_i b_i = subintervals a_i b_i. *)
-    list_rmem j p_i = subintervals a_i_j b_i_j c /\
-    d_c_i = subintervals a_i_j b_i_j c /\
-    (* Volume, v, is the length of the range interval, [v_a,v_b]. *)
-    v = exact_size v_a v_b /\
-    (* Subvolume, v_j, is the length of the range interval,
-        [v_a_i,v_b_i]. *)
-    v_j = exact_size v_a_i v_b_i /\
-    list_rmem i v_j_list = v_j /\
-    (* Countable n-volume, v_c, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a,v_b]. *)
-    v_c = subintervals v_a v_b c /\
-    v_c = cartesian_product p /\
-    (* Countable sub-n-volume, v_c_j, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a_i,v_b_i]. *)
-    v_c_j = subintervals v_a_i v_b_i c /\
-    v_c_j = cartesian_product p_i /\
-    list_rmem i v_c_j_list = v_c_j /\
-    v_c = sum_list(v_c_j_list) /\
-    v_c = sum_list(v_c_j_list) ->
-    Rpow d n = sum_list(v_j_list) /\
-      list_rmem i v_j_list = cartesian_product s_i.
+    Rabs (M v c - v) < epsilon /\
+    Rabs (M v_i_j c - v_i_j) < epsilon /\
+    m = length v_c_i /\ m = length v_i /\
+    list_rmem i v_c_i = sizes v_i_j c /\
+    list_rmem i v_i = v_i_j /\
+    v_c = sizes v c /\
+    v_c = Rpow d_c n /\
+    v = Rpow d n /\
+    Rpow d_c n = sum_list v_c_i -> Rpow d n = sum_list v_i.
 Proof.
   intros. intros. decompose [and] H.
-  assert (cartesian_product s = sum_list(v_j_list) /\
-      list_rmem i v_j_list = cartesian_product s_i).
+  rewrite <- H16 in H19.
+  assert (v = sum_list v_i).
     apply sum_of_volumes with (c := c) (Lim1 := Lim1) (Lim2 := Lim2)
-      (delta := delta) (epsilon := epsilon) (f := f) (g := g)
-      (i := i) (j := j) (n := n) (m := m)
-      (a_i := a_i) (b_i := b_i) (p := p) (s := s)
-      (v_c := v_c) (v := v) (v_a := v_a) (v_b := v_b)
-      (a_i_j := a_i_j) (b_i_j := b_i_j) (p_i := p_i) (s_i := s_i)
-      (v_c_j := v_c_j) (v_j := v_j) (v_a_i := v_a_i) (v_b_i := v_b_i)
-      (v_c_j_list := v_c_j_list).
-    tauto.
-  assert(Rpow d n = cartesian_product s).
-    apply Rpow_eq_cartesian_product with
-      (a := d) (i := i) (n := n) (l := s).
-    split. assumption.
-    rewrite -> H21. symmetry. assumption.
-    rewrite <- H40 in H38.
-    assumption.
+      (delta := delta) (epsilon := epsilon) (f := f) (g := g) (i := i)
+      (m := m) (v_c := v_c) (v_c_i := v_c_i)
+      (v := v) (v_i_j := v_i_j) (v_i := v_i).
+    tauto. assumption. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. assumption.
+  rewrite -> H17 in H18.
+  assumption.
 Qed.
 
 
@@ -1009,89 +858,51 @@ Qed.
 
 Theorem Minkowski_distance :
     forall (i j m n: nat)
-        (c Lim1 Lim2 delta epsilon v v_c v_a v_b a_i b_i a_i_j b_i_j
-          v_j v_c_j v_a_i v_b_i d_c d_c_i d d_i: R)
-        (f: R->R->R->R) (g: R->R)
-        (p s p_i s_i v_j_list v_c_j_list: list R),
+        (c Lim1 Lim2 delta epsilon d_c d_c_i d d_i
+          v_c v_c_i_j v v_i_j: R)
+        (f: R->R->R) (g: R->R)
+        (v_c_i v_i: list R),
     (* ruler based definitions *)
     c > 0 /\
     f = M /\ g = delta_eq_epsilon /\
     Lim1 = 0 /\ Lim2 = 0 /\
     0 < delta /\ 0 < epsilon /\ delta = epsilon /\
     Rabs (c - Lim1) < delta /\
-    Rabs ((Rpow c n) - Lim2) < epsilon /\
-    Rabs ((Rpow c m) - Lim2) < epsilon /\
-    Rabs (M a_i b_i c - exact_size a_i b_i) < epsilon /\
-    Rabs (M a_i_j b_i_j c - exact_size a_i_j b_i_j) < epsilon /\
-    Rabs (M v_a v_b c - exact_size v_a v_b) < epsilon /\
-    Rabs (M v_a_i v_b_i c - exact_size v_a_i v_b_i) < epsilon /\
-    n = length s /\ length p = n /\
-    n = length s_i /\ length p_i = n /\
-    m = length v_c_j_list /\ m = length v_j_list /\
-    (* The length of each domain interval, exact_size a_i b_i,
-       is assinged to a member of s. *)
-    list_rmem i s = exact_size a_i b_i /\
-    d = exact_size a_i b_i /\
-    (* The number of subintervals in each domain interval,
-       subintervals a_i b_i c, is assinged to a member of p. *)
-    list_rmem i p = subintervals a_i b_i c /\
-    d_c = subintervals a_i b_i c /\
-    (* The length of each domain interval, exact_size a_i_j b_i_j,
-       is assinged to a member of s_i. An always true case is
-       m = 1 => exact_size a_i_j b_i_j = exact_size a_i b_i. *)
-    list_rmem j s_i = exact_size a_i_j b_i_j /\
-    d_i = exact_size a_i_j b_i_j /\
-    (* The number of subintervals in each domain interval,
-        subintervals a_i_j b_i_j c, is assinged to a member of p_i.
-        An always true case is
-        m = 1 => subintervals a_i b_i = subintervals a_i b_i. *)
-    list_rmem j p_i = subintervals a_i_j b_i_j c /\
-    d_c_i = subintervals a_i_j b_i_j c /\
-    (* Volume, v, is the length of the range interval, [v_a,v_b]. *)
-    v = exact_size v_a v_b /\
-    (* Subvolume, v_j, is the length of the range interval,
-        [v_a_i,v_b_i]. *)
-    v_j = exact_size v_a_i v_b_i /\
-    list_rmem i v_j_list = v_j /\
-    (* Countable n-volume, v_c, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a,v_b]. *)
-    v_c = subintervals v_a v_b c /\
-    v_c = cartesian_product p /\
-    (* Countable sub-n-volume, v_c_j, is the number of subintervals
-       (infinitesimals) in the range interval, [v_a_i,v_b_i]. *)
-    v_c_j = subintervals v_a_i v_b_i c /\
-    v_c_j = cartesian_product p_i /\
-    list_rmem i v_c_j_list = v_c_j /\
-    v_c = sum_list(v_c_j_list) /\
-    v_c = sum_list(v_c_j_list) ->
-    Rpow d n = sum_list(v_j_list) /\
-      list_rmem i v_j_list = Rpow d_i n.
+    Rabs (M v c - v) < epsilon /\
+    Rabs (M v_i_j c - v_i_j) < epsilon /\
+    Rabs (M d c - d) < epsilon /\
+    Rabs (M d_i c - d_i) < epsilon /\
+    m = length v_c_i /\ m = length v_i /\
+    list_rmem i v_c_i = sizes v_i_j c /\
+    list_rmem i v_i = v_i_j /\
+    v_c = sizes v c /\
+    v_c = Rpow d_c n /\
+    v_c_i_j = sizes v c /\
+    v_c_i_j = Rpow d_c n /\
+    v = Rpow d n /\
+    v_i_j = Rpow d_i n /\
+    Rpow d_c n = sum_list(v_c_i) ->
+    Rpow d n = sum_list(v_i) /\
+      list_rmem i v_i = Rpow d_i n.
 Proof.
   intros. intros. decompose [and] H.
-  assert (cartesian_product s = sum_list(v_j_list) /\
-      list_rmem i v_j_list = cartesian_product s_i).
-    apply sum_of_volumes with (c := c) (Lim1 := Lim1) (Lim2 := Lim2)
-      (delta := delta) (epsilon := epsilon) (f := f) (g := g)
-      (i := i) (j := j) (n := n) (m := m)
-      (a_i := a_i) (b_i := b_i) (p := p) (s := s)
-      (v_c := v_c) (v := v) (v_a := v_a) (v_b := v_b)
-      (a_i_j := a_i_j) (b_i_j := b_i_j) (p_i := p_i) (s_i := s_i)
-      (v_c_j := v_c_j) (v_j := v_j) (v_a_i := v_a_i) (v_b_i := v_b_i)
-      (v_c_j_list := v_c_j_list).
-    tauto.
-  assert(Rpow d n = cartesian_product s).
-    apply Rpow_eq_cartesian_product with
-      (a := d) (i := i) (n := n) (l := s).
-    split. assumption.
-    rewrite -> H21. symmetry. assumption.
-    rewrite <- H40 in H38.
-  assert(Rpow d_i n = cartesian_product s_i).
-    apply Rpow_eq_cartesian_product with
-      (a := d_i) (i := j) (n := n) (l := s_i).
-    split. assumption. 
-    rewrite -> H26. assumption.
-    rewrite <- H41 in H38.
-    assumption.
+  rewrite <- H18 in H24.
+  split.
+    apply sum_of_volumes_distance with (c := c)
+      (Lim1 := Lim1) (Lim2 := Lim2)
+      (delta := delta) (epsilon := epsilon)
+      (f := f) (g := g) (i := i)
+      (m := m) (d_c := d_c) (v_c := v_c) (v_c_i := v_c_i)
+      (v := v) (v_i_j := v_i_j) (v_i := v_i).
+    tauto. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  split. assumption. split. assumption. split. assumption.
+  rewrite <- H24. symmetry. assumption.
+  rewrite -> H16. assumption.
 Qed.
 
 
@@ -1235,6 +1046,9 @@ Proof.
   assumption.
 Qed.
 
+(** The exact size of a interval. *)
+Definition exact_size (a b: R) : R := Rabs (b - a).
+
 (* Non-negativity: d(u,w) >= 0, where for all d(u,w) in R,
    there exists [v_a, v_b] such that d(u,w) = |v_a - v_b|. *)
 Theorem non_negativity :
@@ -1290,4 +1104,4 @@ Proof.
   assumption.
 Qed.
 
-End EuclideanRelations.
+End EuclideanRelations
