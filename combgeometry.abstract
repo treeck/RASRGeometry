@@ -1,12 +1,10 @@
-Proving the Euclidean volume equation and some distance equations, including
-the inner product and Euclidean distance, are instances of abstract sets of
-ordered combinations (n-tuples) provides a foundation for:
-1) a proof that a combinatorial (permutation) property of sets of n-tuples
-limits distance to 3 dimensions (other dimensions are members of different
-sets),
-2) short and simple derivations of what have been empirical gravity, charge,
-and electromagnetic equations and constants,
-3) shorter and simpler derivations of some well-known relativity and quantum
-physics equations, and
-4) simple addition of quantum extensions to classical and relativity equations.
+Euclidean volume and some distance equations are instances of abstract sets of
+ordered combinations (n-tuples), where the sets of n-tuples include another
+combinatorial (permutation) property that limits distance to 3 dimensions.
+Higher dimensions have non-distance types, are members of other sets.
+Ratios of distance to the non-distance types (time, mass, and charge) allow
+short and simple derivations of gravity, charge, electromagnetic, relativity,
+and quantum physics equations and constants.
+The ratios also allow simple quantum extensions to classical and relativity
+equations.
 All the proofs are verified in Rocq.
