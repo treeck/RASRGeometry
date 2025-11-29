@@ -1,7 +1,7 @@
 Euclidean volume and some distance equations are instances of abstract sets of
 ordered combinations (n-tuples).
 The same sets of n-tuples include another combinatorial property limiting a set
-to 3 members, e.g., a set of 3 distance dimensions and a set of 3 non-distance
+to 3 elements, e.g., a set of 3 distance dimensions and a set of 3 non-distance
 dimensions (time, mass, and charge).
 Where the space near each local coordinate point is 6D Euclidean, each
 Cartesian axis distance unit corresponds 1-1 to axis units of time, mass, and
