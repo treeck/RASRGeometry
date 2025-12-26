@@ -1,14 +1,13 @@
 Euclidean volume and some distance equations are instances of abstract sets of
 ordered combinations (n-tuples).
 The same sets of n-tuples include another combinatorial property limiting a set
-to 3 elements, e.g., a set of 3 distance dimensions and a set of 3 non-distance
-dimensions (time, mass, and charge).
-Where the space near each local coordinate point is 6D Euclidean, each
-Cartesian axis distance unit corresponds to axis units of time, mass, and
-charge.
+to at most 3 elements, e.g., a set of 3 distance dimensions and a set of 3
+non-distance dimensions (time, mass, and charge).
+Where the space near each local coordinate point is Euclidean, each Cartesian
+axis distance unit corresponds to axis units of time, mass, and charge.
 Axis unit ratios are used for shorter and simpler derivations of gravity,
-charge, electromagnetic, relativity, and quantum physics equations and
-constants,
+charge, electromagnetic, relativity, quantum physics equations, and related
+constants.
 And the ratios are also used for simple quantum extensions to classical and
 relativity equations.
 All the proofs are verified in Rocq.
