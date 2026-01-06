@@ -4,7 +4,8 @@ The same sets of n-tuples include another combinatorial property limiting a set
 to at most 3 elements, e.g., a set of 3 distance dimensions and a set of 3
 non-distance dimensions (time, mass, and charge).
 Where the space near each local coordinate point is Euclidean, each Cartesian
-axis distance unit corresponds to axis units of time, mass, and charge.
+axis 3-dimensional distance unit corresponds to axis units of time, mass, and
+charge.
 Axis unit ratios are used for shorter and simpler derivations of gravity,
 charge, electromagnetic, relativity, quantum physics equations, and related
 constants.
