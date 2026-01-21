@@ -1,8 +1,8 @@
 Euclidean volume and some distance equations are instances of abstract sets of
 ordered combinations (n-tuples).
-A bag of instances of the same type have a combinatorial property limiting a
-list of such instances to at most 3, e.g., a list of 3 distance dimensions and
-a list of 3 non-distance dimensions (time, mass, and charge).
+Some unordered sets have a combinatorial property that limits the set to at
+most 3 elements, e.g., a list of 3 distance dimensions and a list of 3
+non-distance dimensions (time, mass, and charge).
 Where the space near each local coordinate point is Euclidean, each
 3-dimensional distance unit corresponds to units of time, mass, and charge.
 Unit ratios are used for shorter and simpler derivations of gravity, charge,
