@@ -1,12 +1,13 @@
 Euclidean volume and some distance equations are instances of abstract sets of
 ordered combinations (n-tuples).
-A combinatorial property of some sets limits the sets to at most 3 elements,
+A set of n number of unordered elements placed in a list that can also be
+sequenced in n! permutations is a cyclic list limited to at most 3 elements,
 e.g., 3 distance dimensions and 3 non-distance dimensions (time, mass, and
 charge).
-Where the space near each local coordinate point is Euclidean, each
-3-dimensional distance unit corresponds to units of time, mass, and charge.
-Unit ratios are used for shorter and simpler derivations of gravity, charge,
-electromagnetic, relativity, and quantum physics equations, and constants.
-And the ratios are also used for simple quantum extensions to classical and
+Assuming the space near each local coordinate point is Euclidean, and each
+3-dimensional distance unit corresponds to units of time, mass, and charge,
+unit ratios are used for shorter and simpler derivations of gravity, charge,
+electromagnetic, relativity, quantum physics equations, and constants.
+The ratios are also used for simple quantum extensions to classical and
 relativity equations.
 All the proofs are verified in Rocq.
