@@ -1,9 +1,9 @@
 Euclidean volume and some distance equations are proved to be instances of
 abstract sets of ordered combinations (n-tuples).
 The commutative property of the operations defining volume and distance
-is proved to constrain a set of unordered elements to at most 3 elements, e.g.,
-3 distance dimensions and 3 non-distance dimensions (time, mass, and charge).
-Assuming the space near each local coordinate point is Euclidean and each
+is proved to constrain sets of unordered domain values to at most 3 values,
+e.g., 3 distance values and 3 non-distance values (time, mass, and charge).
+Where the space near each local coordinate point is Euclidean-like, each
 3-dimensional distance unit corresponds to units of time, mass, and charge,
 unit ratios are used for shorter and simpler derivations of gravity, charge,
 electromagnetic, relativity, quantum physics equations, and constants.
