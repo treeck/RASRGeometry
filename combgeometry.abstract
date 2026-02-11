@@ -1,9 +1,8 @@
 Euclidean volume and some distance equations are proved to be instances of
-abstract sets of ordered combinations (n-tuples).
-A permutation property of a set of unordered domain elements is proved to
-constrain a list of those elements to at most 3, for example, 3 distance
-elements (height, width, and depth) and 3 non-distance elements (time, mass,
-and charge).
+some abstract sets of ordered combinations (n-tuples).
+A permutation property can limit a set of unordered domain elements to a list
+of at most 3, for example, 3 distance elements (height, width, and depth) and 3
+non-distance elements (time, mass, and charge).
 Where the space near each local coordinate point is Euclidean-like, each
 3-dimensional distance unit corresponds to units of time, mass, and charge.
 Derivations of gravity, charge, electromagnetic, relativity, and quantum
