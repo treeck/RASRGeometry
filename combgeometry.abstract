@@ -1,10 +1,10 @@
 Euclidean volume and some distance equations are proved to be instances of
-some abstract sets of ordered combinations (n-tuples).
+some abstract, countable sets of ordered combinations (n-tuples).
 A permutation property can limit a set of unordered elements to a cyclic list
-of at most 3, for example, 3 distance elements (height, width, and depth) and
-3 non-distance elements (time, mass, and charge).
-Where the space near each local coordinate point is Euclidean-like, each
-3-dimensional distance unit corresponds to units of time, mass, and charge.
+of at most 3 elements, for example, 3 distance elements (height, width, and
+depth) and 3 non-distance elements (time, mass, and charge).
+Each 3-dimensional distance unit interval length subset R corresponds to
+unit interval lengths subset R of time, mass, and charge.
 Derivations of gravity, charge, electromagnetic, relativity, and quantum
 physics equations and constants from the unit ratios are shorter and simpler.
 The ratios allow simple quantum extensions to classical and relativity
