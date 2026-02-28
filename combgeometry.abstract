@@ -1,5 +1,5 @@
 Euclidean volume and some distance equations are proved to be instances of
-ordered combinations (n-tuples) of abstract sets countable elements.
+ordered combinations (n-tuples) of elements from a list of sets.
 A permutation property is proved to limit a set of unordered elements to a
 cyclic list of at most 3 elements, e.g., 3 distance elements (height, width,
 and depth) and 3 non-distance elements (time, mass, and charge).
