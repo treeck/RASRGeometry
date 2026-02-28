@@ -1,8 +1,8 @@
 Euclidean volume and some distance equations are proved to be instances of
-abstract sets of countable, ordered combinations (n-tuples).
+ordered combinations (n-tuples) of abstract sets countable elements.
 A permutation property is proved to limit a set of unordered elements to a
-cyclic list of at most 3 elements, e.g., 3 distance elements (height, width, and
-depth) and 3 non-distance elements (time, mass, and charge).
+cyclic list of at most 3 elements, e.g., 3 distance elements (height, width,
+and depth) and 3 non-distance elements (time, mass, and charge).
 The proofs indicate each 3-dimensional distance unit interval length
 corresponds to unit interval lengths of time, mass, and charge.
 Derivations of well-known gravity, charge, electromagnetic, relativity, and
