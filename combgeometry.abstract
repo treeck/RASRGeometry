@@ -1,10 +1,9 @@
 Euclidean volume and some distance equations are proved to be instances of
 ordered combinations (n-tuples) of elements from a list of sets.
-A permutation property is proved to limit a set of unordered elements to a
-cyclic list of at most 3 elements, e.g., 3 distance elements (height, width,
-and depth) and 3 non-distance elements (time, mass, and charge).
-The proofs indicate each unit of distance corresponds to units of time, mass,
-and charge.
+A permutation property of volume is proved to limit a set of unordered domain
+elements to a cyclic list of at most 3 elements, e.g., 3 distance elements
+(height, width, and depth) and 3 non-distance elements (time, mass, and
+charge).
 Derivations of well-known gravity, charge, electromagnetic, relativity, quantum
 physics equations and constants from the unit ratios are shorter and simpler.
 The unit ratios also allow simple quantum extensions to classical and
