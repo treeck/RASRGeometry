@@ -1,7 +1,5 @@
-# Some Set Properties Underlying Geometry and Physics
+# The Set Properties Generating Geometry and Physics
 
-Some set and limit-based proofs of the properties underlying  geometry and physics. Proofs verified in Coq.
+Real analysis proofs exposing the countable set mappings generating geometry and physics. Proofs verified in Coq.
 
-Copyright (c) 2015-2024 George M. Van Treeck.
-
-License granted under the Creative Commons Attribution International Licence.
+Copyright (c) 2015-2026 George M. Van Treeck, All rights reserved.
