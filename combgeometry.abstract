@@ -3,8 +3,8 @@ of ordered combinations (n-tuples) of elements from a list of abstract, disjoint
 sets.
 Volume has a permutation property, where that permutation property is
 proved to limit a set of unordered elements to a cyclic list of at most 3
-elements, e.g., 3 unordered distance dimensions (height, width, and depth) and
-3 unordered non-distance dimensions (time, mass, and charge).
+elements, for example, 3 unordered distance dimensions (height, width, and
+depth) and 3 unordered non-distance dimensions (time, mass, and charge).
 Where the dimensions of Euclidean distance, time, mass, and charge are each
 divided into a countably infinite number of same-sized intervals and i in N,
 the i-th unit interval length of Euclidean distance corresponds 1-1 to the i-th
