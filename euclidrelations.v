@@ -1,14 +1,15 @@
-(** Copyright (c) 2015-2025 George M. Van Treeck.
-    Rights granted under the Creative Commons
-    Attribution License.
+(** Copyright (c) 2015-2026 George M. Van Treeck.
+    All rights reserved.
     This software uses The Rocq Proof Assistance,
-    Copyright (c) 1999-2025  The Rocq Development Team
+    Copyright (c) 1999-2026  The Rocq Development Team
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
-Require Import Arith PeanoNat Lia Field Bool Sumbool List.
+From Stdlib Require Import Arith PeanoNat Lia Field Bool
+                           Sumbool List.
 
-Require Import Rdefinitions Raxioms RIneq Rfunctions R_Ifp.
+From Stdlib Require Import Rdefinitions Raxioms RIneq
+                           Rfunctions R_Ifp.
 
 Section EuclideanRelations.
 
@@ -258,7 +259,7 @@ Hypothesis pow_ge_args : forall (r1 r2: R) (n: nat),
 Hypothesis nth_root_exists :
     forall (r: R) (n: nat), exists (r': R), r = (Rpow r' n).
 
-(** Two sets of real values are equal if all the elements
+(** Two lists of real values are equal if all the elements
     at the same positions are also equal. *)
 Inductive eq_list_R : list R -> list R -> Prop :=
   | eq_list_R_nil : eq_list_R Datatypes.nil Datatypes.nil
@@ -380,6 +381,12 @@ Hypothesis binomial_eq :
 
 (** ==================================================== *)
 (** Start of definitions and proofs for the Ruler Measure *)
+(**
+
+    NOTE: THIS SECTION IS NO LONGER USED IN THE CURRENT
+          VOLUME AND DISTANCE PROOFS. IT IS KEPT HERE IN
+          CASE IT IS USEFUL LATER HERE OR USEFUL TO OTHERS.
+**)
 
 (** list_list_mem returns the ith list in list l. *)
 Definition list_list_mem (i: nat) (l: list (list A)) :
@@ -673,21 +680,15 @@ Qed.
         v = cartesian_product(i=1 to n) s_i *)
 Theorem Euclidean_volume :
     forall (i n: nat)
-        (c Lim1 Lim2 delta epsilon v v_c s_i p_i: R)
-        (f: R->R->R) (g: R->R) (p s: list R),
-    (* ruler based definitions *)
-    c > 0 /\
-    f = M /\ g = delta_eq_epsilon /\
-    Lim1 = 0 /\ Lim2 = 0 /\
-    0 < delta /\ 0 < epsilon /\ delta = epsilon /\
-    Rabs (c - Lim1) < delta /\
-    Rabs ((Rpow c n) - Lim2) < epsilon /\
-    Rabs (M s_i c - s_i) < epsilon /\
-    Rabs (M v c - v) < epsilon /\
+        (k k_nth_root v v_c s_i p_i: R)
+        (p s: list R),
+    k >= 0 /\ k_nth_root >= 0 /\
+    k = Rpow k_nth_root n /\
     n = length s /\ length p = n /\
     list_rmem i s = s_i /\
-    list_rmem i p = sizes s_i c /\
-    v_c = sizes v c /\
+    list_rmem i p = p_i /\
+    v = v_c * k /\
+    s_i = p_i * k_nth_root /\
     (* Volume, v, is the range value *)
     (* The definition of countable n-volume is the number of
        n-tuples, which is the Cartesian product of the
@@ -696,59 +697,30 @@ Theorem Euclidean_volume :
     v = cartesian_product s.
 Proof.
   intros. intros. decompose [and] H.
-  (* Multiply both sides of v_c = cartesian_product p by c. *)
+  (* Multiply both sides of v_c = cartesian_product p by k. *)
   apply Rmult_eq_compat_r with (r1 := v_c)
-      (r2 := cartesian_product p) (r := c) in H18.
+      (r2 := cartesian_product p) (r := k) in H10.
   (* Apply the ruler and ruler convergence to M v c *)
-  rewrite -> H16 in H18.
-  rewrite <- sizes_times_c_eq_measure in H18.
-  rewrite -> limit_c_0_M_eq_s with
-      (s := v) (c := c) (Lim1 := Lim1)
-      (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := v) (f := M) in H18.
-  assert (Rpow c n = c).
-    apply lim_c_to_n_eq_lim_c with (c := c) (Lim1 := Lim1)
-      (Lim2 := Lim2) (g := g) (delta := delta)
-      (epsilon := epsilon) (f := Rpow).
-    split. assumption. split. reflexivity.
-    split. assumption. split. assumption.
-    split. assumption. split. assumption.
-    split. assumption. split. assumption.
-    split. assumption. assumption.
-  rewrite <- H17 in H18.
-  (* Show that (cartesian_product p) * Rpow c n =
+  rewrite <- H7 in H10.
+  rewrite -> H1 in H10.
+  (* Show that (cartesian_product p) * Rpow k_nth_root n =
      cartesian_product s *)
-  assert ((cartesian_product p) * Rpow c n =
-          cartesian_product (mult_list p c)).
+  assert ((cartesian_product p) * Rpow k_nth_root n =
+          cartesian_product (mult_list p k_nth_root)).
     apply pow_distributes_over_cartesian_product.
     symmetry. assumption.
-    rewrite -> H19 in H18.
+    rewrite -> H9 in H10.
   apply mult_list_spec with (l := p)
-      (a := sizes s_i c) (r := c) in H15.
-  (* Apply the ruler and ruler convergence to M v c *)
-  rewrite <- sizes_times_c_eq_measure in H15.
-  rewrite -> limit_c_0_M_eq_s with
-      (s := s_i) (c := c) (Lim1 := Lim1)
-      (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := s_i) (f := M) in H15.
+      (a := p_i) (r := k_nth_root) in H6.
+  rewrite <- H8 in H6.
   (* Show that the list, s, of domain values corresponds
      to the list, p, of the number of size c sizes. *)
-  rewrite <- H14 in H15.
-  apply eq_list_R_cons with  (l1 := mult_list p c)
-        (l2 := s) in H15.
-  apply eq_list_R_is_eq in H15.
-  rewrite -> H15 in H18.
+  rewrite <- H5 in H6.
+  apply eq_list_R_cons with  (l1 := mult_list p k_nth_root)
+        (l2 := s) in H6.
+  apply eq_list_R_is_eq in H6.
+  rewrite -> H6 in H10.
   assumption.
-    split. assumption. split. reflexivity.
-    split. assumption. split. assumption.
-    split. reflexivity. split. assumption.
-    split. assumption. split. assumption.
-    split. assumption. assumption. assumption.
-    split. assumption. split. reflexivity.
-    split. assumption. split. assumption.
-    split. reflexivity. split. assumption.
-    split. assumption. split. assumption.
-    split. assumption. assumption. assumption.
 Qed.
 
 (** The sum of (Euclidean) volumes (length/area/volume) theorem:
@@ -756,59 +728,36 @@ Qed.
 *)
 Theorem sum_of_volumes :
     forall (i j m n: nat)
-        (c Lim1 Lim2 delta epsilon v_c v_c_i_j v v_i_j: R)
-        (f: R->R->R) (g: R->R)
+        (k k_nth_root v_c v_c_i_val v v_i_val: R)
         (v_c_i v_i: list R),
-    (* ruler based definitions *)
-    c > 0 /\
-    f = M /\ g = delta_eq_epsilon /\
-    Lim1 = 0 /\ Lim2 = 0 /\
-    0 < delta /\ 0 < epsilon /\ delta = epsilon /\
-    Rabs (c - Lim1) < delta /\
-    Rabs (M v c - v) < epsilon /\
-    Rabs (M v_i_j c - v_i_j) < epsilon /\
+    k >= 0 /\ k_nth_root >= 0 /\
+    k = Rpow k_nth_root n /\
     m = length v_c_i /\ m = length v_i /\
-    list_rmem i v_c_i = sizes v_i_j c /\
-    list_rmem i v_i = v_i_j /\
-    v_c = sizes v c /\
+    list_rmem i v_c_i = v_c_i_val /\
+    list_rmem i v_i = v_i_val /\
+    v = v_c * k /\ v_i_val = v_c_i_val * k /\
     v_c = sum_list v_c_i -> v = sum_list v_i.
 Proof.
   intros. intros. decompose [and] H.
-  apply Rmult_eq_compat_r with (r := c)
-      (r1 := v_c) (r2 := sum_list v_c_i) in H17.
-  assert ((sum_list v_c_i) * c =
-          sum_list (mult_list v_c_i c)).
+  apply Rmult_eq_compat_r with (r := k)
+      (r1 := v_c) (r2 := sum_list v_c_i) in H10.
+  assert ((sum_list v_c_i) * k =
+          sum_list (mult_list v_c_i k)).
   apply mult_distributes_over_sum_list.
-  rewrite -> H16 in H17.
-  rewrite -> H15 in H17.
-  rewrite <- sizes_times_c_eq_measure in H17.
-  rewrite -> limit_c_0_M_eq_s with
-      (s := v) (c := c) (Lim1 := Lim1)
-      (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := v) (f := M) in H17.
+  rewrite -> H9 in H10.
+  rewrite <- H7 in H10.
   apply mult_list_spec with (l := v_c_i)
-      (a := sizes v_i_j c) (r := c) in H13.
-  (* Apply the ruler and ruler convergence to M v c *)
-  rewrite <- sizes_times_c_eq_measure in H13.
-  rewrite -> limit_c_0_M_eq_s with
-      (s := v_i_j) (c := c) (Lim1 := Lim1)
-      (g := g) (delta := delta) (epsilon := epsilon)
-      (Lim2 := v_i_j) (f := M) in H13.
-  rewrite <- H14 in H13.
+      (a := v_c_i_val) (r := k) in H5.
+  rewrite <- H8 in H5.
+  rewrite <- H6 in H5.
   (* Show that the list, v_i, of domain values corresponds
-     to the list, v_c_i, of the number of size c sizes. *)
-  apply eq_list_R_cons with  (l1 := mult_list v_c_i c)
-        (l2 := v_i) in H13.
-  apply eq_list_R_is_eq in H13.
-  rewrite -> H13 in H17.
-  assumption.
-  split. assumption. split. reflexivity. split. assumption.
-  split. assumption. split. reflexivity. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  assumption. assumption. split. assumption.
-  split. reflexivity. split. assumption. split. assumption.
-  split. reflexivity. split. assumption. split. assumption.
-  split. assumption. split. assumption. assumption.
+     to the list, v_c_i, of the number of size k_nth_root
+     sizes. *)
+  apply eq_list_R_cons with
+        (l1 := mult_list v_c_i k)
+        (l2 := v_i) in H5.
+  apply eq_list_R_is_eq in H5.
+  rewrite -> H5 in H10.
   assumption.
 Qed.
 
@@ -816,40 +765,32 @@ Qed.
 
 Theorem sum_of_volumes_distance :
     forall (i j m n: nat)
-        (c Lim1 Lim2 delta epsilon d_c d v_c v_c_i_j v v_i_j: R)
-        (f: R->R->R) (g: R->R)
+        (k k_nth_root d_c d v_c v_c_i_val v v_i_val: R)
         (v_c_i v_i: list R),
-    (* ruler based definitions *)
-    c > 0 /\
-    f = M /\ g = delta_eq_epsilon /\
-    Lim1 = 0 /\ Lim2 = 0 /\
-    0 < delta /\ 0 < epsilon /\ delta = epsilon /\
-    Rabs (c - Lim1) < delta /\
-    Rabs (M v c - v) < epsilon /\
-    Rabs (M v_i_j c - v_i_j) < epsilon /\
+    k >= 0 /\ k_nth_root >= 0 /\
+    k = Rpow k_nth_root n /\
     m = length v_c_i /\ m = length v_i /\
-    list_rmem i v_c_i = sizes v_i_j c /\
-    list_rmem i v_i = v_i_j /\
-    v_c = sizes v c /\
+    list_rmem i v_c_i = v_c_i_val /\
+    list_rmem i v_i = v_i_val /\
+    v = v_c * k /\ v_i_val = v_c_i_val * k /\
     v_c = Rpow d_c n /\
     v = Rpow d n /\
     Rpow d_c n = sum_list v_c_i -> Rpow d n = sum_list v_i.
 Proof.
   intros. intros. decompose [and] H.
-  rewrite <- H16 in H19.
+  rewrite <- H9 in H12.
   assert (v = sum_list v_i).
-    apply sum_of_volumes with (c := c) (Lim1 := Lim1) (Lim2 := Lim2)
-      (delta := delta) (epsilon := epsilon) (f := f) (g := g) (i := i)
-      (m := m) (v_c := v_c) (v_c_i := v_c_i)
-      (v := v) (v_i_j := v_i_j) (v_i := v_i).
-    tauto. assumption. assumption.
+    apply sum_of_volumes with (i := i) (m := m) (n := n)
+       (k := k) (k_nth_root := k_nth_root)
+       (v_c := v_c) (v_c_i := v_c_i)
+       (v_c_i_val := v_c_i_val)
+       (v := v) (v_i_val := v_i_val) (v_i := v_i).
+  tauto.
   split. assumption. split. assumption. split. assumption.
   split. assumption. split. assumption. split. assumption.
   split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. assumption.
-  rewrite -> H17 in H18.
+  assumption.
+  rewrite -> H10 in H11.
   assumption.
 Qed.
 
@@ -858,51 +799,37 @@ Qed.
 
 Theorem Minkowski_distance :
     forall (i j m n: nat)
-        (c Lim1 Lim2 delta epsilon d_c d_c_i d d_i
-          v_c v_c_i_j v v_i_j: R)
-        (f: R->R->R) (g: R->R)
+        (k k_nth_root d_c d_c_i d d_i
+          v_c v_c_i_val v v_i_val: R)
         (v_c_i v_i: list R),
-    (* ruler based definitions *)
-    c > 0 /\
-    f = M /\ g = delta_eq_epsilon /\
-    Lim1 = 0 /\ Lim2 = 0 /\
-    0 < delta /\ 0 < epsilon /\ delta = epsilon /\
-    Rabs (c - Lim1) < delta /\
-    Rabs (M v c - v) < epsilon /\
-    Rabs (M v_i_j c - v_i_j) < epsilon /\
-    Rabs (M d c - d) < epsilon /\
-    Rabs (M d_i c - d_i) < epsilon /\
+    k >= 0 /\ k_nth_root >= 0 /\
+    k = Rpow k_nth_root n /\
     m = length v_c_i /\ m = length v_i /\
-    list_rmem i v_c_i = sizes v_i_j c /\
-    list_rmem i v_i = v_i_j /\
-    v_c = sizes v c /\
+    list_rmem i v_c_i = v_c_i_val /\
+    list_rmem i v_i = v_i_val /\
+    v = v_c * k /\ v_i_val = v_c_i_val * k /\
     v_c = Rpow d_c n /\
-    v_c_i_j = sizes v c /\
-    v_c_i_j = Rpow d_c n /\
     v = Rpow d n /\
-    v_i_j = Rpow d_i n /\
+    v_c_i_val = Rpow d_c n /\
+    v = Rpow d n /\
+    v_i_val = Rpow d_i n /\
     Rpow d_c n = sum_list(v_c_i) ->
     Rpow d n = sum_list(v_i) /\
       list_rmem i v_i = Rpow d_i n.
 Proof.
   intros. intros. decompose [and] H.
-  rewrite <- H18 in H24.
+  rewrite -> H13 in H6.
   split.
-    apply sum_of_volumes_distance with (c := c)
-      (Lim1 := Lim1) (Lim2 := Lim2)
-      (delta := delta) (epsilon := epsilon)
-      (f := f) (g := g) (i := i)
-      (m := m) (d_c := d_c) (v_c := v_c) (v_c_i := v_c_i)
-      (v := v) (v_i_j := v_i_j) (v_i := v_i).
-    tauto. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  split. assumption. split. assumption. split. assumption.
-  rewrite <- H24. symmetry. assumption.
-  rewrite -> H16. assumption.
+  apply sum_of_volumes_distance with (i := i)
+     (m := m) (n := n)
+     (k := k) (k_nth_root := k_nth_root)
+     (v_c := v_c) (v_c_i := v_c_i)
+     (v_c_i_val := v_c_i_val)
+     (v := v) (v_i_val := v_i_val) (v_i := v_i)
+     (d_c := d_c).
+  assumption.
+  tauto.
+  assumption.
 Qed.
 
 

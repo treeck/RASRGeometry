@@ -1,12 +1,11 @@
-(** Copyright (c) 2015-2019 George M. Van Treeck.
-    Rights granted under the Creative Commons
-    Attribution License.
-    This software uses The Coq Proof Assistance,
-    Copyright (c) 1999-2019  The Coq Development Team
+(** Copyright (c) 2015-2026 George M. Van Treeck.
+    All rights reserved.
+    This software uses The Rocq Proof Assistance,
+    Copyright (c) 1999-2026  The Rocq Development Team
     Rights granted under
     GNU Lesser General Public License Version 2.1. *)
 
-Require Import Arith Omega Bool List.
+From Stdlib Require Import Arith Lia Bool List.
 
 Section Symmetric.
 (** This section contains definitions, theorem, and
@@ -69,10 +68,10 @@ Section CyclicOrder.
 
 (** Cyclic successor. *)
 Definition cyclic_successor (m setsize: nat) : nat :=
-  if beq_nat m setsize then 1 else S m.
+  if m =? setsize then 1 else S m.
 (** Cyclic predecssor *)
 Definition cyclic_predecessor (m setsize: nat) : nat :=
-  if beq_nat m 1 then setsize else pred m.
+  if m  =? 1 then setsize else pred m.
 
 (** Forall n = setsize, n + 1 := 1. *)
 Lemma n_plus_one_is_one : forall n setsize: nat,
@@ -80,8 +79,8 @@ Lemma n_plus_one_is_one : forall n setsize: nat,
 Proof.
   intros. unfold cyclic_successor.
   assert (eq_beq_true :
-      n = setsize -> beq_nat n setsize = true).
-    intros. apply beq_nat_true_iff. exact H0.
+      n = setsize -> n =? setsize = true).
+    intros. apply Nat.eqb_eq. exact H0.
   rewrite -> eq_beq_true. reflexivity. exact H.
 Qed.
 
@@ -91,8 +90,8 @@ Lemma one_minus_one_is_one : forall m setsize: nat,
 Proof.
   intros. unfold cyclic_predecessor.
   assert (eq_beq_true :
-      m = 1 -> beq_nat m 1 = true).
-    intros. apply beq_nat_true_iff. exact H0.
+      m = 1 -> m =? 1 = true).
+    intros. apply Nat.eqb_eq. exact H0.
   rewrite -> eq_beq_true. reflexivity. exact H.
 Qed.
 
@@ -216,18 +215,18 @@ Proof.
   unfold cyclic_successor in H0. unfold cyclic_predecessor in H0.
   decompose [and or] H. decompose [or] H0.
   assert (m_lt_setsize: m < setsize).
-    rewrite -> H1. omega.
+    rewrite -> H1. lia.
   assert (lt_beq_false : forall m n: nat,
-            m < n -> beq_nat m n = false).
-    intros. apply beq_nat_false_iff. omega.
+            m < n -> m =? n = false).
+    intros. apply Nat.eqb_neq. lia.
   apply lt_beq_false in m_lt_setsize. rewrite -> m_lt_setsize in H2.
   rewrite -> H1 in H2. rewrite <- H3 in H2. inversion H2.
   assert (eq_beq_true : forall m n: nat,
-            m = n -> beq_nat m n = true).
-    intros. apply beq_nat_true_iff. exact H5.
+            m = n -> m =? n = true).
+    intros. apply Nat.eqb_eq. exact H5.
   apply eq_beq_true with (m := m) (n := 1) in H1.
   rewrite -> H1 in H2. rewrite <- H3 in H2. rewrite -> H2 in H4.
-  omega.
+  lia.
 Qed.
 
 End CyclicOrder.
