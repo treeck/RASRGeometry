@@ -4,16 +4,17 @@ sets.
 Volume has a permutation property, where that permutation property is
 proved to limit a set of unordered elements to a cyclic list of at most 3
 elements, for example, a set of 3 unordered distance dimensions (height, width,
-and depth) and a complement set of 3 unordered non-distance dimensions
-(time, mass, and charge), each dimension subset R.
+and depth) and a set of 3 unordered non-distance dimensions (time, mass, and
+charge), each dimension subset R.
 If the dimensions of Euclidean distance, time, mass, and charge are each
 divided into a countably infinite number of same-sized intervals, then for all
-i in N, the i-th Planck unit interval length of Euclidean distance has
-corresponding i-th Planck unit interval lengths of time, mass, and charge.
+i in N, the i-th unit interval length of Euclidean distance has corresponding
+i-th unit interval lengths of time, mass, and charge, which implies 3 direct and
+3 inverse proportion interval length ratios.
 Well-known gravity, charge, electromagnetic, relativity equations and related
-constants are derived from 3 direct proportion Planck unit ratios.
+constants are derived from the 3 direct proportion ratios.
 Well-known quantum physics equations and related constants are derived from a
-combination of 3 direct and 3 inverse proportion Planck unit ratios.
-The 3 inverse proportion unit ratios allow simple quantum extensions to
+combination of the 3 direct and 3 inverse proportion ratios.
+The 3 inverse proportion ratios allow simple quantum extensions to
 gravity, charge, and relativity equations.
 The math proofs are verified in Rocq.
