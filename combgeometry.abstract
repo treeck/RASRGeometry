@@ -6,8 +6,8 @@ to a cyclic list of at most 3 elements: a set of 3 unordered distance dimensions
 (height, width, and depth) and a set of 3 unordered non-distance dimensions
 (time, mass, and charge), each dimension subset R.
 Where the dimensions of Euclidean distance, time, mass, and charge are each
-divided into a countably infinite number of same-sized intervals and for all i
-in N, there are 3 direct and 3 inverse proportion ratios of the i-th unit
+divided into a countably infinite number of constant-sized intervals and for
+all i in N, there are 3 direct and 3 inverse proportion ratios of the i-th unit
 interval length of Euclidean distance to the i-th unit interval lengths of
 time, mass, and charge.
 Derivations of well-known gravity, charge, electromagnetic, relativity, quantum
