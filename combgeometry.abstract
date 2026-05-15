@@ -6,14 +6,13 @@ to a cyclic list of at most 3 elements: a set of 3 unordered distance dimensions
 (height, width, and depth) and a set of 3 unordered non-distance dimensions
 (time, mass, and charge), each dimension subset R.
 Where the dimensions of Euclidean distance, time, mass, and charge are each
-divided into reduced Planck unit intervals and for all i in N, there are 3
-direct and 3 inverse proportion ratios of the i-th unit interval length of
-Euclidean distance to the i-th unit interval lengths of time, mass, and charge.
+divided into the same number of intervals, there are 3 direct and 3 inverse
+proportion ratios of the i-th reduced Planck unit interval length of Euclidean
+distance to the i-th reduced Planck unit interval lengths of time, mass, and
+charge.
 Derivations of well-known gravity, charge, electromagnetic, relativity, quantum
 physics equations and related constants from the ratios are much shorter and
 simpler.
-The gravity (G) and Planck (h) constants are shown to not be fundamental
-constants.
 Inverse ratios are used to add quantum extensions to gravity, charge, and
 relativity equations.
 The math proofs are verified in Rocq.
