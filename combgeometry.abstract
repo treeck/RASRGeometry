@@ -1,21 +1,20 @@
 Euclidean volume and some distance equations are proved to be instances of
 ordered combinations (n-tuples) of elements from a list of disjoint, countable
 sets.
-A permutation property is proved to limit a set of unordered elements to a
-cyclic list of at most 3 elements: a set of 3 unordered distance dimensions
-(height, width, and depth) and a set of 3 unordered non-distance dimensions
-(time, mass, and charge), each dimension subset R.
+Volume has a permutation property, where that property is proved to limit a set
+of unordered elements to a at most 3 elements: a set of 3 unordered distance
+dimensions (width, height, and depth) and a set of 3 unordered non-distance
+dimensions (time, mass, and charge), each dimension subset R.
 Where the dimensions of Euclidean distance, time, mass, and charge are each
 divided into the same number of intervals, there are 3 direct and 3 inverse
 proportion ratios of the i-th Planck unit interval length of Euclidean distance
 to the i-th Planck unit interval lengths of time, mass, and charge.
 Derivations of well-known gravity, charge, electromagnetic, relativity, quantum
-physics equations and related constants from the ratios are much shorter and
-simpler.
+physics equations and related constants from the ratios are shorter and simpler.
 Inverse ratios are used to add quantum extensions to the Schwarzchild metric,
 Newton's gravity force, and Coulomb's charge force equations, where the
 quantum-extended equations predict that: 1) the gravity, charge, permittivity,
 and permeability constants do not exist where the quantum effects are
-measurable; 2) as the distance between two point masses and between two point
-charges goes to zero, the forces do not go to infinity.
+measurable; 2) The force between two point masses and between two point
+charges peaks at the Planck unit length.
 The math proofs are verified in Rocq.
