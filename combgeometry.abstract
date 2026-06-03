@@ -1,6 +1,6 @@
 Euclidean volume and some distance equations are proved to be instances of
-ordered combinations (n-tuples) of elements from a list of disjoint, countable
-sets.
+ordered combinations (n-tuples) of elements from a list of disjoint, countable,
+abstract sets.
 Volume has a permutation property, where that property is proved to limit a set
 of unordered elements to at most 3 elements: for example, a set of 3 unordered
 distance dimensions (width, height, and depth) and a set of 3 unordered
