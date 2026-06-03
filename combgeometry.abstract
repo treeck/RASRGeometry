@@ -2,9 +2,9 @@ Euclidean volume and some distance equations are proved to be instances of
 ordered combinations (n-tuples) of elements from a list of disjoint, countable
 sets.
 Volume has a permutation property, where that property is proved to limit a set
-of unordered elements to a at most 3 elements: a set of 3 unordered distance
-dimensions (width, height, and depth) and a set of 3 unordered non-distance
-dimensions (time, mass, and charge), each dimension subset R.
+of unordered elements to at most 3 elements: for example, a set of 3 unordered
+distance dimensions (width, height, and depth) and a set of 3 unordered
+non-distance dimensions (time, mass, and charge), each dimension subset R.
 Where the dimensions of Euclidean distance, time, mass, and charge are each
 divided into the same number of intervals, there are 3 direct and 3 inverse
 proportion ratios of the i-th Planck unit interval length of Euclidean distance
