@@ -1,19 +1,18 @@
 Euclidean volume and some distance equations are proved to be instances of
-ordered combinations (n-tuples) of elements from a list of disjoint, countable,
-abstract sets.
-Volume has a permutation property, where that property is proved to limit a set
-of unordered elements to at most 3 elements: for example, a set of 3 unordered
-distance dimensions (width, height, and depth) and a set of 3 unordered
-non-distance dimensions (time, mass, and charge), each dimension subset R.
-Where the dimensions of Euclidean distance, time, mass, and charge are each
-divided into the same number of intervals, there are 3 direct and 3 inverse
-proportion ratios of the i-th Planck unit interval length of Euclidean distance
-to the i-th Planck unit interval lengths of time, mass, and charge.
+ordered combinations (n-tuples) of elements from a list of disjoint sets.
+The n-tuples and volume has a permutation property, where that property is
+proved to limit a set of unordered elements to at most 3 elements: for example,
+a set of 3 unordered distance dimensions (width, height, and depth) and, for
+example, a set of 3 unordered non-distance dimensions (time, mass, and charge),
+each dimension subset R.
+The consequences of the distance and volume properties are 3 direct and 3
+inverse proportion ratios of a quantum unit interval length of Euclidean
+distance to quantum unit interval lengths of time, mass, and charge.
 Derivations of well-known gravity, charge, electromagnetic, relativity, quantum
 physics equations and related constants from the ratios are shorter and simpler.
 Inverse ratios are used to add quantum extensions to the Schwarzchild metric,
 Newton's gravity force, and Coulomb's charge force equations, where the
-quantum-extended equations predict that: 1) the gravity, charge, permittivity,
+quantum-extended equations predict that: 1) The gravity, charge, permittivity,
 and permeability constants do not exist where the quantum effects are
 measurable; 2) The force between two point masses and between two point
 charges peaks at the Planck unit length.
