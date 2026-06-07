@@ -5,8 +5,6 @@ to limit a set of unordered elements to at most 3 elements: for example, a set
 of 3 unordered distance dimensions, \{width, height, depth\}, and, for example,
 a set of 3 unordered non-distance dimensions, \{time, mass, charge\}, each
 dimension a proper subset of R.
-And the dimension of Euclidean distance has the property of being a proper
-subset of R.
 Dividing the dimensions of Euclidean distance, time, mass, and charge into
 the same number of intervals, there are 3 direct and 3 inverse proportion
 ratios of a i-th interval length of Euclidean distance to the i-th interval
@@ -15,8 +13,7 @@ Derivations of well-known gravity, charge, electromagnetic, relativity, quantum
 physics equations and related constants from the ratios are shorter and simpler.
 Inverse ratios are used to add quantum extensions to the Schwarzchild metric,
 Newton's gravity force, and Coulomb's charge force equations, where the
-quantum-extended equations predict that: 1) The gravity, charge, permittivity,
-and permeability constants do not exist where the quantum effects are
-measurable; 2) The force between two point masses and between two point
-charges peaks at the Planck unit length.
+quantum-extended equations predict that: 1) The gravity and charge constants
+do not exist where the quantum effects are measurable; 2) The force between
+two point masses and between two point charges peaks at the Planck unit length.
 The math proofs are verified in Rocq.
