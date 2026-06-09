@@ -4,7 +4,7 @@ Volume has a permutation property, where that permutation property is proved
 to limit a set of unordered elements to at most 3 elements: for example, a set
 of 3 unordered distance dimensions, {width, height, depth}, and, for example,
 a set of 3 unordered non-distance dimensions, {time, mass, charge}, each
-dimension a proper subset of R.
+dimension a subset of R.
 Dividing the dimensions of Euclidean distance, time, mass, and charge into
 the same number of intervals, there are 3 direct and 3 inverse proportion
 ratios of a i-th interval length of Euclidean distance to the i-th interval
