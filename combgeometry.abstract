@@ -1,10 +1,9 @@
 Euclidean volume and some distance equations are proved to be instances of
 ordered combinations (n-tuples) of elements from a list of disjoint sets.
-The sets and volume domain values have a permutation property, that is proved
-to limit a set of unordered elements to at most 3 elements: for example, a set
-of 3 unordered distance values, {width, height, depth}, and a set of 3
-unordered non-distance values, for example, {time, mass, charge}, each value
-in R.
+The sets and volume domain values have a permutation property that is proved to
+limit a set of unordered elements to at most 3 elements: for example, a set of
+3 unordered distance values, {width, height, depth}, and a set of 3 unordered
+non-distance values, for example, {time, mass, charge}, each value in R.
 Dividing the dimensions of Euclidean distance, time, mass, and charge into
 the same number of fixed-sized intervals, there are 3 direct and 3 inverse
 proportion ratios of the i-th interval length of Euclidean distance to the i-th
