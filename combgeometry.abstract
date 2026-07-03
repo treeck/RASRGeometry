@@ -1,9 +1,9 @@
 Euclidean volume and some distance equations are proved to be instances of
 ordered combinations (n-tuples) of elements from a list of disjoint sets.
-The linearly sequenceable and commutative properties of the sets of n-tuples
-and corresponding volume domain values are proved to limit a set of elements to
-at most 3 elements: for example, a set of 3 distance values, {width, height,
-depth}, and a set of 3 non-distance values, {time, mass, charge}, each value
+The linearly sequenced and commutative properties of the sets of n-tuples and
+corresponding volume domain values are proved to limit a set of elements to at
+most 3 elements: for example, a set of 3 distance values, \{width, height,
+depth\}, and a set of 3 non-distance values, \{time, mass, charge\}, each value
 in R.
 Dividing the dimensions of Euclidean distance, time, mass, and charge into
 n number of fixed-sized intervals, for i in 1 to n, there are 3 direct and 3
