@@ -13,8 +13,8 @@ which are proved to limit a set to at most 3 elements: for example, a set of 3
 distance values, {width, height, depth}, and a set of 3 non-distance values,
 {time, mass, charge}.
 Dividing the dimensions of Euclidean distance, time, mass, and charge into
-n number of fixed-sized intervals, for i in 1 to n, there are 3 direct and 3
-inverse proportion ratios of the i-th Euclidean distance interval length to the
-i-th interval lengths of time, mass, and charge.
-These ratios facilitate the short and simple derivations.
+fixed-sized intervals, for i in N, there are 3 direct and 3 inverse proportion
+ratios of the i-th Euclidean distance interval length to the i-th interval
+lengths of time, mass, and charge.
+The ratios enable the short and simple derivations.
 The math proofs are verified in Rocq.
