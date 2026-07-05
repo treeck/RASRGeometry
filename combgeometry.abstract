@@ -1,20 +1,20 @@
-Shorter and simpler derivations of well-known gravity, charge, electromagnetic,
-relativity, quantum physics equations and related constants are presented.
-Quantum extensions to the Schwarzschild metric, Newton's gravity force, and
-Coulomb's charge force equations predict: 1) The gravity and charge constants
-do not exist where the quantum effects are measurable; 2) The forces between
-two point masses and between two point charges peak at the Planck unit length.
-The means of these short and simple derivations are consequences of the
-following first principles: 1) Euclidean volume and some distance equations are
-proved to be instances of ordered combinations (n-tuples) of elements from a
-list of disjoint sets. 2) The sets of n-tuples and corresponding set of volume
-domain values have combined linear sequencing and commutative properties,
-which are proved to limit a set to at most 3 elements: for example, a set of 3
-distance values, {width, height, depth}, and a set of 3 non-distance values,
-{time, mass, charge}.
+Euclidean volume and some distance equations are proved to be instances of
+ordered combinations (n-tuples) of elements from a list of disjoint sets.
+The linearly sequenceable property puts a constraint on the commutative
+properties of the sets of n-tuples and corresponding volume domain values,
+where the constraint is proved to limit a set of elements to at most 3
+elements: for example, a set of 3 distance values, {width, height, depth},
+and a set of 3 non-distance values, {time, mass, charge}.
 Dividing the dimensions of Euclidean distance, time, mass, and charge into
-fixed-sized intervals, for i in N, there are 3 direct and 3 inverse proportion
-ratios of the i-th Euclidean distance interval length to the i-th interval
-lengths of time, mass, and charge.
-The ratios enable the short and simple derivations.
+fixed-sized intervals, for i in N, there are 3 direct and 3 inverse proportio
+ ratios of the i-th Euclidean distance interval length to the i-th interval
+ lengths of time, mass, and charge.
+Shorter and simpler derivations of well-known gravity, charge, electromagnetic,
+relativity, quantum physics equations and related constants from the ratios are
+presented.
+The inverse proportion ratios are used to add quantum extensions to the
+Schwarzschild metric, Newton's gravity force, and Coulomb's charge force
+equations, which predict that: 1) The gravity and charge constants do not exist
+where the quantum effects are measurable; 2) The forces between two point
+masses and between two point charges peak at the Planck unit length.
 The math proofs are verified in Rocq.
