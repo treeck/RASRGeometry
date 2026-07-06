@@ -1,14 +1,14 @@
 Euclidean volume and some distance equations are proved to be instances of
-ordered combinations (n-tuples) of elements from a list of disjoint sets.
+ordered combinations (n-tuples) of elements from a list of countable sets.
 The linearly sequenceable property puts a constraint on the commutative
 properties of the sets of n-tuples and corresponding volume domain values,
 where the constraint is proved to limit a set of elements to at most 3
 elements: for example, a set of 3 distance values, {width, height, depth},
 and a set of 3 non-distance values, {time, mass, charge}.
-Dividing the dimensions of Euclidean distance, time, mass, and charge into
-fixed-sized intervals, for i in N, there are 3 direct and 3 inverse proportio
- ratios of the i-th Euclidean distance interval length to the i-th interval
- lengths of time, mass, and charge.
+Dividing Euclidean distance, time, mass, and charge into n number of
+fixed-sized intervals, for i in 1 to n, there are 3 direct and 3 inverse
+proportion ratios of the i-th Euclidean distance interval length to the i-th
+interval lengths of time, mass, and charge.
 Shorter and simpler derivations of well-known gravity, charge, electromagnetic,
 relativity, quantum physics equations and related constants from the ratios are
 presented.
