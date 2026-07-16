@@ -1,9 +1,9 @@
 Euclidean volume and some distance equations are derived from ordered
 combinations (n-tuples) of elements from a list of countable sets.
-The linearly sequenceable and commutative properties of the n-tuple domain
-sets and corresponding volume domain values are proved to limit a set to at
-most 3 elements: for example, a set of 3 distance values, {width, height,
-depth}, and a set of 3 non-distance values, {time, mass, charge}.
+The combined linearly sequenceable and commutative properties of the n-tuple
+domain sets and corresponding volume domain values are proved to limit a
+set to at most 3 elements: for example, a set of 3 distance values, {width,
+height, depth}, and a set of 3 non-distance values, {time, mass, charge}.
 Dividing all Euclidean distance, time, mass, and charge into n number of
 fixed-sized intervals, for i in 1 to n, there are 3 direct and 3 inverse
 proportion ratios of the i-th Euclidean distance interval length to the i-th
@@ -11,9 +11,8 @@ interval lengths of time, mass, and charge.
 Short and simple derivations of well-known gravity, charge, electromagnetic,
 relativity, quantum physics equations and related constants from the ratios are
 presented.
+The gravity and Planck constants are composed of the ratios.
 The derivations eliminate the need for dimensional analysis.
-The gravity and Planck constants are composed of more fundamental
-constants.
 The inverse proportion ratios are used to add quantum extensions to the
 Schwarzschild metric, Newton's gravity force, and Coulomb's charge force, which
 predict that: 1) The gravity and charge constants do not exist where the
