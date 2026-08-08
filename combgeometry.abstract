@@ -1,7 +1,7 @@
 Euclidean volume and some distance equations are proved to be derived from
 ordered combinations (n-tuples) of elements from a list of countable sets.
-Sequencing of a set of n number immutable linearly ordered elements in all n!
-permutations is proved limit a set to at most 3 elements: for example, a set
+Sequencing a set of n number of elements with an immutable linear order in all
+n! permutations is proved limit a set to at most 3 elements: for example, a set
 of 3 distance dimensions, [width, height, depth], and a set of 3 non-distance
 dimensions, [time, mass, charge].
 The math proofs are verified in Rocq.
