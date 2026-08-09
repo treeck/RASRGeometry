@@ -4,7 +4,6 @@ Sequencing a set of n number of elements assigned an immutable linear order in
 all n! permutations is proved to be cyclic order limited to at most 3 elements:
 for example, a set of 3 distance dimensions, [width, height, depth], and a set
 of 3 non-distance dimensions, [time, mass, charge].
-The math proofs are verified in Rocq.
 Dividing Euclidean distance, time, mass, and charge into n number of
 constant-sized intervals, for i in 1 to n, there are 3 direct and 3 inverse
 constant proportion ratios of the i-th constant Euclidean distance interval
