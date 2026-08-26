@@ -4,7 +4,7 @@ Linear sequencing of a set of n number of volume domain values in all n!
 permutations is proved to be a cyclic order limited to at most 3 elements: for
 example, a set of 3 distance dimensions, [width, height, depth], and a set of
 3 non-distance dimensions, [time, mass, charge].
-Dividing Euclidean distance, time, mass, and charge into n number of
+Dividing the dimensions of Euclidean distance, time, mass, and charge into
 constant-sized intervals, for i in 1 to n, there are 3 direct and 3 inverse
 proportion ratios of the i-th constant Euclidean distance interval length to
 the i-th constant interval lengths of time, mass, and charge.
