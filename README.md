@@ -1,5 +1,5 @@
-# The Set Properties Generating Geometry and Physics
+# Some set and number properties underlying geometry and physics.
 
-Real analysis proofs exposing the countable set mappings generating geometry and physics. Proofs verified in Coq.
+Some math proofs exposing the countable set mappings generating geometry and physics. Proofs verified in Coq.
 
 Copyright (c) 2015-2026 George M. Van Treeck, All rights reserved.
