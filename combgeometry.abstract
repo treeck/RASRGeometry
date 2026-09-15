@@ -1,6 +1,6 @@
 Euclidean volume and some distance equations are proved to be derived from
 ordered combinations (n-tuples) of elements from a list of countable sets.
-The sets and volume domain values are both commutative and linearly
+The domain sets and volume domain values are both commutative and linearly
 sequenced, which is proved to be a cyclic order limited to at most 3 elements:
 for example, a set of 3 distance dimensions, [width, height, depth], and a set
 of 3 non-distance dimensions, [time, mass, charge].
@@ -10,9 +10,10 @@ proportion ratios of the i-th constant Euclidean distance interval length to
 the i-th constant interval lengths of time, mass, and charge.
 Short and simple derivations of 18 well-known gravity, charge,
 electromagnetism, relativity, quantum physics equations and 10 related
-constants from the ratios are presented.
-Derivations from ratios eliminate the need for dimensional analysis.
-The inverse proportion ratios are used to add quantum extensions to the
-Schwarzschild metric, Newton's gravity force, and Coulomb's charge force,
-which predict that, for both mass and charge, the forces peak at the Planck
-unit length and then go to 0 as the distance goes to 0.
+constants (including the gravity and Planck constants) from the math proofs
+and ratios are presented.
+The need dimensional analysis is eliminated.
+Quantum extensions to the Schwarzschild metric, Newton's gravity force,
+and Coulomb's charge force predict that, for both mass and charge, the
+forces peak at the Planck unit length and then go to 0 as the distance
+goes to 0.
